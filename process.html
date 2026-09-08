@@ -4,340 +4,347 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>ROBONAARA | How We Built AJAX</title>
+<title>ROBONAARA // PROCESS</title>
 
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Syne:wght@600;700;800&display=swap');
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+:root{
+    --bg:#070b0f;
+    --panel:#0d141a;
+    --white:#eef7f7;
+    --muted:#8d9ba3;
+    --orange:#ff5b22;
+    --cyan:#53e6df;
+    --line:rgba(255,255,255,.11);
 }
 
-html {
-    scroll-behavior: smooth;
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
 }
 
-body {
-    font-family: 'Space Grotesk', sans-serif;
-    background: #101820;
-    color: #f4f1e8;
+html{
+    scroll-behavior:smooth;
 }
 
-a {
-    text-decoration: none;
-    color: inherit;
+body{
+    background:var(--bg);
+    color:var(--white);
+    font-family:'Space Grotesk',sans-serif;
+    overflow-x:hidden;
+}
+
+a{
+    color:inherit;
+    text-decoration:none;
+}
+
+body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    z-index:-1;
+    opacity:.3;
+    background-image:
+        linear-gradient(rgba(83,230,223,.06) 1px,transparent 1px),
+        linear-gradient(90deg,rgba(83,230,223,.06) 1px,transparent 1px);
+    background-size:50px 50px;
 }
 
 /* NAV */
 
-.navbar {
-    position: fixed;
-    top: 0;
-    width: 100%;
-    height: 78px;
-    padding: 0 6%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background: rgba(16,24,32,0.92);
-    backdrop-filter: blur(15px);
-    border-bottom: 1px solid #53606a;
-    z-index: 1000;
+nav{
+    position:fixed;
+    top:0;
+    width:100%;
+    height:76px;
+    z-index:1000;
+    padding:0 6%;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    background:rgba(7,11,15,.82);
+    backdrop-filter:blur(18px);
+    border-bottom:1px solid var(--line);
 }
 
-.nav-logo {
-    font-family: 'Syne', sans-serif;
-    font-weight: 800;
-    letter-spacing: 2px;
+.logo{
+    font-family:'Syne',sans-serif;
+    letter-spacing:3px;
 }
 
-.nav-links {
-    display: flex;
-    gap: 34px;
-    font-size: 0.8rem;
-    font-weight: 700;
-    letter-spacing: 1px;
+.logo span{
+    color:var(--orange);
 }
 
-.nav-links a:hover {
-    color: #ff5a1f;
+.nav-links{
+    display:flex;
+    gap:30px;
+}
+
+.nav-links a{
+    font-size:.68rem;
+    letter-spacing:2px;
+    color:#aeb9be;
+}
+
+.nav-links a:hover{
+    color:var(--cyan);
 }
 
 /* HERO */
 
-.process-hero {
-    padding: 170px 7% 100px;
-    min-height: 75vh;
-    background: #d8f0ee;
-    color: #101820;
-    position: relative;
-    overflow: hidden;
+.hero{
+    padding:160px 7% 100px;
+    min-height:70vh;
+    background:
+        radial-gradient(circle at 80% 30%,rgba(83,230,223,.1),transparent 30%),
+        #070b0f;
 }
 
-.process-hero::after {
-    content: "PROCESS";
-    position: absolute;
-    right: -50px;
-    bottom: -60px;
-    font-family: 'Syne', sans-serif;
-    font-size: 14rem;
-    color: rgba(16,24,32,0.07);
-    font-weight: 800;
+.tag{
+    color:var(--cyan);
+    font-size:.62rem;
+    letter-spacing:3px;
 }
 
-.label {
-    color: #ff5a1f;
-    font-size: 0.7rem;
-    font-weight: 700;
-    letter-spacing: 3px;
+.hero h1{
+    font-family:'Syne',sans-serif;
+    font-size:clamp(4rem,10vw,10rem);
+    line-height:.78;
+    letter-spacing:-6px;
+    margin-top:30px;
 }
 
-.process-hero h1 {
-    font-family: 'Syne', sans-serif;
-    font-size: clamp(4rem, 10vw, 10rem);
-    line-height: 0.8;
-    letter-spacing: -6px;
-    margin-top: 30px;
-    position: relative;
-    z-index: 2;
+.hero h1 span{
+    color:var(--orange);
 }
 
-.process-hero h1 span {
-    color: #ff5a1f;
+.hero p{
+    max-width:650px;
+    color:var(--muted);
+    line-height:1.8;
+    margin-top:45px;
 }
 
-.process-description {
-    max-width: 650px;
-    margin-top: 45px;
-    line-height: 1.8;
-    font-size: 1rem;
-    position: relative;
-    z-index: 2;
+/* STRIP */
+
+.strip{
+    background:var(--orange);
+    color:#070b0f;
+    padding:20px 7%;
+    display:flex;
+    justify-content:space-between;
+    font-size:.62rem;
+    font-weight:700;
+    letter-spacing:2px;
 }
 
-/* AJAX STRIP */
-
-.ajax-strip {
-    padding: 35px 7%;
-    background: #ff5a1f;
-    color: #101820;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.ajax-strip strong {
-    font-family: 'Syne', sans-serif;
-    font-size: 2rem;
-}
-
-.ajax-strip span {
-    font-size: 0.7rem;
-    font-weight: 700;
-    letter-spacing: 2px;
+.strip strong{
+    font-family:'Syne',sans-serif;
+    font-size:1.3rem;
 }
 
 /* PROCESS */
 
-.process-section {
-    padding: 120px 7%;
+.process{
+    padding:120px 7%;
 }
 
-.process-heading {
-    display: grid;
-    grid-template-columns: 0.5fr 1.5fr;
-    gap: 50px;
-    margin-bottom: 90px;
+.process-heading{
+    display:grid;
+    grid-template-columns:.4fr 1.6fr;
+    gap:60px;
+    margin-bottom:90px;
 }
 
-.process-heading h2 {
-    font-family: 'Syne', sans-serif;
-    font-size: clamp(3rem, 6vw, 6rem);
-    line-height: 0.9;
+.process-heading h2{
+    font-family:'Syne',sans-serif;
+    font-size:clamp(3rem,7vw,7rem);
+    line-height:.85;
 }
 
-/* ROAD */
+/* STEPS */
 
-.road {
-    position: relative;
+.steps{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:18px;
 }
 
-.road::before {
-    content: "";
-    position: absolute;
-    left: 50%;
-    top: 0;
-    bottom: 0;
-    width: 2px;
-    background: #53606a;
-    transform: translateX(-50%);
+.step{
+    min-height:360px;
+    background:var(--panel);
+    border:1px solid var(--line);
+    padding:35px;
+    position:relative;
+    overflow:hidden;
+    transition:.35s;
 }
 
-.step {
-    width: 46%;
-    margin-bottom: 100px;
-    position: relative;
+.step:hover{
+    border-color:var(--orange);
+    transform:translateY(-7px);
 }
 
-.step:nth-child(even) {
-    margin-left: 54%;
+.step:nth-child(2),
+.step:nth-child(5){
+    background:#101b22;
 }
 
-.step::after {
-    content: "";
-    position: absolute;
-    width: 18px;
-    height: 18px;
-    border-radius: 50%;
-    background: #ff5a1f;
-    border: 4px solid #101820;
-    top: 20px;
+.step-number{
+    font-family:'Syne',sans-serif;
+    font-size:5rem;
+    color:rgba(255,91,34,.18);
+    line-height:.8;
+    position:absolute;
+    right:25px;
+    top:25px;
 }
 
-.step:nth-child(odd)::after {
-    right: -8%;
+.step-tag{
+    color:var(--cyan);
+    font-size:.58rem;
+    letter-spacing:3px;
 }
 
-.step:nth-child(even)::after {
-    left: -8%;
+.step h3{
+    font-family:'Syne',sans-serif;
+    font-size:2rem;
+    margin-top:70px;
+    margin-bottom:20px;
 }
 
-.step-card {
-    border: 1px solid #53606a;
-    padding: 35px;
-    background: #151f28;
-    transition: 0.3s;
-    position: relative;
+.step p{
+    color:var(--muted);
+    line-height:1.8;
+    font-size:.88rem;
+    max-width:550px;
 }
 
-.step-card:hover {
-    border-color: #ff5a1f;
-    transform: translateY(-7px);
+/* LAST STEP */
+
+.step.final{
+    background:var(--orange);
+    color:#070b0f;
+    border-color:var(--orange);
 }
 
-.step-number {
-    font-family: 'Syne', sans-serif;
-    color: #ff5a1f;
-    font-size: 4rem;
-    line-height: 1;
-    margin-bottom: 20px;
+.step.final .step-tag{
+    color:#070b0f;
 }
 
-.step-title {
-    font-family: 'Syne', sans-serif;
-    font-size: 2rem;
-    margin-bottom: 15px;
+.step.final p{
+    color:#1f282c;
 }
 
-.step-card p {
-    color: #bfc5c8;
-    line-height: 1.7;
-    font-size: 0.9rem;
+/* END */
+
+.end{
+    padding:130px 7%;
+    background:#0a1218;
+    border-top:1px solid var(--line);
 }
 
-/* FINAL */
-
-.final-section {
-    background: #f4f1e8;
-    color: #101820;
-    padding: 130px 7%;
+.end h2{
+    font-family:'Syne',sans-serif;
+    font-size:clamp(3rem,8vw,8rem);
+    line-height:.82;
 }
 
-.final-section h2 {
-    font-family: 'Syne', sans-serif;
-    font-size: clamp(3rem, 8vw, 8rem);
-    line-height: 0.85;
-    letter-spacing: -5px;
+.end h2 span{
+    color:var(--orange);
 }
 
-.final-section h2 span {
-    color: #ff5a1f;
+.end p{
+    color:var(--muted);
+    max-width:650px;
+    line-height:1.8;
+    margin-top:40px;
 }
 
-.final-section p {
-    margin-top: 40px;
-    max-width: 650px;
-    line-height: 1.8;
+footer{
+    padding:40px 7%;
+    display:flex;
+    justify-content:space-between;
+    background:#05080b;
+    border-top:1px solid var(--line);
+    color:#738087;
+    font-size:.6rem;
+    letter-spacing:2px;
 }
 
-footer {
-    background: #ff5a1f;
-    color: #101820;
-    padding: 45px 7%;
-    display: flex;
-    justify-content: space-between;
-    font-size: 0.75rem;
-    font-weight: 700;
+footer strong{
+    color:var(--white);
+    font-family:'Syne',sans-serif;
 }
 
-footer strong {
-    font-family: 'Syne', sans-serif;
-}
+/* MOBILE */
 
-/* RESPONSIVE */
+@media(max-width:800px){
 
-@media(max-width: 800px) {
-
-    .nav-links {
-        gap: 12px;
-        font-size: 0.6rem;
+    .nav-links{
+        gap:10px;
     }
 
-    .process-heading {
-        grid-template-columns: 1fr;
+    .nav-links a{
+        font-size:.5rem;
     }
 
-    .road::before {
-        left: 10px;
+    .process-heading{
+        grid-template-columns:1fr;
+        gap:25px;
     }
 
-    .step,
-    .step:nth-child(even) {
-        width: calc(100% - 45px);
-        margin-left: 45px;
+    .steps{
+        grid-template-columns:1fr;
     }
 
-    .step::after,
-    .step:nth-child(odd)::after,
-    .step:nth-child(even)::after {
-        left: -45px;
-        right: auto;
+    .strip{
+        flex-direction:column;
+        gap:10px;
     }
 
-    .ajax-strip {
-        flex-direction: column;
-        align-items: start;
-        gap: 10px;
-    }
-
-    footer {
-        flex-direction: column;
-        gap: 15px;
-        text-align: center;
+    footer{
+        flex-direction:column;
+        gap:15px;
+        text-align:center;
     }
 }
 
-@media(max-width: 500px) {
+@media(max-width:500px){
 
-    .navbar {
-        padding: 0 4%;
+    nav{
+        padding:0 4%;
     }
 
-    .nav-links {
-        gap: 7px;
-        font-size: 0.5rem;
+    .nav-links{
+        gap:6px;
     }
 
-    .process-section,
-    .final-section {
-        padding-left: 5%;
-        padding-right: 5%;
+    .nav-links a{
+        font-size:.43rem;
     }
 
-    .process-hero h1 {
-        letter-spacing: -4px;
+    .hero{
+        padding-left:5%;
+        padding-right:5%;
+    }
+
+    .hero h1{
+        font-size:4.2rem;
+    }
+
+    .process,
+    .end{
+        padding-left:5%;
+        padding-right:5%;
+    }
+
+    .step{
+        min-height:330px;
     }
 }
 </style>
@@ -346,10 +353,10 @@ footer strong {
 <body>
 
 
-<nav class="navbar">
+<nav>
 
-    <div class="nav-logo">
-        ROBONAARA
+    <div class="logo">
+        ROBO<span>NAARA</span>
     </div>
 
     <div class="nav-links">
@@ -363,12 +370,10 @@ footer strong {
 </nav>
 
 
-<!-- HERO -->
+<section class="hero">
 
-<section class="process-hero">
-
-    <div class="label">
-        ROBONAARA / ENGINEERING LOG
+    <div class="tag">
+        ROBONAARA // ENGINEERING LOG
     </div>
 
     <h1>
@@ -376,7 +381,7 @@ footer strong {
         BUILT <span>AJAX.</span>
     </h1>
 
-    <p class="process-description">
+    <p>
         AJAX didn't appear fully built on the first attempt.
         The robot evolved through ideas, designs, mechanisms, electronics,
         programming, testing and plenty of improvements.
@@ -385,64 +390,56 @@ footer strong {
 </section>
 
 
-<div class="ajax-strip">
+<div class="strip">
 
-    <strong>AJAX / 01</strong>
+    <strong>AJAX // BUILD LOG</strong>
 
     <span>
-        IDEA → DESIGN → BUILD → PROGRAM → TEST → COMPETE
+        IDEA → DESIGN → BUILD → ELECTRONICS → CODE → TEST → COMPETE
     </span>
 
 </div>
 
 
-<!-- PROCESS -->
-
-<section class="process-section">
+<section class="process">
 
     <div class="process-heading">
 
-        <div class="label">
-            01 — 07
+        <div class="tag">
+            BUILD_SEQUENCE
         </div>
 
         <h2>
-            THE<br>
-            BUILD<br>
-            PROCESS.
+            FROM<br>
+            IDEA<br>
+            TO <span>AJAX.</span>
         </h2>
 
     </div>
 
 
-    <div class="road">
+    <div class="steps">
 
 
         <!-- 01 -->
 
         <div class="step">
 
-            <div class="step-card">
+            <div class="step-number">01</div>
 
-                <div class="step-number">
-                    01
-                </div>
-
-                <div class="label">
-                    PHASE 01
-                </div>
-
-                <h3 class="step-title">
-                    THE IDEA
-                </h3>
-
-                <p>
-                    Every robot starts with an idea. The team first explored
-                    what AJAX needed to accomplish and began turning the
-                    competition challenge into a practical plan.
-                </p>
-
+            <div class="step-tag">
+                PHASE_01
             </div>
+
+            <h3>
+                THE IDEA
+            </h3>
+
+            <p>
+                Every robot starts with an idea. The team first explored
+                what AJAX needed to accomplish and began turning the
+                competition challenge into a practical plan.
+            </p>
 
         </div>
 
@@ -451,27 +448,21 @@ footer strong {
 
         <div class="step">
 
-            <div class="step-card">
+            <div class="step-number">02</div>
 
-                <div class="step-number">
-                    02
-                </div>
-
-                <div class="label">
-                    PHASE 02
-                </div>
-
-                <h3 class="step-title">
-                    DESIGN & PLANNING
-                </h3>
-
-                <p>
-                    Ideas were converted into designs. The team planned
-                    mechanisms, structure, components and the different
-                    systems that would eventually work together as AJAX.
-                </p>
-
+            <div class="step-tag">
+                PHASE_02
             </div>
+
+            <h3>
+                DESIGN & PLANNING
+            </h3>
+
+            <p>
+                Ideas were converted into designs. The team planned
+                mechanisms, structure, components and the different
+                systems that would eventually work together as AJAX.
+            </p>
 
         </div>
 
@@ -480,27 +471,21 @@ footer strong {
 
         <div class="step">
 
-            <div class="step-card">
+            <div class="step-number">03</div>
 
-                <div class="step-number">
-                    03
-                </div>
-
-                <div class="label">
-                    PHASE 03
-                </div>
-
-                <h3 class="step-title">
-                    BUILDING AJAX
-                </h3>
-
-                <p>
-                    The design became a physical robot. Components and
-                    mechanisms were assembled carefully, turning the plans
-                    into something that could actually move and perform.
-                </p>
-
+            <div class="step-tag">
+                PHASE_03
             </div>
+
+            <h3>
+                BUILDING AJAX
+            </h3>
+
+            <p>
+                The design became a physical robot. Components and
+                mechanisms were assembled carefully, turning the plans
+                into something that could actually move and perform.
+            </p>
 
         </div>
 
@@ -509,27 +494,21 @@ footer strong {
 
         <div class="step">
 
-            <div class="step-card">
+            <div class="step-number">04</div>
 
-                <div class="step-number">
-                    04
-                </div>
-
-                <div class="label">
-                    PHASE 04
-                </div>
-
-                <h3 class="step-title">
-                    ELECTRONICS
-                </h3>
-
-                <p>
-                    Motors, controllers, wiring and other electronic systems
-                    were connected and tested so that the physical mechanisms
-                    of AJAX could respond properly.
-                </p>
-
+            <div class="step-tag">
+                PHASE_04
             </div>
+
+            <h3>
+                ELECTRONICS
+            </h3>
+
+            <p>
+                Motors, controllers, wiring and other electronic systems
+                were connected and tested so that the physical mechanisms
+                of AJAX could respond properly.
+            </p>
 
         </div>
 
@@ -538,27 +517,21 @@ footer strong {
 
         <div class="step">
 
-            <div class="step-card">
+            <div class="step-number">05</div>
 
-                <div class="step-number">
-                    05
-                </div>
-
-                <div class="label">
-                    PHASE 05
-                </div>
-
-                <h3 class="step-title">
-                    PROGRAMMING
-                </h3>
-
-                <p>
-                    Code connected the team's strategy to the robot's
-                    behaviour. The programming was refined so AJAX could
-                    respond reliably to the team's controls and decisions.
-                </p>
-
+            <div class="step-tag">
+                PHASE_05
             </div>
+
+            <h3>
+                PROGRAMMING
+            </h3>
+
+            <p>
+                Code connected the team's strategy to the robot's
+                behaviour. The programming was refined so AJAX could
+                respond reliably to the team's controls and decisions.
+            </p>
 
         </div>
 
@@ -567,56 +540,44 @@ footer strong {
 
         <div class="step">
 
-            <div class="step-card">
+            <div class="step-number">06</div>
 
-                <div class="step-number">
-                    06
-                </div>
-
-                <div class="label">
-                    PHASE 06
-                </div>
-
-                <h3 class="step-title">
-                    TEST & DEBUG
-                </h3>
-
-                <p>
-                    Nothing works perfectly on the first try. The team tested
-                    AJAX repeatedly, found problems, fixed them and improved
-                    the robot's performance through iteration.
-                </p>
-
+            <div class="step-tag">
+                PHASE_06
             </div>
+
+            <h3>
+                TEST & DEBUG
+            </h3>
+
+            <p>
+                Nothing works perfectly on the first try. The team tested
+                AJAX repeatedly, found problems, fixed them and improved
+                the robot's performance through iteration.
+            </p>
 
         </div>
 
 
         <!-- 07 -->
 
-        <div class="step">
+        <div class="step final">
 
-            <div class="step-card">
+            <div class="step-number">07</div>
 
-                <div class="step-number">
-                    07
-                </div>
-
-                <div class="label">
-                    PHASE 07
-                </div>
-
-                <h3 class="step-title">
-                    COMPETITION READY
-                </h3>
-
-                <p>
-                    After designing, building, programming and testing,
-                    AJAX is prepared to leave the workshop and take
-                    ROBONAARA's work onto the competition field.
-                </p>
-
+            <div class="step-tag">
+                PHASE_07
             </div>
+
+            <h3>
+                COMPETITION READY
+            </h3>
+
+            <p>
+                After designing, building, programming and testing,
+                AJAX is prepared to leave the workshop and take
+                ROBONAARA's work onto the competition field.
+            </p>
 
         </div>
 
@@ -626,12 +587,10 @@ footer strong {
 </section>
 
 
-<!-- FINAL -->
+<section class="end">
 
-<section class="final-section">
-
-    <div class="label">
-        ROBONAARA / FINAL CHECK
+    <div class="tag">
+        ROBONAARA // FINAL PROTOCOL
     </div>
 
     <h2>
@@ -651,9 +610,7 @@ footer strong {
 
 <footer>
 
-    <strong>
-        ROBONAARA
-    </strong>
+    <strong>ROBONAARA</strong>
 
     <span>
         BUILD → TEST → FAIL → IMPROVE → REPEAT
@@ -664,7 +621,6 @@ footer strong {
     </span>
 
 </footer>
-
 
 </body>
 </html>
