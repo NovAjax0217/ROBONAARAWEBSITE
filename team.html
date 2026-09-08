@@ -10,7 +10,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@400;500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Audiowide&family=Baloo+2:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 
     <style>
 
@@ -21,41 +21,80 @@
         }
 
         body {
-            background: #05080b;
+            min-height: 100vh;
 
-            color: #eef7f7;
+            font-family: 'Baloo 2', sans-serif;
 
-            font-family: 'Rajdhani', sans-serif;
+            color: #ffffff;
 
             overflow-x: hidden;
+
+            background:
+                radial-gradient(circle at 10% 15%, rgba(255,70,170,0.45), transparent 28%),
+                radial-gradient(circle at 85% 15%, rgba(60,190,255,0.42), transparent 30%),
+                radial-gradient(circle at 75% 80%, rgba(140,70,255,0.38), transparent 30%),
+                radial-gradient(circle at 15% 85%, rgba(255,150,40,0.35), transparent 28%),
+                linear-gradient(135deg, #10052d, #071a35 45%, #21072d);
         }
 
         body::before {
             content: "";
 
             position: fixed;
-            inset: 0;
+
+            width: 600px;
+            height: 600px;
+
+            left: -180px;
+            top: -180px;
+
+            border-radius: 50%;
+
+            background: rgba(255,60,180,0.2);
+
+            filter: blur(110px);
+
+            animation: bgOne 10s infinite alternate;
 
             z-index: -2;
-
-            background-image:
-                linear-gradient(rgba(83,230,223,0.035) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(83,230,223,0.035) 1px, transparent 1px);
-
-            background-size: 45px 45px;
         }
 
         body::after {
             content: "";
 
             position: fixed;
-            inset: 0;
 
-            z-index: -1;
+            width: 600px;
+            height: 600px;
 
-            background:
-                radial-gradient(circle at 20% 20%, rgba(255,91,34,0.08), transparent 30%),
-                radial-gradient(circle at 80% 80%, rgba(83,230,223,0.07), transparent 35%);
+            right: -200px;
+            bottom: -180px;
+
+            border-radius: 50%;
+
+            background: rgba(50,220,255,0.2);
+
+            filter: blur(110px);
+
+            animation: bgTwo 11s infinite alternate;
+
+            z-index: -2;
+        }
+
+        @keyframes bgOne {
+
+            to {
+                transform: translate(200px, 180px) scale(1.25);
+            }
+
+        }
+
+        @keyframes bgTwo {
+
+            to {
+                transform: translate(-180px, -150px) scale(1.25);
+            }
+
         }
 
         /* NAV */
@@ -63,138 +102,133 @@
         nav {
             position: fixed;
 
-            top: 0;
-            left: 0;
-
-            width: 100%;
-            height: 78px;
-
-            display: flex;
-            justify-content: flex-end;
-            align-items: center;
-
-            padding: 0 7%;
-
-            background: rgba(5,8,11,0.82);
-
-            backdrop-filter: blur(14px);
-
-            border-bottom: 1px solid rgba(83,230,223,0.12);
+            top: 18px;
+            right: 5%;
 
             z-index: 1000;
+
+            padding: 10px 18px;
+
+            border-radius: 30px;
+
+            background: rgba(10,10,35,0.55);
+
+            backdrop-filter: blur(18px);
+
+            border: 1px solid rgba(255,255,255,0.18);
+
+            box-shadow: 0 10px 40px rgba(0,0,0,0.25);
         }
 
         .nav-links {
             display: flex;
-            gap: 42px;
+
+            gap: 10px;
         }
 
         .nav-links a {
-            position: relative;
-
-            color: #819099;
-
             text-decoration: none;
 
-            font-family: 'Orbitron', sans-serif;
+            color: rgba(255,255,255,0.7);
 
-            font-size: 13px;
-            font-weight: 600;
+            font-family: 'Audiowide', sans-serif;
 
-            letter-spacing: 2px;
+            font-size: 12px;
 
-            padding: 10px 0;
+            padding: 11px 17px;
+
+            border-radius: 22px;
 
             transition: 0.3s;
         }
 
         .nav-links a:hover {
-            color: #53e6df;
+            color: white;
+
+            background: rgba(255,255,255,0.1);
+
+            transform: translateY(-2px);
         }
 
         .nav-links a.active {
-            color: #ff5b22;
+            color: white;
 
-            text-shadow: 0 0 12px rgba(255,91,34,0.8);
-        }
-
-        .nav-links a.active::after {
-            content: "";
-
-            position: absolute;
-
-            bottom: 0;
-            left: 0;
-
-            width: 100%;
-            height: 2px;
-
-            background: #ff5b22;
+            background:
+                linear-gradient(
+                    90deg,
+                    #ff4fa3,
+                    #9c5cff,
+                    #32dfff
+                );
 
             box-shadow:
-                0 0 5px #ff5b22,
-                0 0 15px #ff5b22;
-        }
-
-        .nav-links a.active::before {
-            content: "●";
-
-            position: absolute;
-
-            top: -9px;
-            left: 50%;
-
-            transform: translateX(-50%);
-
-            font-size: 6px;
-
-            color: #53e6df;
-
-            text-shadow: 0 0 8px #53e6df;
+                0 0 18px rgba(255,79,163,0.45),
+                0 0 25px rgba(50,223,255,0.2);
         }
 
         /* HEADER */
 
         header {
-            padding: 165px 8% 80px;
+            padding: 170px 8% 75px;
         }
 
         .label {
-            font-family: 'Share Tech Mono', monospace;
+            font-family: 'Space Mono', monospace;
 
-            color: #ff5b22;
+            color: #ffe45e;
 
-            font-size: 12px;
+            font-size: 11px;
 
-            letter-spacing: 4px;
+            letter-spacing: 3px;
 
-            margin-bottom: 15px;
+            margin-bottom: 18px;
         }
 
         h1 {
-            font-family: 'Orbitron', sans-serif;
+            font-family: 'Audiowide', sans-serif;
 
             font-size: clamp(45px, 8vw, 100px);
 
             line-height: 1;
 
-            letter-spacing: -3px;
+            background:
+                linear-gradient(
+                    90deg,
+                    #ff5baa,
+                    #ff9f43,
+                    #ffe45e,
+                    #5dff9a,
+                    #55eaff,
+                    #a86cff
+                );
+
+            background-size: 300% auto;
+
+            -webkit-background-clip: text;
+
+            color: transparent;
+
+            animation: rainbow 6s linear infinite;
         }
 
-        h1 span {
-            color: #53e6df;
+        @keyframes rainbow {
+
+            to {
+                background-position: 300% center;
+            }
+
         }
 
         .intro {
+            max-width: 750px;
+
             margin-top: 25px;
 
-            max-width: 720px;
+            color: rgba(255,255,255,0.75);
 
-            color: #8e9ba1;
+            font-size: 20px;
 
-            font-size: 19px;
-
-            line-height: 1.6;
+            line-height: 1.65;
         }
 
         /* TEAM */
@@ -218,7 +252,7 @@
         .member {
             position: relative;
 
-            min-height: 330px;
+            min-height: 350px;
 
             padding: 30px;
 
@@ -228,21 +262,74 @@
 
             overflow: hidden;
 
-            border: 1px solid rgba(83,230,223,0.14);
+            border-radius: 30px;
 
-            background: #0b1116;
+            background: rgba(255,255,255,0.06);
 
-            transition: 0.45s ease;
+            border: 1px solid rgba(255,255,255,0.16);
+
+            backdrop-filter: blur(8px);
+
+            transition: 0.5s ease;
+        }
+
+        .member:nth-child(1) {
+            --accent: #ff5baa;
+        }
+
+        .member:nth-child(2) {
+            --accent: #55eaff;
+        }
+
+        .member:nth-child(3) {
+            --accent: #ff9f43;
+        }
+
+        .member:nth-child(4) {
+            --accent: #5dff9a;
+        }
+
+        .member:nth-child(5) {
+            --accent: #a86cff;
+        }
+
+        .member:nth-child(6) {
+            --accent: #ffe45e;
         }
 
         .member:hover {
-            transform: translateY(-8px);
+            transform: translateY(-10px) rotate(-0.5deg);
 
-            border-color: rgba(255,91,34,0.5);
+            border-color: var(--accent);
 
             box-shadow:
-                0 20px 60px rgba(0,0,0,0.4),
-                0 0 30px rgba(255,91,34,0.04);
+                0 25px 70px rgba(0,0,0,0.3),
+                0 0 30px var(--accent);
+        }
+
+        .member img {
+            position: absolute;
+
+            inset: 0;
+
+            width: 100%;
+            height: 100%;
+
+            object-fit: cover;
+
+            filter: saturate(0.8);
+
+            opacity: 0.72;
+
+            transition: 0.5s;
+        }
+
+        .member:hover img {
+            opacity: 0.9;
+
+            transform: scale(1.06);
+
+            filter: saturate(1.25);
         }
 
         .member::before {
@@ -255,97 +342,110 @@
             background:
                 linear-gradient(
                     to top,
-                    rgba(5,8,11,1),
-                    rgba(5,8,11,0.2) 70%
+                    rgba(8,7,30,0.98),
+                    rgba(8,7,30,0.35) 60%,
+                    rgba(8,7,30,0.05)
                 );
 
             z-index: 1;
         }
 
-        /* PHOTO */
+        .member::after {
+            content: "";
 
-        .member img {
             position: absolute;
 
-            inset: 0;
+            width: 180px;
+            height: 180px;
 
-            width: 100%;
-            height: 100%;
+            right: -80px;
+            top: -80px;
 
-            object-fit: cover;
+            border-radius: 50%;
 
-            filter: grayscale(80%) contrast(1.1);
+            background: var(--accent);
 
-            opacity: 0.65;
+            filter: blur(50px);
+
+            opacity: 0.18;
 
             transition: 0.5s;
+
+            z-index: 1;
         }
 
-        .member:hover img {
-            filter: grayscale(15%) contrast(1.1);
+        .member:hover::after {
+            opacity: 0.4;
 
-            opacity: 0.8;
-
-            transform: scale(1.04);
+            transform: scale(1.4);
         }
 
         .member-info {
             position: relative;
 
-            z-index: 2;
+            z-index: 3;
 
             width: 100%;
         }
 
         .role {
-            font-family: 'Share Tech Mono', monospace;
+            display: inline-block;
 
-            color: #53e6df;
+            font-family: 'Space Mono', monospace;
 
-            font-size: 11px;
+            color: var(--accent);
 
-            letter-spacing: 3px;
+            font-size: 10px;
 
-            margin-bottom: 8px;
+            letter-spacing: 2px;
+
+            padding: 6px 10px;
+
+            border-radius: 15px;
+
+            background: rgba(255,255,255,0.08);
+
+            border: 1px solid var(--accent);
+
+            margin-bottom: 10px;
         }
 
         .member h2 {
-            font-family: 'Orbitron', sans-serif;
+            font-family: 'Audiowide', sans-serif;
 
-            font-size: 25px;
+            font-size: 24px;
 
-            color: #ffffff;
+            margin-bottom: 10px;
 
-            margin-bottom: 12px;
+            color: white;
         }
 
         .member p {
-            color: #a8b2b5;
+            color: rgba(255,255,255,0.76);
 
             font-size: 16px;
 
-            line-height: 1.5;
+            line-height: 1.55;
 
-            max-width: 600px;
+            max-width: 650px;
         }
-
-        /* CORNER */
 
         .corner {
             position: absolute;
 
-            top: 15px;
-            right: 15px;
+            top: 18px;
+            right: 18px;
 
-            width: 25px;
-            height: 25px;
+            width: 35px;
+            height: 35px;
 
-            border-top: 1px solid #53e6df;
-            border-right: 1px solid #53e6df;
+            border-top: 2px solid var(--accent);
 
-            opacity: 0.7;
+            border-right: 2px solid var(--accent);
 
             z-index: 3;
+
+            opacity: 0.8;
         }
 
         /* FOOTER */
@@ -353,32 +453,37 @@
         footer {
             padding: 35px 8%;
 
-            border-top: 1px solid rgba(83,230,223,0.08);
+            border-top: 1px solid rgba(255,255,255,0.12);
 
             display: flex;
+
             justify-content: space-between;
 
-            color: #59666d;
+            color: rgba(255,255,255,0.45);
 
-            font-family: 'Share Tech Mono', monospace;
+            font-family: 'Space Mono', monospace;
 
-            font-size: 11px;
+            font-size: 10px;
 
-            letter-spacing: 2px;
+            letter-spacing: 1px;
         }
 
-        @media(max-width: 800px) {
+        @media(max-width: 850px) {
 
             nav {
-                justify-content: center;
+                right: 50%;
+
+                transform: translateX(50%);
             }
 
             .nav-links {
-                gap: 20px;
+                gap: 2px;
             }
 
             .nav-links a {
-                font-size: 10px;
+                font-size: 9px;
+
+                padding: 10px 11px;
             }
 
             .team-grid {
@@ -386,12 +491,15 @@
             }
 
             .member {
-                min-height: 380px;
+                min-height: 390px;
             }
 
             footer {
                 flex-direction: column;
-                gap: 15px;
+
+                gap: 12px;
+
+                text-align: center;
             }
 
         }
@@ -406,11 +514,17 @@
 
     <div class="nav-links">
 
-        <a href="index.html">HOME</a>
+        <a href="index.html">
+            HOME
+        </a>
 
-        <a href="process.html">PROCESS</a>
+        <a href="process.html">
+            PROCESS
+        </a>
 
-        <a href="team.html" class="active">TEAM</a>
+        <a href="team.html" class="active">
+            TEAM
+        </a>
 
     </div>
 
@@ -424,7 +538,7 @@
     </div>
 
     <h1>
-        THE <span>TEAM</span>
+        THE TEAM
     </h1>
 
     <p class="intro">
@@ -615,9 +729,13 @@
 
 <footer>
 
-    <span>ROBONAARA // TEAM</span>
+    <span>
+        ROBONAARA // TEAM
+    </span>
 
-    <span>06 MEMBERS // 01 ROBOT</span>
+    <span>
+        06 MEMBERS // 01 ROBOT
+    </span>
 
 </footer>
 
