@@ -47,7 +47,9 @@
                 );
         }
 
-        /* ANIMATED COLOUR BLOBS */
+        /* =========================
+           ANIMATED BACKGROUND
+        ========================= */
 
         body::before {
             content: "";
@@ -139,7 +141,9 @@
             mask-image: linear-gradient(to bottom, black, transparent);
         }
 
-        /* NAVIGATION */
+        /* =========================
+           NAVIGATION
+        ========================= */
 
         nav {
             position: fixed;
@@ -228,7 +232,9 @@
 
         }
 
-        /* HERO */
+        /* =========================
+           HERO
+        ========================= */
 
         .hero {
             min-height: 100vh;
@@ -243,7 +249,9 @@
         }
 
         .hero-content {
-            max-width: 900px;
+            max-width: 950px;
+
+            width: 100%;
 
             animation: heroIn 1s ease forwards;
         }
@@ -261,6 +269,8 @@
             }
 
         }
+
+        /* SYSTEM LABEL */
 
         .system {
             display: inline-block;
@@ -283,7 +293,8 @@
 
             margin-bottom: 25px;
 
-            box-shadow: 0 0 20px rgba(100,240,255,0.08);
+            box-shadow:
+                0 0 20px rgba(100,240,255,0.08);
         }
 
         .system::before {
@@ -293,19 +304,34 @@
 
             margin-right: 9px;
 
-            text-shadow: 0 0 10px #5dff9a;
+            text-shadow:
+                0 0 10px #5dff9a;
         }
+
+        /* =========================
+           ROBONAARA TITLE
+        ========================= */
 
         h1 {
             font-family: 'Audiowide', sans-serif;
 
-            font-size: clamp(50px,10vw,145px);
+            /*
+                FIX:
+                The old 145px maximum could make the title
+                overflow on smaller screens.
+            */
 
-            line-height: 0.95;
+            font-size: clamp(40px, 8vw, 115px);
 
-            letter-spacing: 2px;
+            line-height: 1.1;
 
-            margin-bottom: 25px;
+            letter-spacing: 1px;
+
+            margin-bottom: 30px;
+
+            display: inline-block;
+
+            max-width: 100%;
 
             background:
                 linear-gradient(
@@ -329,7 +355,8 @@
 
             animation: rainbowText 7s linear infinite;
 
-            text-shadow: 0 0 30px rgba(255,255,255,0.08);
+            text-shadow:
+                0 0 30px rgba(255,255,255,0.08);
         }
 
         @keyframes rainbowText {
@@ -340,10 +367,12 @@
 
         }
 
+        /* TAGLINE */
+
         .tagline {
             font-family: 'Audiowide', sans-serif;
 
-            font-size: clamp(16px,2vw,25px);
+            font-size: clamp(15px,2vw,25px);
 
             letter-spacing: 3px;
 
@@ -354,6 +383,8 @@
             text-shadow:
                 0 0 10px rgba(255,255,255,0.3);
         }
+
+        /* DESCRIPTION */
 
         .hero-description {
             max-width: 700px;
@@ -367,7 +398,9 @@
             margin-bottom: 35px;
         }
 
-        /* STATUS */
+        /* =========================
+           STATUS
+        ========================= */
 
         .status-box {
             display: inline-flex;
@@ -396,12 +429,15 @@
 
             letter-spacing: 1px;
 
-            box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+            box-shadow:
+                0 10px 30px rgba(0,0,0,0.12);
         }
 
         .status-dot {
             width: 10px;
             height: 10px;
+
+            flex-shrink: 0;
 
             border-radius: 50%;
 
@@ -418,12 +454,15 @@
 
             50% {
                 transform: scale(0.65);
+
                 opacity: 0.55;
             }
 
         }
 
-        /* HUD */
+        /* =========================
+           HUD
+        ========================= */
 
         .hud {
             position: absolute;
@@ -474,6 +513,8 @@
 
             -webkit-background-clip: text;
 
+            background-clip: text;
+
             color: transparent;
         }
 
@@ -484,7 +525,8 @@
 
             padding: 8px 0;
 
-            border-bottom: 1px solid rgba(255,255,255,0.10);
+            border-bottom:
+                1px solid rgba(255,255,255,0.10);
 
             font-family: 'Space Mono', monospace;
 
@@ -497,7 +539,9 @@
             color: #75f7ff;
         }
 
-        /* SECTIONS */
+        /* =========================
+           SECTIONS
+        ========================= */
 
         section {
             padding: 110px 8%;
@@ -514,7 +558,8 @@
 
             margin-bottom: 14px;
 
-            text-shadow: 0 0 12px rgba(255,228,94,0.4);
+            text-shadow:
+                0 0 12px rgba(255,228,94,0.4);
         }
 
         .section-title {
@@ -538,13 +583,18 @@
 
             -webkit-background-clip: text;
 
+            background-clip: text;
+
             color: transparent;
         }
 
-        /* AJAX */
+        /* =========================
+           AJAX SECTION
+        ========================= */
 
         .ajax-section {
-            border-top: 1px solid rgba(255,255,255,0.16);
+            border-top:
+                1px solid rgba(255,255,255,0.16);
         }
 
         .ajax-grid {
@@ -566,6 +616,8 @@
 
             margin-bottom: 22px;
         }
+
+        /* ROBOT PANEL */
 
         .robot-panel {
             height: 370px;
@@ -590,7 +642,8 @@
                     rgba(50,223,255,0.18)
                 );
 
-            border: 1px solid rgba(255,255,255,0.25);
+            border:
+                1px solid rgba(255,255,255,0.25);
 
             box-shadow:
                 0 25px 70px rgba(0,0,0,0.18),
@@ -619,7 +672,8 @@
 
             opacity: 0.38;
 
-            animation: robotGlow 4s infinite alternate;
+            animation:
+                robotGlow 4s infinite alternate;
         }
 
         @keyframes robotGlow {
@@ -649,8 +703,12 @@
 
             -webkit-background-clip: text;
 
+            background-clip: text;
+
             color: transparent;
         }
+
+        /* SCANNING LINE */
 
         .robot-scan {
             position: absolute;
@@ -669,7 +727,8 @@
                     transparent
                 );
 
-            box-shadow: 0 0 15px #55eaff;
+            box-shadow:
+                0 0 15px #55eaff;
 
             animation: scan 3s infinite;
         }
@@ -690,7 +749,9 @@
 
         }
 
-        /* NRL */
+        /* =========================
+           NRL SECTION
+        ========================= */
 
         .nrl-box {
             padding: 50px;
@@ -705,7 +766,8 @@
                     rgba(50,223,255,0.15)
                 );
 
-            border: 1px solid rgba(255,255,255,0.24);
+            border:
+                1px solid rgba(255,255,255,0.24);
 
             box-shadow:
                 0 20px 70px rgba(0,0,0,0.16);
@@ -721,12 +783,15 @@
             line-height: 1.7;
         }
 
-        /* FOOTER */
+        /* =========================
+           FOOTER
+        ========================= */
 
         footer {
             padding: 35px 8%;
 
-            border-top: 1px solid rgba(255,255,255,0.18);
+            border-top:
+                1px solid rgba(255,255,255,0.18);
 
             display: flex;
 
@@ -741,14 +806,39 @@
             letter-spacing: 1px;
         }
 
-        /* MOBILE */
+        /* =========================
+           TABLET
+        ========================= */
+
+        @media(max-width:1100px) {
+
+            .hud {
+                right: 4%;
+
+                width: 230px;
+            }
+
+            .hero {
+                padding-left: 6%;
+                padding-right: 6%;
+            }
+
+        }
+
+        /* =========================
+           MOBILE
+        ========================= */
 
         @media(max-width:850px) {
 
             nav {
+                top: 15px;
+
                 right: 50%;
 
                 transform: translateX(50%);
+
+                padding: 8px 10px;
             }
 
             .nav-links {
@@ -762,7 +852,62 @@
             }
 
             .hero {
-                padding-top: 150px;
+                min-height: 100vh;
+
+                padding:
+                    145px
+                    7%
+                    80px;
+
+                align-items: flex-start;
+            }
+
+            .hero-content {
+                max-width: 100%;
+            }
+
+            /*
+                MOBILE TITLE FIX
+            */
+
+            h1 {
+                font-size: clamp(38px, 13vw, 75px);
+
+                line-height: 1.08;
+
+                letter-spacing: 0;
+
+                white-space: normal;
+
+                word-break: keep-all;
+
+                overflow-wrap: normal;
+
+                max-width: 100%;
+            }
+
+            .system {
+                font-size: 9px;
+
+                letter-spacing: 1px;
+            }
+
+            .tagline {
+                font-size: 14px;
+
+                letter-spacing: 2px;
+            }
+
+            .hero-description {
+                font-size: 17px;
+            }
+
+            .status-box {
+                font-size: 9px;
+
+                max-width: 100%;
+
+                line-height: 1.5;
             }
 
             .hud {
@@ -771,10 +916,20 @@
 
             .ajax-grid {
                 grid-template-columns: 1fr;
+
+                gap: 40px;
+            }
+
+            .robot-panel {
+                height: 300px;
             }
 
             .nrl-box {
                 padding: 30px;
+            }
+
+            .nrl-box p {
+                font-size: 17px;
             }
 
             footer {
@@ -787,168 +942,293 @@
 
         }
 
+        /* =========================
+           SMALL PHONES
+        ========================= */
+
+        @media(max-width:450px) {
+
+            nav {
+                width: auto;
+
+                max-width: 94%;
+            }
+
+            .nav-links a {
+                font-size: 8px;
+
+                padding:
+                    9px 9px;
+            }
+
+            .hero {
+                padding-top: 135px;
+            }
+
+            h1 {
+                font-size: 12.5vw;
+
+                letter-spacing: -0.5px;
+            }
+
+            .system {
+                font-size: 8px;
+
+                padding: 8px 11px;
+            }
+
+            .tagline {
+                font-size: 12px;
+
+                letter-spacing: 1.5px;
+            }
+
+            .hero-description {
+                font-size: 16px;
+            }
+
+            .status-box {
+                padding:
+                    11px 14px;
+            }
+
+            section {
+                padding:
+                    80px 7%;
+            }
+
+        }
+
     </style>
 </head>
 
 <body>
 
-<div class="grid"></div>
-
-<nav>
-
-    <div class="nav-links">
-
-        <a href="index.html" class="active">HOME</a>
-
-        <a href="process.html">PROCESS</a>
-
-        <a href="team.html">TEAM</a>
-
-    </div>
-
-</nav>
+    <div class="grid"></div>
 
 
-<main>
+    <!-- =========================
+         NAVIGATION
+    ========================= -->
 
-    <section class="hero">
+    <nav>
 
-        <div class="hero-content">
+        <div class="nav-links">
 
-            <div class="system">
-                SYSTEM ONLINE // ROBONAARA
-            </div>
+            <a href="index.html" class="active">
+                HOME
+            </a>
 
-            <h1>
-                ROBONAARA
-            </h1>
+            <a href="process.html">
+                PROCESS
+            </a>
 
-            <div class="tagline">
-                BUILD. CODE. CONQUER.
-            </div>
-
-            <p class="hero-description">
-                ROBONAARA is a student robotics team from Orchids The International School, Tathawade, competing in the National Robotics League.
-                We design, build, code, test, and compete as one team.
-            </p>
-
-            <div class="status-box">
-
-                <div class="status-dot"></div>
-
-                AJAX // SYSTEM STATUS: OPERATIONAL
-
-            </div>
+            <a href="team.html">
+                TEAM
+            </a>
 
         </div>
 
-
-        <div class="hud">
-
-            <div class="hud-title">
-                ROBONAARA // HUD
-            </div>
-
-            <div class="hud-row">
-                <span>ROBOT</span>
-                <span>AJAX</span>
-            </div>
-
-            <div class="hud-row">
-                <span>TEAM</span>
-                <span>06</span>
-            </div>
-
-            <div class="hud-row">
-                <span>MODE</span>
-                <span>NRL</span>
-            </div>
-
-            <div class="hud-row">
-                <span>STATUS</span>
-                <span>READY</span>
-            </div>
-
-        </div>
-
-    </section>
+    </nav>
 
 
-    <section class="ajax-section">
+    <!-- =========================
+         HERO
+    ========================= -->
 
-        <div class="ajax-grid">
+    <main>
 
-            <div class="ajax-text">
+        <section class="hero">
 
-                <div class="section-label">
-                    // PRIMARY UNIT
+            <div class="hero-content">
+
+                <div class="system">
+                    SYSTEM ONLINE // ROBONAARA
                 </div>
 
-                <h2 class="section-title">
-                    MEET <span>AJAX</span>
-                </h2>
 
-                <p>
-                    AJAX is ROBONAARA's competition robot, designed and engineered by the team for the National Robotics League.
-                </p>
-
-                <p>
-                    Every component exists for a reason — from the mechanical structure and electronics to the code controlling its movements.
-                </p>
-
-            </div>
+                <h1>
+                    ROBONAARA
+                </h1>
 
 
-            <div class="robot-panel">
-
-                <div class="robot-name">
-                    AJAX
+                <div class="tagline">
+                    BUILD. CODE. CONQUER.
                 </div>
 
-                <div class="robot-scan"></div>
+
+                <p class="hero-description">
+
+                    ROBONAARA is a student robotics team from
+                    Orchids The International School, Tathawade,
+                    competing in the National Robotics League.
+
+                    We design, build, code, test, and compete as one team.
+
+                </p>
+
+
+                <div class="status-box">
+
+                    <div class="status-dot"></div>
+
+                    AJAX // SYSTEM STATUS: OPERATIONAL
+
+                </div>
 
             </div>
 
-        </div>
 
-    </section>
+            <!-- HUD -->
 
+            <div class="hud">
 
-    <section>
-
-        <div class="section-label">
-            // MISSION
-        </div>
-
-        <h2 class="section-title">
-            NATIONAL <span>ROBOTICS LEAGUE</span>
-        </h2>
-
-        <div class="nrl-box">
-
-            <p>
-                ROBONAARA competes in the National Robotics League, taking on engineering,
-                driving, strategy, teamwork, and problem-solving challenges against other student robotics teams.
-            </p>
-
-        </div>
-
-    </section>
-
-</main>
+                <div class="hud-title">
+                    ROBONAARA // HUD
+                </div>
 
 
-<footer>
+                <div class="hud-row">
 
-    <span>
-        ROBONAARA // NRL
-    </span>
+                    <span>ROBOT</span>
 
-    <span>
-        ORCHIDS THE INTERNATIONAL SCHOOL, TATHAWADE
-    </span>
+                    <span>AJAX</span>
 
-</footer>
+                </div>
+
+
+                <div class="hud-row">
+
+                    <span>TEAM</span>
+
+                    <span>06</span>
+
+                </div>
+
+
+                <div class="hud-row">
+
+                    <span>MODE</span>
+
+                    <span>NRL</span>
+
+                </div>
+
+
+                <div class="hud-row">
+
+                    <span>STATUS</span>
+
+                    <span>READY</span>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             AJAX
+        ========================= -->
+
+        <section class="ajax-section">
+
+            <div class="ajax-grid">
+
+
+                <div class="ajax-text">
+
+                    <div class="section-label">
+                        // PRIMARY UNIT
+                    </div>
+
+
+                    <h2 class="section-title">
+                        MEET <span>AJAX</span>
+                    </h2>
+
+
+                    <p>
+                        AJAX is ROBONAARA's competition robot,
+                        designed and engineered by the team for
+                        the National Robotics League.
+                    </p>
+
+
+                    <p>
+                        Every component exists for a reason —
+                        from the mechanical structure and electronics
+                        to the code controlling its movements.
+                    </p>
+
+                </div>
+
+
+                <div class="robot-panel">
+
+                    <div class="robot-name">
+                        AJAX
+                    </div>
+
+                    <div class="robot-scan"></div>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             NRL
+        ========================= -->
+
+        <section>
+
+            <div class="section-label">
+                // MISSION
+            </div>
+
+
+            <h2 class="section-title">
+                NATIONAL <span>ROBOTICS LEAGUE</span>
+            </h2>
+
+
+            <div class="nrl-box">
+
+                <p>
+                    ROBONAARA competes in the National Robotics League,
+                    taking on engineering, driving, strategy, teamwork,
+                    and problem-solving challenges against other student
+                    robotics teams.
+                </p>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- =========================
+         FOOTER
+    ========================= -->
+
+    <footer>
+
+        <span>
+            ROBONAARA // NRL
+        </span>
+
+        <span>
+            ORCHIDS THE INTERNATIONAL SCHOOL, TATHAWADE
+        </span>
+
+    </footer>
+
 
 </body>
 </html>
