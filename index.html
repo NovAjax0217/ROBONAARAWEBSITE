@@ -1,878 +1,646 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ROBONAARA // NRL 2026</title>
-
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Syne:wght@600;700;800&display=swap');
-
-:root{
-    --bg:#070b0f;
-    --panel:#0d141a;
-    --panel2:#111b22;
-    --white:#eef7f7;
-    --muted:#8d9ba3;
-    --orange:#ff5b22;
-    --cyan:#53e6df;
-    --line:rgba(255,255,255,.11);
-}
-
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-}
-
-html{
-    scroll-behavior:smooth;
-}
-
-body{
-    background:var(--bg);
-    color:var(--white);
-    font-family:'Space Grotesk',sans-serif;
-    overflow-x:hidden;
-    cursor:none;
-}
-
-a{
-    color:inherit;
-    text-decoration:none;
-}
-
-/* GRID */
-
-body::before{
-    content:"";
-    position:fixed;
-    inset:0;
-    pointer-events:none;
-    z-index:-2;
-    opacity:.35;
-    background-image:
-        linear-gradient(rgba(83,230,223,.06) 1px,transparent 1px),
-        linear-gradient(90deg,rgba(83,230,223,.06) 1px,transparent 1px);
-    background-size:50px 50px;
-}
-
-body::after{
-    content:"";
-    position:fixed;
-    inset:0;
-    pointer-events:none;
-    z-index:999;
-    background:linear-gradient(
-        rgba(255,255,255,.015) 50%,
-        transparent 50%
-    );
-    background-size:100% 4px;
-    opacity:.12;
-}
-
-/* CURSOR */
-
-.cursor{
-    width:18px;
-    height:18px;
-    border:1px solid var(--cyan);
-    border-radius:50%;
-    position:fixed;
-    pointer-events:none;
-    z-index:9999;
-    transform:translate(-50%,-50%);
-    box-shadow:0 0 18px rgba(83,230,223,.5);
-    transition:.15s;
-}
-
-.cursor.active{
-    width:38px;
-    height:38px;
-    border-color:var(--orange);
-}
-
-/* NAV */
-
-nav{
-    position:fixed;
-    top:0;
-    width:100%;
-    height:76px;
-    z-index:1000;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    padding:0 6%;
-    background:rgba(7,11,15,.78);
-    backdrop-filter:blur(18px);
-    border-bottom:1px solid var(--line);
-}
-
-.logo{
-    font-family:'Syne',sans-serif;
-    font-size:1.25rem;
-    font-weight:800;
-    letter-spacing:3px;
-}
-
-.logo span{
-    color:var(--orange);
-}
-
-.nav-links{
-    display:flex;
-    gap:30px;
-}
-
-.nav-links a{
-    font-size:.68rem;
-    letter-spacing:2px;
-    color:#aeb9be;
-    transition:.25s;
-}
-
-.nav-links a:hover{
-    color:var(--cyan);
-}
-
-/* HERO */
-
-.hero{
-    min-height:100vh;
-    padding:150px 7% 80px;
-    display:grid;
-    grid-template-columns:1.1fr .9fr;
-    align-items:center;
-    gap:60px;
-    position:relative;
-}
-
-.system{
-    display:flex;
-    align-items:center;
-    gap:12px;
-    color:var(--cyan);
-    font-size:.65rem;
-    letter-spacing:2px;
-    margin-bottom:25px;
-}
-
-.status-dot{
-    width:8px;
-    height:8px;
-    background:var(--cyan);
-    border-radius:50%;
-    box-shadow:0 0 15px var(--cyan);
-    animation:pulse 1.5s infinite;
-}
-
-@keyframes pulse{
-    50%{opacity:.3;transform:scale(.7);}
-}
-
-.hero h1{
-    font-family:'Syne',sans-serif;
-    font-size:clamp(4rem,9vw,9rem);
-    line-height:.78;
-    letter-spacing:-6px;
-}
-
-.hero h1 .orange{
-    color:var(--orange);
-}
-
-.hero h1 .outline{
-    color:transparent;
-    -webkit-text-stroke:1px var(--white);
-}
-
-.hero-description{
-    margin-top:40px;
-    max-width:580px;
-    color:var(--muted);
-    line-height:1.8;
-    font-size:.95rem;
-}
-
-.buttons{
-    display:flex;
-    gap:14px;
-    margin-top:35px;
-}
-
-.btn{
-    padding:15px 22px;
-    border:1px solid var(--line);
-    background:var(--panel);
-    font-size:.65rem;
-    letter-spacing:2px;
-    transition:.3s;
-}
-
-.btn.primary{
-    background:var(--orange);
-    border-color:var(--orange);
-    color:#080b0e;
-    font-weight:700;
-}
-
-.btn:hover{
-    transform:translateY(-4px);
-    box-shadow:0 10px 30px rgba(0,0,0,.35);
-}
-
-/* AJAX HUD */
-
-.robot-zone{
-    height:520px;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    position:relative;
-}
-
-.hud{
-    width:410px;
-    height:410px;
-    border:1px solid rgba(83,230,223,.4);
-    border-radius:50%;
-    position:relative;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    box-shadow:
-        0 0 40px rgba(83,230,223,.08),
-        inset 0 0 40px rgba(83,230,223,.04);
-}
-
-.hud::before{
-    content:"";
-    position:absolute;
-    inset:30px;
-    border:1px dashed rgba(83,230,223,.3);
-    border-radius:50%;
-    animation:spin 20s linear infinite;
-}
-
-.hud::after{
-    content:"";
-    position:absolute;
-    inset:70px;
-    border:1px solid rgba(255,91,34,.35);
-    border-radius:50%;
-}
-
-@keyframes spin{
-    to{transform:rotate(360deg);}
-}
-
-.ajax-core{
-    width:170px;
-    height:170px;
-    border-radius:20px;
-    background:linear-gradient(145deg,#16242d,#080c10);
-    border:2px solid var(--orange);
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    font-family:'Syne',sans-serif;
-    font-size:2.7rem;
-    color:var(--orange);
-    box-shadow:
-        0 0 30px rgba(255,91,34,.25),
-        inset 0 0 30px rgba(255,91,34,.06);
-    transform:rotate(-8deg);
-}
-
-.hud-label{
-    position:absolute;
-    font-size:.55rem;
-    letter-spacing:2px;
-    color:var(--cyan);
-}
-
-.label1{top:65px;left:70px;}
-.label2{right:45px;top:150px;}
-.label3{bottom:70px;left:70px;}
-.label4{bottom:140px;right:50px;}
-
-.crosshair{
-    position:absolute;
-    width:100%;
-    height:1px;
-    background:rgba(83,230,223,.15);
-}
-
-.crosshair.vertical{
-    transform:rotate(90deg);
-}
-
-/* MARQUEE */
-
-.marquee{
-    border-top:1px solid var(--line);
-    border-bottom:1px solid var(--line);
-    overflow:hidden;
-    padding:17px 0;
-    color:var(--orange);
-    font-family:'Syne',sans-serif;
-    font-size:.8rem;
-    letter-spacing:4px;
-    white-space:nowrap;
-}
-
-.marquee-track{
-    display:inline-block;
-    animation:marquee 20s linear infinite;
-}
-
-@keyframes marquee{
-    to{transform:translateX(-50%);}
-}
-
-/* SECTIONS */
-
-section.content{
-    padding:120px 7%;
-}
-
-.section-tag{
-    color:var(--cyan);
-    font-size:.62rem;
-    letter-spacing:3px;
-    margin-bottom:20px;
-}
-
-.section-title{
-    font-family:'Syne',sans-serif;
-    font-size:clamp(3rem,6vw,6rem);
-    line-height:.9;
-    letter-spacing:-3px;
-}
-
-.section-title span{
-    color:var(--orange);
-}
-
-/* ABOUT */
-
-.about-grid{
-    display:grid;
-    grid-template-columns:1.1fr .9fr;
-    gap:80px;
-    margin-top:65px;
-}
-
-.about-text{
-    color:var(--muted);
-    line-height:1.9;
-    max-width:650px;
-}
-
-.stats{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:12px;
-}
-
-.stat{
-    padding:28px;
-    background:var(--panel);
-    border:1px solid var(--line);
-}
-
-.stat-number{
-    font-family:'Syne',sans-serif;
-    color:var(--orange);
-    font-size:2.8rem;
-}
-
-.stat-label{
-    color:var(--muted);
-    font-size:.6rem;
-    letter-spacing:2px;
-    margin-top:7px;
-}
-
-/* AJAX */
-
-.ajax-section{
-    background:#0a1218;
-    border-top:1px solid var(--line);
-    border-bottom:1px solid var(--line);
-}
-
-.ajax-grid{
-    display:grid;
-    grid-template-columns:.8fr 1.2fr;
-    gap:90px;
-    margin-top:70px;
-    align-items:center;
-}
-
-.ajax-big{
-    font-family:'Syne',sans-serif;
-    font-size:clamp(6rem,14vw,13rem);
-    line-height:.7;
-    color:var(--orange);
-    text-shadow:0 0 40px rgba(255,91,34,.15);
-}
-
-.ajax-copy{
-    color:var(--muted);
-    line-height:1.8;
-}
-
-.specs{
-    margin-top:30px;
-}
-
-.spec{
-    display:flex;
-    justify-content:space-between;
-    border-top:1px solid var(--line);
-    padding:15px 0;
-    font-size:.68rem;
-    letter-spacing:1px;
-}
-
-.spec span:last-child{
-    color:var(--cyan);
-}
-
-/* EXPLORE */
-
-.explore{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:15px;
-    margin-top:60px;
-}
-
-.explore-card{
-    padding:50px;
-    min-height:280px;
-    background:var(--panel);
-    border:1px solid var(--line);
-    position:relative;
-    overflow:hidden;
-    transition:.35s;
-}
-
-.explore-card:hover{
-    border-color:var(--cyan);
-    transform:translateY(-7px);
-}
-
-.explore-card h2{
-    font-family:'Syne',sans-serif;
-    font-size:2.8rem;
-}
-
-.explore-card p{
-    color:var(--muted);
-    line-height:1.7;
-    margin-top:20px;
-    max-width:450px;
-}
-
-.explore-card .arrow{
-    position:absolute;
-    right:30px;
-    bottom:25px;
-    font-size:2rem;
-    color:var(--orange);
-}
-
-/* FOOTER */
-
-footer{
-    padding:40px 7%;
-    background:#05080b;
-    border-top:1px solid var(--line);
-    display:flex;
-    justify-content:space-between;
-    color:#738087;
-    font-size:.6rem;
-    letter-spacing:2px;
-}
-
-footer strong{
-    color:var(--white);
-    font-family:'Syne',sans-serif;
-}
-
-/* MOBILE */
-
-@media(max-width:850px){
-
-    body{
-        cursor:auto;
-    }
-
-    .cursor{
-        display:none;
-    }
-
-    .nav-links{
-        gap:10px;
-    }
-
-    .nav-links a{
-        font-size:.5rem;
-    }
-
-    .hero{
-        grid-template-columns:1fr;
-        padding-top:130px;
-    }
-
-    .robot-zone{
-        height:390px;
-    }
-
-    .hud{
-        width:320px;
-        height:320px;
-    }
-
-    .ajax-core{
-        width:130px;
-        height:130px;
-        font-size:2rem;
-    }
-
-    .about-grid,
-    .ajax-grid{
-        grid-template-columns:1fr;
-        gap:45px;
-    }
-
-    .explore{
-        grid-template-columns:1fr;
-    }
-
-    footer{
-        flex-direction:column;
-        gap:15px;
-        text-align:center;
-    }
-}
-
-@media(max-width:500px){
-
-    nav{
-        padding:0 4%;
-    }
-
-    .logo{
-        font-size:.9rem;
-    }
-
-    .nav-links{
-        gap:6px;
-    }
-
-    .nav-links a{
-        font-size:.43rem;
-    }
-
-    .hero{
-        padding-left:5%;
-        padding-right:5%;
-    }
-
-    .hero h1{
-        font-size:4.2rem;
-    }
-
-    section.content{
-        padding:85px 5%;
-    }
-
-    .buttons{
-        flex-direction:column;
-    }
-
-    .btn{
-        text-align:center;
-    }
-}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>ROBONAARA | NRL Robotics</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@400;500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: #05080b;
+            color: #eef7f7;
+            font-family: 'Rajdhani', sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* GRID BACKGROUND */
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            z-index: -3;
+
+            background-image:
+                linear-gradient(rgba(83,230,223,0.035) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(83,230,223,0.035) 1px, transparent 1px);
+
+            background-size: 45px 45px;
+        }
+
+        body::after {
+            content: "";
+            position: fixed;
+            inset: 0;
+            z-index: -2;
+
+            background:
+                radial-gradient(circle at 50% 20%, rgba(255,91,34,0.10), transparent 35%),
+                radial-gradient(circle at 80% 80%, rgba(83,230,223,0.08), transparent 35%);
+        }
+
+        /* NAVBAR */
+
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 78px;
+
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+
+            padding: 0 7%;
+
+            background: rgba(5,8,11,0.82);
+            backdrop-filter: blur(14px);
+
+            border-bottom: 1px solid rgba(83,230,223,0.12);
+
+            z-index: 1000;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 42px;
+        }
+
+        .nav-links a {
+            position: relative;
+
+            text-decoration: none;
+            color: #819099;
+
+            font-family: 'Orbitron', sans-serif;
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 2px;
+
+            padding: 10px 0;
+
+            transition: 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #53e6df;
+        }
+
+        /* ACTIVE PAGE */
+
+        .nav-links a.active {
+            color: #ff5b22;
+            text-shadow: 0 0 12px rgba(255,91,34,0.8);
+        }
+
+        .nav-links a.active::after {
+            content: "";
+
+            position: absolute;
+            left: 0;
+            bottom: 0;
+
+            width: 100%;
+            height: 2px;
+
+            background: #ff5b22;
+
+            box-shadow:
+                0 0 5px #ff5b22,
+                0 0 15px #ff5b22;
+
+            animation: navGlow 1.5s infinite alternate;
+        }
+
+        .nav-links a.active::before {
+            content: "●";
+
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+
+            top: -9px;
+
+            font-size: 6px;
+            color: #53e6df;
+
+            text-shadow: 0 0 8px #53e6df;
+        }
+
+        @keyframes navGlow {
+            from {
+                opacity: 0.5;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* HERO */
+
+        .hero {
+            min-height: 100vh;
+
+            display: flex;
+            align-items: center;
+
+            padding: 120px 8% 70px;
+
+            position: relative;
+        }
+
+        .hero-content {
+            max-width: 1000px;
+        }
+
+        .system {
+            font-family: 'Share Tech Mono', monospace;
+            color: #53e6df;
+
+            font-size: 14px;
+            letter-spacing: 4px;
+
+            margin-bottom: 20px;
+        }
+
+        .system::before {
+            content: ">";
+            margin-right: 8px;
+            color: #ff5b22;
+        }
+
+        h1 {
+            font-family: 'Orbitron', sans-serif;
+
+            font-size: clamp(55px, 10vw, 150px);
+            line-height: 0.9;
+
+            letter-spacing: -5px;
+
+            color: #eef7f7;
+
+            text-shadow:
+                0 0 20px rgba(83,230,223,0.1);
+
+            margin-bottom: 25px;
+        }
+
+        h1 span {
+            color: #ff5b22;
+
+            text-shadow:
+                0 0 10px rgba(255,91,34,0.6),
+                0 0 35px rgba(255,91,34,0.25);
+        }
+
+        .tagline {
+            font-family: 'Orbitron', sans-serif;
+
+            font-size: clamp(16px, 2vw, 24px);
+            letter-spacing: 4px;
+
+            color: #53e6df;
+
+            margin-bottom: 35px;
+        }
+
+        .hero-description {
+            max-width: 650px;
+
+            color: #9aa8ae;
+
+            font-size: 19px;
+            line-height: 1.6;
+
+            margin-bottom: 40px;
+        }
+
+        /* STATUS */
+
+        .status-box {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+
+            padding: 13px 20px;
+
+            border: 1px solid rgba(83,230,223,0.25);
+
+            background: rgba(83,230,223,0.035);
+
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 12px;
+            letter-spacing: 2px;
+        }
+
+        .status-dot {
+            width: 9px;
+            height: 9px;
+
+            border-radius: 50%;
+
+            background: #53e6df;
+
+            box-shadow: 0 0 12px #53e6df;
+
+            animation: pulse 1.2s infinite;
+        }
+
+        @keyframes pulse {
+            50% {
+                opacity: 0.3;
+                transform: scale(0.7);
+            }
+        }
+
+        /* HUD */
+
+        .hud {
+            position: absolute;
+            right: 8%;
+            bottom: 90px;
+
+            width: 260px;
+
+            border: 1px solid rgba(83,230,223,0.2);
+
+            padding: 20px;
+
+            background: rgba(13,20,26,0.55);
+
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 11px;
+
+            color: #718087;
+        }
+
+        .hud-title {
+            color: #ff5b22;
+            margin-bottom: 15px;
+            letter-spacing: 2px;
+        }
+
+        .hud-row {
+            display: flex;
+            justify-content: space-between;
+
+            padding: 7px 0;
+
+            border-bottom: 1px solid rgba(255,255,255,0.04);
+        }
+
+        .hud-row span:last-child {
+            color: #53e6df;
+        }
+
+        /* SECTION */
+
+        section {
+            padding: 110px 8%;
+        }
+
+        .section-label {
+            font-family: 'Share Tech Mono', monospace;
+
+            color: #ff5b22;
+
+            font-size: 12px;
+            letter-spacing: 3px;
+
+            margin-bottom: 14px;
+        }
+
+        .section-title {
+            font-family: 'Orbitron', sans-serif;
+
+            font-size: clamp(30px, 5vw, 60px);
+
+            margin-bottom: 25px;
+        }
+
+        .section-title span {
+            color: #53e6df;
+        }
+
+        /* AJAX */
+
+        .ajax-section {
+            border-top: 1px solid rgba(83,230,223,0.08);
+        }
+
+        .ajax-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+
+            gap: 70px;
+
+            align-items: center;
+        }
+
+        .ajax-text p {
+            color: #9aa8ae;
+
+            font-size: 18px;
+            line-height: 1.7;
+
+            margin-bottom: 25px;
+        }
+
+        .robot-panel {
+            min-height: 350px;
+
+            border: 1px solid rgba(83,230,223,0.2);
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            position: relative;
+
+            background:
+                linear-gradient(135deg,
+                rgba(83,230,223,0.05),
+                transparent 60%);
+        }
+
+        .robot-name {
+            font-family: 'Orbitron', sans-serif;
+
+            font-size: 70px;
+            font-weight: 800;
+
+            color: #ff5b22;
+
+            text-shadow:
+                0 0 15px rgba(255,91,34,0.5),
+                0 0 50px rgba(255,91,34,0.15);
+        }
+
+        .robot-scan {
+            position: absolute;
+
+            width: 80%;
+            height: 1px;
+
+            background: #53e6df;
+
+            box-shadow: 0 0 12px #53e6df;
+
+            animation: scan 3s infinite;
+        }
+
+        @keyframes scan {
+            0% {
+                top: 15%;
+            }
+
+            50% {
+                top: 85%;
+            }
+
+            100% {
+                top: 15%;
+            }
+        }
+
+        /* NRL */
+
+        .nrl-box {
+            border: 1px solid rgba(255,91,34,0.25);
+
+            padding: 50px;
+
+            background:
+                linear-gradient(110deg,
+                rgba(255,91,34,0.07),
+                rgba(83,230,223,0.03));
+        }
+
+        .nrl-box p {
+            max-width: 850px;
+
+            color: #a7b2b6;
+
+            font-size: 18px;
+            line-height: 1.7;
+        }
+
+        /* FOOTER */
+
+        footer {
+            padding: 35px 8%;
+
+            border-top: 1px solid rgba(83,230,223,0.08);
+
+            display: flex;
+            justify-content: space-between;
+
+            color: #59666d;
+
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 11px;
+
+            letter-spacing: 2px;
+        }
+
+        /* RESPONSIVE */
+
+        @media(max-width: 800px) {
+
+            nav {
+                justify-content: center;
+                padding: 0 20px;
+            }
+
+            .nav-links {
+                gap: 20px;
+            }
+
+            .nav-links a {
+                font-size: 10px;
+                letter-spacing: 1px;
+            }
+
+            .hero {
+                padding-top: 130px;
+            }
+
+            .hud {
+                display: none;
+            }
+
+            .ajax-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .nrl-box {
+                padding: 30px;
+            }
+
+            footer {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+    </style>
 </head>
 
 <body>
 
-<div class="cursor"></div>
-
 <nav>
-    <div class="logo">ROBO<span>NAARA</span></div>
-
     <div class="nav-links">
-        <a href="index.html">HOME</a>
+        <a href="index.html" class="active">HOME</a>
         <a href="process.html">PROCESS</a>
         <a href="team.html">TEAM</a>
-        <a href="#ajax">AJAX</a>
-        <a href="#nrl">NRL</a>
     </div>
 </nav>
 
+<main>
 
-<section class="hero">
+    <section class="hero">
 
-    <div>
+        <div class="hero-content">
 
-        <div class="system">
-            <div class="status-dot"></div>
-            SYSTEM ONLINE // ROBONAARA
+            <div class="system">
+                SYSTEM ONLINE // ROBONAARA
+            </div>
+
+            <h1>
+                ROBO<span>NAARA</span>
+            </h1>
+
+            <div class="tagline">
+                BUILD. CODE. CONQUER.
+            </div>
+
+            <p class="hero-description">
+                ROBONAARA is a student robotics team from Orchids The International School, Tathawade, competing in the National Robotics League.
+                We design, build, code, test, and compete as one team.
+            </p>
+
+            <div class="status-box">
+                <div class="status-dot"></div>
+                AJAX // SYSTEM STATUS: OPERATIONAL
+            </div>
+
         </div>
-
-        <h1>
-            ROBO<br>
-            <span class="orange">NAARA</span><br>
-            <span class="outline">2026</span>
-        </h1>
-
-        <p class="hero-description">
-            Six students. One robot. One mission.
-            ROBONAARA is a student robotics team from Orchids The International
-            School, Tathawade, combining engineering, programming, strategy
-            and creativity to build AJAX.
-        </p>
-
-        <div class="buttons">
-            <a class="btn primary" href="team.html">
-                MEET THE TEAM →
-            </a>
-
-            <a class="btn" href="process.html">
-                EXPLORE THE BUILD
-            </a>
-        </div>
-
-    </div>
-
-
-    <div class="robot-zone">
 
         <div class="hud">
 
-            <div class="crosshair"></div>
-            <div class="crosshair vertical"></div>
-
-            <div class="ajax-core">
-                AJAX
+            <div class="hud-title">
+                ROBONAARA // HUD
             </div>
 
-            <div class="hud-label label1">SYS_01</div>
-            <div class="hud-label label2">MOTION</div>
-            <div class="hud-label label3">ROBO_UNIT</div>
-            <div class="hud-label label4">ONLINE</div>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<div class="marquee">
-    <div class="marquee-track">
-        ROBONAARA // AJAX // NRL 2026 // BUILD // TEST // FAIL // IMPROVE // REPEAT //
-        ROBONAARA // AJAX // NRL 2026 // BUILD // TEST // FAIL // IMPROVE // REPEAT //
-    </div>
-</div>
-
-
-<section class="content" id="nrl">
-
-    <div class="section-tag">
-        01 // THE MISSION
-    </div>
-
-    <h2 class="section-title">
-        BUILT FOR THE<br>
-        <span>FIELD.</span>
-    </h2>
-
-    <div class="about-grid">
-
-        <p class="about-text">
-            ROBONAARA brings together six students with different strengths
-            and one shared goal — building a robot capable of taking on the
-            challenge of the National Robotics League.
-
-            <br><br>
-
-            From mechanical design and electronics to programming, driving,
-            strategy and creative problem solving, every part of AJAX is the
-            result of teamwork.
-        </p>
-
-        <div class="stats">
-
-            <div class="stat">
-                <div class="stat-number">06</div>
-                <div class="stat-label">TEAM MEMBERS</div>
+            <div class="hud-row">
+                <span>ROBOT</span>
+                <span>AJAX</span>
             </div>
 
-            <div class="stat">
-                <div class="stat-number">01</div>
-                <div class="stat-label">ROBOT</div>
+            <div class="hud-row">
+                <span>TEAM</span>
+                <span>06</span>
             </div>
 
-            <div class="stat">
-                <div class="stat-number">∞</div>
-                <div class="stat-label">ITERATIONS</div>
+            <div class="hud-row">
+                <span>MODE</span>
+                <span>NRL</span>
             </div>
 
-            <div class="stat">
-                <div class="stat-number">2026</div>
-                <div class="stat-label">NRL SEASON</div>
+            <div class="hud-row">
+                <span>STATUS</span>
+                <span>READY</span>
             </div>
 
         </div>
 
-    </div>
-
-</section>
+    </section>
 
 
-<section class="content ajax-section" id="ajax">
+    <section class="ajax-section">
 
-    <div class="section-tag">
-        02 // ROBOT UNIT
-    </div>
+        <div class="ajax-grid">
 
-    <h2 class="section-title">
-        MEET <span>AJAX.</span>
-    </h2>
+            <div class="ajax-text">
 
-    <div class="ajax-grid">
-
-        <div class="ajax-big">
-            A<br>
-            J<br>
-            A<br>
-            X
-        </div>
-
-        <div class="ajax-copy">
-
-            AJAX is the robot at the centre of ROBONAARA.
-            Every mechanism, circuit, line of code and driving decision
-            comes together to make AJAX perform on the field.
-
-            <div class="specs">
-
-                <div class="spec">
-                    <span>TEAM</span>
-                    <span>ROBONAARA</span>
+                <div class="section-label">
+                    // PRIMARY UNIT
                 </div>
 
-                <div class="spec">
-                    <span>ROBOT</span>
-                    <span>AJAX</span>
+                <h2 class="section-title">
+                    MEET <span>AJAX</span>
+                </h2>
+
+                <p>
+                    AJAX is ROBONAARA's competition robot, designed and engineered by the team for the National Robotics League.
+                </p>
+
+                <p>
+                    Every component exists for a reason — from the mechanical structure and electronics to the code controlling its movements.
+                </p>
+
+            </div>
+
+            <div class="robot-panel">
+
+                <div class="robot-name">
+                    AJAX
                 </div>
 
-                <div class="spec">
-                    <span>SCHOOL</span>
-                    <span>ORCHIDS TIS, TATHAWADE</span>
-                </div>
-
-                <div class="spec">
-                    <span>COMPETITION</span>
-                    <span>NATIONAL ROBOTICS LEAGUE</span>
-                </div>
+                <div class="robot-scan"></div>
 
             </div>
 
         </div>
 
-    </div>
-
-</section>
+    </section>
 
 
-<section class="content">
+    <section>
 
-    <div class="section-tag">
-        03 // SYSTEM MODULES
-    </div>
+        <div class="section-label">
+            // MISSION
+        </div>
 
-    <h2 class="section-title">
-        EXPLORE<br>
-        <span>ROBONAARA.</span>
-    </h2>
+        <h2 class="section-title">
+            NATIONAL <span>ROBOTICS LEAGUE</span>
+        </h2>
 
-    <div class="explore">
-
-        <a href="team.html" class="explore-card">
-
-            <h2>THE TEAM</h2>
+        <div class="nrl-box">
 
             <p>
-                Six people. Six strengths. One robot.
-                Meet everyone behind ROBONAARA.
+                ROBONAARA competes in the National Robotics League, taking on engineering,
+                driving, strategy, teamwork, and problem-solving challenges against other student robotics teams.
             </p>
 
-            <div class="arrow">↗</div>
+        </div>
 
-        </a>
+    </section>
 
-
-        <a href="process.html" class="explore-card">
-
-            <h2>THE PROCESS</h2>
-
-            <p>
-                Follow AJAX from the first idea through design,
-                electronics, programming and testing.
-            </p>
-
-            <div class="arrow">↗</div>
-
-        </a>
-
-    </div>
-
-</section>
+</main>
 
 
 <footer>
-
-    <strong>ROBONAARA</strong>
-
-    <span>BUILD → TEST → FAIL → IMPROVE → REPEAT</span>
-
-    <span>© 2026</span>
-
+    <span>ROBONAARA // NRL</span>
+    <span>ORCHIDS THE INTERNATIONAL SCHOOL, TATHAWADE</span>
 </footer>
-
-
-<script>
-
-const cursor = document.querySelector(".cursor");
-
-document.addEventListener("mousemove", e => {
-    cursor.style.left = e.clientX + "px";
-    cursor.style.top = e.clientY + "px";
-});
-
-document.querySelectorAll("a, .btn, .explore-card").forEach(el => {
-
-    el.addEventListener("mouseenter", () => {
-        cursor.classList.add("active");
-    });
-
-    el.addEventListener("mouseleave", () => {
-        cursor.classList.remove("active");
-    });
-
-});
-
-</script>
 
 </body>
 </html>
