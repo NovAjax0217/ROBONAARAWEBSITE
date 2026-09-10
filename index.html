@@ -1,14 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>ROBONAARA | NRL</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Audiowide&family=Baloo+2:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 
 <style>
+
+/* =====================================================
+   GLOBAL
+===================================================== */
 
 * {
     margin: 0;
@@ -21,577 +29,972 @@ html {
 }
 
 body {
+
     min-height: 100vh;
-    color: white;
-    font-family: "Baloo 2", sans-serif;
+
+    color: #ffffff;
+
+    font-family: "Rajdhani", sans-serif;
+
     overflow-x: hidden;
 
     background:
-        radial-gradient(circle at 8% 12%, rgba(255,105,190,0.55), transparent 25%),
-        radial-gradient(circle at 90% 10%, rgba(80,200,255,0.55), transparent 27%),
-        radial-gradient(circle at 85% 75%, rgba(165,100,255,0.50), transparent 30%),
-        radial-gradient(circle at 12% 85%, rgba(255,180,70,0.45), transparent 27%),
+        radial-gradient(
+            circle at 10% 10%,
+            rgba(0, 238, 255, 0.16),
+            transparent 28%
+        ),
+
+        radial-gradient(
+            circle at 90% 15%,
+            rgba(174, 75, 255, 0.18),
+            transparent 30%
+        ),
+
+        radial-gradient(
+            circle at 70% 85%,
+            rgba(255, 45, 160, 0.12),
+            transparent 30%
+        ),
+
         linear-gradient(
             135deg,
-            #24115a 0%,
-            #173b70 35%,
-            #155b78 60%,
-            #44206e 100%
+            #070b19,
+            #0b1025 45%,
+            #080b18
         );
 }
 
-/* Animated background */
+/* GRID */
 
 body::before {
+
     content: "";
+
     position: fixed;
-    width: 500px;
-    height: 500px;
-    border-radius: 50%;
-    background: rgba(255,70,170,0.15);
-    filter: blur(80px);
-    top: -180px;
-    left: -120px;
-    animation: float1 10s infinite alternate ease-in-out;
+
+    inset: 0;
+
+    background-image:
+        linear-gradient(
+            rgba(0, 238, 255, 0.035) 1px,
+            transparent 1px
+        ),
+        linear-gradient(
+            90deg,
+            rgba(0, 238, 255, 0.035) 1px,
+            transparent 1px
+        );
+
+    background-size: 45px 45px;
+
     pointer-events: none;
+
+    z-index: -2;
 }
+
+/* GLOW */
 
 body::after {
+
     content: "";
+
     position: fixed;
-    width: 450px;
-    height: 450px;
+
+    width: 600px;
+    height: 600px;
+
     border-radius: 50%;
-    background: rgba(0,220,255,0.13);
-    filter: blur(90px);
-    right: -130px;
-    bottom: -120px;
-    animation: float2 12s infinite alternate ease-in-out;
+
+    background: rgba(0, 220, 255, 0.07);
+
+    filter: blur(120px);
+
+    top: -250px;
+    left: -250px;
+
+    animation: drift 12s infinite alternate ease-in-out;
+
     pointer-events: none;
+
+    z-index: -1;
 }
 
-@keyframes float1 {
+@keyframes drift {
+
     to {
-        transform: translate(120px, 100px);
+        transform: translate(180px, 130px);
     }
+
 }
 
-@keyframes float2 {
-    to {
-        transform: translate(-100px, -80px);
-    }
-}
-
-/* NAVIGATION */
+/* =====================================================
+   NAVIGATION
+===================================================== */
 
 nav {
+
     position: fixed;
+
     top: 18px;
     right: 5%;
+
     z-index: 1000;
 
     display: flex;
-    gap: 8px;
 
-    padding: 8px;
+    gap: 5px;
 
-    border-radius: 18px;
+    padding: 6px;
 
-    background: rgba(15,10,45,0.55);
-    border: 1px solid rgba(255,255,255,0.18);
+    background: rgba(5, 8, 20, 0.72);
 
-    backdrop-filter: blur(18px);
-    -webkit-backdrop-filter: blur(18px);
+    border: 1px solid rgba(0, 238, 255, 0.18);
 
-    box-shadow: 0 10px 35px rgba(0,0,0,0.2);
-}
+    backdrop-filter: blur(20px);
 
-nav a {
-    color: rgba(255,255,255,0.75);
-    text-decoration: none;
-
-    padding: 9px 17px;
-
-    border-radius: 12px;
-
-    font-family: "Space Mono", monospace;
-    font-size: 12px;
-    font-weight: bold;
-
-    transition: 0.3s;
-}
-
-nav a:hover {
-    color: white;
-    background: rgba(255,255,255,0.10);
-}
-
-nav a.active {
-    color: white;
-
-    background: linear-gradient(
-        90deg,
-        #ff4fa3,
-        #9b5cff,
-        #29d9ff
+    clip-path: polygon(
+        8px 0,
+        100% 0,
+        100% calc(100% - 8px),
+        calc(100% - 8px) 100%,
+        0 100%,
+        0 8px
     );
 
     box-shadow:
-        0 0 12px rgba(255,79,163,0.5),
-        0 0 25px rgba(41,217,255,0.25);
+        0 0 30px rgba(0,0,0,0.3);
 }
 
-/* SOCIALS */
+nav a {
 
-.socials {
-    position: fixed;
-    top: 18px;
-    left: 5%;
-    z-index: 1000;
-
-    display: flex;
-    gap: 10px;
-}
-
-.social-btn {
-    width: 46px;
-    height: 46px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    border-radius: 50%;
-
-    background: rgba(20,15,55,0.65);
-
-    border: 1px solid rgba(255,255,255,0.25);
-
-    backdrop-filter: blur(18px);
-    -webkit-backdrop-filter: blur(18px);
+    color: rgba(255,255,255,0.55);
 
     text-decoration: none;
 
-    transition: 0.3s;
+    font-family: "Orbitron", sans-serif;
 
-    box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+    font-size: 10px;
+
+    font-weight: 700;
+
+    letter-spacing: 1.5px;
+
+    padding: 12px 17px;
+
+    transition: 0.25s;
+
+    position: relative;
 }
 
-/* INSTAGRAM */
+nav a:hover {
 
-.instagram {
-    color: #ff4fa3;
-    border-color: rgba(255,79,163,0.5);
+    color: #00eeff;
+
+    background: rgba(0,238,255,0.06);
+}
+
+nav a.active {
+
+    color: #ffffff;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(0,238,255,0.20),
+            rgba(174,75,255,0.20)
+        );
 
     box-shadow:
-        0 0 12px rgba(255,79,163,0.25);
+        inset 0 0 20px rgba(0,238,255,0.08);
 }
 
-.instagram svg {
-    width: 23px;
-    height: 23px;
+nav a.active::after {
 
-    fill: none;
-    stroke: #ff4fa3;
-    stroke-width: 2;
+    content: "";
 
-    stroke-linecap: round;
-    stroke-linejoin: round;
+    position: absolute;
 
-    filter:
-        drop-shadow(0 0 5px rgba(255,79,163,0.8));
-}
+    bottom: 3px;
+    left: 15px;
+    right: 15px;
 
-.instagram:hover {
-    transform: translateY(-4px) scale(1.1);
+    height: 2px;
 
-    background: rgba(255,79,163,0.15);
-
-    border-color: #ff4fa3;
+    background: #00eeff;
 
     box-shadow:
-        0 0 12px #ff4fa3,
-        0 0 30px rgba(255,79,163,0.55);
+        0 0 8px #00eeff;
 }
 
-/* YOUTUBE */
+/* =====================================================
+   SOCIAL BUTTONS
+===================================================== */
 
-.youtube {
-    color: #ff3030;
-    border-color: rgba(255,48,48,0.5);
+.socials {
 
-    box-shadow:
-        0 0 12px rgba(255,48,48,0.25);
-}
+    position: fixed;
 
-.youtube svg {
-    width: 23px;
-    height: 23px;
+    top: 18px;
+    left: 5%;
 
-    fill: #ff3030;
-    stroke: none;
-
-    filter:
-        drop-shadow(0 0 5px rgba(255,48,48,0.8));
-}
-
-.youtube:hover {
-    transform: translateY(-4px) scale(1.1);
-
-    background: rgba(255,48,48,0.15);
-
-    border-color: #ff3030;
-
-    box-shadow:
-        0 0 12px #ff3030,
-        0 0 30px rgba(255,48,48,0.55);
-}
-
-/* HERO */
-
-.hero {
-    min-height: 100vh;
+    z-index: 1000;
 
     display: flex;
+
+    gap: 8px;
+}
+
+.social-btn {
+
+    width: 43px;
+    height: 43px;
+
+    display: flex;
+
     align-items: center;
     justify-content: center;
 
-    padding: 120px 7% 80px;
+    border-radius: 10px;
+
+    background: rgba(5,8,20,0.72);
+
+    border: 1px solid rgba(255,255,255,0.15);
+
+    backdrop-filter: blur(18px);
+
+    transition: 0.3s;
+
+    text-decoration: none;
+}
+
+.social-btn:hover {
+
+    transform: translateY(-4px);
+}
+
+.instagram {
+
+    border-color: rgba(255,55,160,0.5);
+
+    box-shadow:
+        0 0 15px rgba(255,55,160,0.15);
+}
+
+.instagram svg {
+
+    width: 21px;
+    height: 21px;
+
+    fill: none;
+
+    stroke: #ff4fa3;
+
+    stroke-width: 2;
+
+    filter:
+        drop-shadow(0 0 5px #ff4fa3);
+}
+
+.instagram:hover {
+
+    background: rgba(255,55,160,0.12);
+
+    box-shadow:
+        0 0 20px rgba(255,55,160,0.45);
+}
+
+.youtube {
+
+    border-color: rgba(255,50,50,0.5);
+
+    box-shadow:
+        0 0 15px rgba(255,50,50,0.15);
+}
+
+.youtube svg {
+
+    width: 21px;
+    height: 21px;
+
+    fill: #ff3030;
+
+    filter:
+        drop-shadow(0 0 5px #ff3030);
+}
+
+.youtube:hover {
+
+    background: rgba(255,50,50,0.12);
+
+    box-shadow:
+        0 0 20px rgba(255,50,50,0.45);
+}
+
+/* =====================================================
+   HERO
+===================================================== */
+
+.hero {
+
+    min-height: 100vh;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+
+    padding: 130px 7% 90px;
 
     position: relative;
 }
 
 .hero-content {
+
+    max-width: 1100px;
+
     width: 100%;
-    max-width: 1200px;
-    text-align: center;
 }
 
-.system {
+.system-label {
+
     font-family: "Space Mono", monospace;
-    font-size: 13px;
-    letter-spacing: 3px;
 
-    color: #70efff;
+    font-size: 11px;
 
-    margin-bottom: 22px;
+    letter-spacing: 4px;
+
+    color: #00eeff;
+
+    margin-bottom: 25px;
 
     text-shadow:
-        0 0 10px rgba(112,239,255,0.8);
+        0 0 12px #00eeff;
 }
 
 .main-title {
-    font-family: "Audiowide", sans-serif;
 
-    font-size: clamp(55px, 10vw, 130px);
+    font-family: "Orbitron", sans-serif;
 
-    color: white;
+    font-weight: 900;
+
+    font-size: clamp(50px, 10vw, 125px);
 
     letter-spacing: 5px;
 
-    text-shadow:
-        0 0 10px #ff4fa3,
-        0 0 25px #ff4fa3,
-        0 0 45px rgba(255,79,163,0.7),
-        0 0 70px rgba(41,217,255,0.5);
+    line-height: 1;
 
-    animation: titleGlow 3s infinite alternate;
+    color: #ffffff;
+
+    text-shadow:
+        0 0 8px rgba(255,255,255,0.8),
+        0 0 25px #00eeff,
+        0 0 55px rgba(0,238,255,0.55);
+
+    animation: titlePulse 3s infinite alternate;
 }
 
-@keyframes titleGlow {
+@keyframes titlePulse {
+
     from {
         text-shadow:
-            0 0 10px #ff4fa3,
-            0 0 25px #ff4fa3,
-            0 0 45px rgba(255,79,163,0.7);
+            0 0 8px rgba(255,255,255,0.8),
+            0 0 25px #00eeff;
     }
 
     to {
         text-shadow:
-            0 0 15px #29d9ff,
-            0 0 30px #29d9ff,
-            0 0 60px rgba(41,217,255,0.7);
+            0 0 8px white,
+            0 0 30px #ae4bff,
+            0 0 60px rgba(174,75,255,0.55);
     }
+
 }
 
 .title-line {
-    width: 220px;
-    height: 5px;
 
-    margin: 20px auto;
+    width: 280px;
 
-    border-radius: 20px;
+    height: 2px;
 
-    background: linear-gradient(
-        90deg,
-        #ff4fa3,
-        #9b5cff,
-        #29d9ff,
-        #ffd34d
-    );
+    margin: 25px auto;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            #00eeff,
+            #ae4bff,
+            #ff4fa3,
+            transparent
+        );
 
     box-shadow:
-        0 0 15px rgba(255,79,163,0.8);
+        0 0 15px #00eeff;
 }
 
 .tagline {
-    font-family: "Audiowide", sans-serif;
 
-    font-size: clamp(18px, 3vw, 30px);
+    font-family: "Orbitron", sans-serif;
 
-    margin-top: 25px;
+    font-size: clamp(16px, 3vw, 25px);
 
-    letter-spacing: 2px;
+    font-weight: 600;
+
+    letter-spacing: 5px;
+
+    color: #d9faff;
 }
 
 .description {
-    max-width: 700px;
 
-    margin: 20px auto;
+    max-width: 680px;
 
-    color: rgba(255,255,255,0.78);
+    margin: 25px auto;
 
     font-size: 18px;
-    line-height: 1.6;
+
+    line-height: 1.65;
+
+    color: rgba(255,255,255,0.62);
 }
 
 .status {
+
     display: inline-flex;
+
     align-items: center;
+
     gap: 10px;
 
     margin-top: 20px;
 
     padding: 10px 18px;
 
-    border-radius: 30px;
-
-    background: rgba(0,255,180,0.10);
-    border: 1px solid rgba(0,255,180,0.35);
-
     font-family: "Space Mono", monospace;
-    font-size: 12px;
 
-    color: #65ffce;
+    font-size: 10px;
+
+    letter-spacing: 1px;
+
+    color: #61ffd7;
+
+    background: rgba(0,255,190,0.05);
+
+    border: 1px solid rgba(0,255,190,0.3);
+
+    clip-path: polygon(
+        8px 0,
+        100% 0,
+        100% calc(100% - 8px),
+        calc(100% - 8px) 100%,
+        0 100%,
+        0 8px
+    );
 }
 
 .status-dot {
-    width: 9px;
-    height: 9px;
+
+    width: 7px;
+    height: 7px;
 
     border-radius: 50%;
 
-    background: #65ffce;
+    background: #61ffd7;
 
     box-shadow:
-        0 0 10px #65ffce;
+        0 0 10px #61ffd7;
 
-    animation: blink 1.3s infinite;
+    animation: blink 1s infinite;
 }
 
 @keyframes blink {
+
     50% {
-        opacity: 0.3;
+        opacity: 0.25;
     }
+
 }
 
-/* AJAX */
+/* =====================================================
+   AJAX PANEL
+===================================================== */
 
-.ajax-section {
-    padding: 80px 7%;
+.section {
+
+    padding: 100px 7%;
 }
 
-.section-title {
+.section-heading {
+
     text-align: center;
 
-    font-family: "Audiowide", sans-serif;
-
-    font-size: clamp(32px, 6vw, 65px);
-
-    margin-bottom: 50px;
-
-    text-shadow:
-        0 0 20px rgba(41,217,255,0.6);
+    margin-bottom: 55px;
 }
 
-.ajax-container {
-    max-width: 900px;
-    margin: auto;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    min-height: 480px;
-
-    position: relative;
-}
-
-.ajax-core {
-    width: 230px;
-    height: 230px;
-
-    border-radius: 50%;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    font-family: "Audiowide", sans-serif;
-    font-size: 40px;
-
-    background:
-        radial-gradient(circle,
-        #ffffff 0%,
-        #70efff 10%,
-        #9b5cff 40%,
-        #ff4fa3 70%,
-        transparent 71%
-        );
-
-    box-shadow:
-        0 0 25px #29d9ff,
-        0 0 60px #9b5cff,
-        0 0 110px rgba(255,79,163,0.7);
-
-    animation: corePulse 3s infinite alternate;
-
-    position: relative;
-    z-index: 2;
-}
-
-@keyframes corePulse {
-    to {
-        transform: scale(1.06);
-    }
-}
-
-.ring {
-    position: absolute;
-
-    width: 330px;
-    height: 330px;
-
-    border-radius: 50%;
-
-    border: 2px solid rgba(41,217,255,0.5);
-
-    border-top-color: #ff4fa3;
-    border-bottom-color: #ffd34d;
-
-    animation: spin 7s linear infinite;
-}
-
-.ring2 {
-    width: 410px;
-    height: 410px;
-
-    border-color: rgba(255,255,255,0.18);
-
-    border-left-color: #9b5cff;
-    border-right-color: #29d9ff;
-
-    animation: spin 12s linear infinite reverse;
-}
-
-@keyframes spin {
-    to {
-        transform: rotate(360deg);
-    }
-}
-
-.hud {
-    position: absolute;
+.eyebrow {
 
     font-family: "Space Mono", monospace;
 
-    font-size: 11px;
+    font-size: 10px;
+
+    letter-spacing: 3px;
+
+    color: #00eeff;
+
+    margin-bottom: 12px;
+}
+
+.section-heading h2 {
+
+    font-family: "Orbitron", sans-serif;
+
+    font-size: clamp(30px, 6vw, 58px);
+
+    letter-spacing: 2px;
+
+    text-shadow:
+        0 0 25px rgba(0,238,255,0.35);
+}
+
+.ajax-panel {
+
+    max-width: 1050px;
+
+    min-height: 500px;
+
+    margin: auto;
+
+    position: relative;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(0,238,255,0.06),
+            rgba(174,75,255,0.07)
+        );
+
+    border: 1px solid rgba(0,238,255,0.2);
+
+    clip-path: polygon(
+        25px 0,
+        100% 0,
+        100% calc(100% - 25px),
+        calc(100% - 25px) 100%,
+        0 100%,
+        0 25px
+    );
+
+    overflow: hidden;
+}
+
+.ajax-panel::before {
+
+    content: "AJAX // ROBOT CORE";
+
+    position: absolute;
+
+    top: 18px;
+    left: 22px;
+
+    font-family: "Space Mono", monospace;
+
+    font-size: 9px;
+
+    color: rgba(0,238,255,0.6);
+
+    letter-spacing: 2px;
+}
+
+.ajax-panel::after {
+
+    content: "SYSTEM READY";
+
+    position: absolute;
+
+    bottom: 18px;
+    right: 22px;
+
+    font-family: "Space Mono", monospace;
+
+    font-size: 9px;
+
+    color: #61ffd7;
+
+    letter-spacing: 2px;
+}
+
+.ajax-core {
+
+    width: 210px;
+    height: 210px;
+
+    border-radius: 50%;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    font-family: "Orbitron", sans-serif;
+
+    font-size: 34px;
+
+    font-weight: 900;
+
+    background:
+        radial-gradient(
+            circle,
+            #ffffff 0%,
+            #00eeff 8%,
+            #173b70 32%,
+            #0b1025 65%,
+            transparent 67%
+        );
+
+    box-shadow:
+        0 0 25px #00eeff,
+        0 0 60px rgba(0,238,255,0.5),
+        0 0 100px rgba(174,75,255,0.3);
+
+    position: relative;
+
+    z-index: 2;
+}
+
+.ring {
+
+    position: absolute;
+
+    width: 310px;
+    height: 310px;
+
+    border-radius: 50%;
+
+    border: 1px solid rgba(0,238,255,0.45);
+
+    border-top-color: #00eeff;
+    border-right-color: #ae4bff;
+
+    animation: spin 8s linear infinite;
+}
+
+.ring.two {
+
+    width: 390px;
+    height: 390px;
+
+    border-color: rgba(255,255,255,0.12);
+
+    border-left-color: #ff4fa3;
+
+    border-bottom-color: #00eeff;
+
+    animation-duration: 14s;
+
+    animation-direction: reverse;
+}
+
+@keyframes spin {
+
+    to {
+        transform: rotate(360deg);
+    }
+
+}
+
+.hud {
+
+    position: absolute;
+
+    padding: 12px 16px;
+
+    font-family: "Space Mono", monospace;
+
+    font-size: 9px;
+
+    letter-spacing: 1px;
+
+    background: rgba(5,8,20,0.75);
+
+    border: 1px solid rgba(0,238,255,0.25);
 
     color: #8df5ff;
-
-    padding: 10px 15px;
-
-    border: 1px solid rgba(141,245,255,0.3);
-
-    background: rgba(0,0,0,0.18);
 
     backdrop-filter: blur(10px);
 }
 
 .hud.one {
-    top: 15%;
+
+    top: 25%;
+
     left: 8%;
 }
 
 .hud.two {
-    bottom: 15%;
+
+    bottom: 24%;
+
     right: 8%;
 }
 
 .hud.three {
-    top: 25%;
-    right: 3%;
+
+    top: 18%;
+
+    right: 15%;
+
+    color: #ff72b8;
+
+    border-color: rgba(255,79,163,0.3);
 }
 
-.nrl {
-    padding: 100px 7%;
-    text-align: center;
+/* =====================================================
+   INNOVATION
+===================================================== */
+
+.innovation {
+
+    padding: 80px 7% 120px;
 }
 
-.nrl-box {
-    max-width: 900px;
+.innovation-panel {
+
+    max-width: 1050px;
 
     margin: auto;
 
-    padding: 50px;
+    padding: 55px;
 
-    border-radius: 30px;
+    position: relative;
 
-    background: rgba(255,255,255,0.08);
+    overflow: hidden;
 
-    border: 1px solid rgba(255,255,255,0.2);
+    background:
+        linear-gradient(
+            110deg,
+            rgba(174,75,255,0.13),
+            rgba(0,238,255,0.08)
+        );
 
-    backdrop-filter: blur(20px);
+    border: 1px solid rgba(174,75,255,0.35);
+
+    clip-path: polygon(
+        35px 0,
+        100% 0,
+        100% calc(100% - 35px),
+        calc(100% - 35px) 100%,
+        0 100%,
+        0 35px
+    );
 
     box-shadow:
-        0 20px 70px rgba(0,0,0,0.2);
+        0 0 60px rgba(174,75,255,0.08);
 }
 
-.nrl-box h3 {
-    font-family: "Audiowide", sans-serif;
+.innovation-panel::before {
 
-    font-size: 38px;
+    content: "NEW MODULE // 04";
 
-    margin-bottom: 20px;
+    position: absolute;
+
+    top: 20px;
+    right: 25px;
+
+    font-family: "Space Mono", monospace;
+
+    font-size: 9px;
+
+    color: #ae4bff;
+
+    letter-spacing: 2px;
 }
 
-.nrl-box p {
+.innovation-content {
+
+    max-width: 700px;
+}
+
+.innovation h2 {
+
+    font-family: "Orbitron", sans-serif;
+
+    font-size: clamp(30px, 5vw, 55px);
+
+    margin-bottom: 18px;
+
+    color: white;
+
+    text-shadow:
+        0 0 25px rgba(174,75,255,0.7);
+}
+
+.innovation h2 span {
+
+    color: #ae4bff;
+}
+
+.innovation p {
+
+    color: rgba(255,255,255,0.65);
+
     font-size: 18px;
-    color: rgba(255,255,255,0.78);
+
+    line-height: 1.6;
+
+    margin-bottom: 30px;
 }
 
-/* FOOTER */
+.innovation-button {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    padding: 14px 22px;
+
+    color: white;
+
+    text-decoration: none;
+
+    font-family: "Orbitron", sans-serif;
+
+    font-size: 11px;
+
+    font-weight: 700;
+
+    letter-spacing: 1px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #ae4bff,
+            #00bfff
+        );
+
+    clip-path: polygon(
+        10px 0,
+        100% 0,
+        100% calc(100% - 10px),
+        calc(100% - 10px) 100%,
+        0 100%,
+        0 10px
+    );
+
+    box-shadow:
+        0 0 25px rgba(174,75,255,0.35);
+
+    transition: 0.3s;
+}
+
+.innovation-button:hover {
+
+    transform: translateY(-4px);
+
+    box-shadow:
+        0 0 35px rgba(0,191,255,0.55);
+}
+
+.arrow {
+
+    font-size: 18px;
+}
+
+/* =====================================================
+   NRL
+===================================================== */
+
+.nrl {
+
+    padding: 30px 7% 120px;
+
+    text-align: center;
+}
+
+.nrl-panel {
+
+    max-width: 1050px;
+
+    margin: auto;
+
+    padding: 45px;
+
+    background: rgba(255,255,255,0.035);
+
+    border: 1px solid rgba(255,255,255,0.12);
+
+    clip-path: polygon(
+        25px 0,
+        100% 0,
+        100% calc(100% - 25px),
+        calc(100% - 25px) 100%,
+        0 100%,
+        0 25px
+    );
+}
+
+.nrl-panel h2 {
+
+    font-family: "Orbitron", sans-serif;
+
+    font-size: 28px;
+
+    margin-bottom: 15px;
+}
+
+.nrl-panel p {
+
+    max-width: 700px;
+
+    margin: auto;
+
+    color: rgba(255,255,255,0.58);
+
+    font-size: 17px;
+
+    line-height: 1.6;
+}
+
+/* =====================================================
+   FOOTER
+===================================================== */
 
 footer {
+
     padding: 40px 7%;
 
     text-align: center;
 
-    border-top: 1px solid rgba(255,255,255,0.15);
+    border-top: 1px solid rgba(255,255,255,0.1);
 
     font-family: "Space Mono", monospace;
 
-    font-size: 11px;
+    font-size: 9px;
 
-    color: rgba(255,255,255,0.55);
+    letter-spacing: 1px;
+
+    color: rgba(255,255,255,0.4);
 }
 
-/* MOBILE */
+/* =====================================================
+   MOBILE
+===================================================== */
 
-@media (max-width: 700px) {
+@media(max-width:700px) {
 
     nav {
+
         top: 70px;
+
         right: 15px;
         left: 15px;
 
@@ -599,54 +1002,74 @@ footer {
     }
 
     nav a {
-        padding: 8px 10px;
-        font-size: 10px;
+
+        padding: 10px 9px;
+
+        font-size: 8px;
     }
 
     .socials {
+
         top: 15px;
         left: 15px;
-        gap: 7px;
     }
 
     .social-btn {
-        width: 40px;
-        height: 40px;
-    }
 
-    .instagram svg,
-    .youtube svg {
-        width: 19px;
-        height: 19px;
+        width: 39px;
+        height: 39px;
     }
 
     .hero {
-        padding-top: 160px;
+
+        padding-top: 170px;
+    }
+
+    .tagline {
+
+        letter-spacing: 2px;
+    }
+
+    .description {
+
+        font-size: 16px;
+    }
+
+    .ajax-panel {
+
+        min-height: 420px;
     }
 
     .ajax-core {
-        width: 170px;
-        height: 170px;
-        font-size: 28px;
+
+        width: 150px;
+        height: 150px;
+
+        font-size: 25px;
     }
 
     .ring {
-        width: 250px;
-        height: 250px;
+
+        width: 230px;
+        height: 230px;
     }
 
-    .ring2 {
-        width: 310px;
-        height: 310px;
+    .ring.two {
+
+        width: 290px;
+        height: 290px;
     }
 
     .hud {
+
         display: none;
     }
 
-    .nrl-box {
-        padding: 30px 20px;
+    .innovation-panel {
+
+        padding: 35px 25px;
     }
+
 }
 
 </style>
@@ -654,54 +1077,98 @@ footer {
 
 <body>
 
-<!-- SOCIAL MEDIA -->
+<!-- =====================================================
+     SOCIALS
+===================================================== -->
 
 <div class="socials">
 
-    <a href="https://www.instagram.com/robonaara?utm_source=qr&igsi=MTRzNTNnZW1qNjVn"
-       target="_blank"
-       rel="noopener noreferrer"
-       class="social-btn instagram"
-       aria-label="ROBONAARA Instagram">
+    <a
+        href="https://www.instagram.com/robonaara?utm_source=qr&igsi=MTRzNTNnZW1qNjVn"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="social-btn instagram"
+        aria-label="ROBONAARA Instagram"
+    >
 
         <svg viewBox="0 0 24 24">
-            <rect x="3" y="3" width="18" height="18" rx="5"></rect>
-            <circle cx="12" cy="12" r="4"></circle>
-            <circle cx="17.5" cy="6.5" r="1"></circle>
+
+            <rect
+                x="3"
+                y="3"
+                width="18"
+                height="18"
+                rx="5"
+            ></rect>
+
+            <circle
+                cx="12"
+                cy="12"
+                r="4"
+            ></circle>
+
+            <circle
+                cx="17.5"
+                cy="6.5"
+                r="1"
+            ></circle>
+
         </svg>
 
     </a>
 
-    <a href="https://www.youtube.com/@RoboNAARA"
-       target="_blank"
-       rel="noopener noreferrer"
-       class="social-btn youtube"
-       aria-label="ROBONAARA YouTube">
+
+    <a
+        href="https://www.youtube.com/@RoboNAARA"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="social-btn youtube"
+        aria-label="ROBONAARA YouTube"
+    >
 
         <svg viewBox="0 0 24 24">
+
             <path d="M21.6 7.2a2.8 2.8 0 0 0-2-2C17.8 4.7 12 4.7 12 4.7s-5.8 0-7.6.5a2.8 2.8 0 0 0-2 2C2 9 2 12 2 12s0 3 .4 4.8a2.8 2.8 0 0 0 2 2c1.8.5 7.6.5 7.6.5s5.8 0 7.6-.5a2.8 2.8 0 0 0 2-2C22 15 22 12 22 12s0-3-.4-4.8Z"></path>
+
             <polygon points="10,8.5 16,12 10,15.5"></polygon>
+
         </svg>
 
     </a>
 
 </div>
 
-<!-- NAV -->
+
+<!-- =====================================================
+     NAV
+===================================================== -->
 
 <nav>
-    <a href="index.html" class="active">HOME</a>
-    <a href="process.html">PROCESS</a>
-    <a href="team.html">TEAM</a>
+
+    <a href="index.html" class="active">
+        HOME
+    </a>
+
+    <a href="process.html">
+        PROCESS
+    </a>
+
+    <a href="team.html">
+        TEAM
+    </a>
+
 </nav>
 
-<!-- HERO -->
+
+<!-- =====================================================
+     HERO
+===================================================== -->
 
 <section class="hero">
 
     <div class="hero-content">
 
-        <div class="system">
+        <div class="system-label">
             SYSTEM ONLINE // ROBONAARA
         </div>
 
@@ -717,31 +1184,43 @@ footer {
 
         <p class="description">
             Six minds. One machine. Zero excuses.
-            Welcome to ROBONAARA — where engineering,
-            strategy and creativity come together to build AJAX.
+            ROBONAARA combines engineering, strategy,
+            creativity and technology to build AJAX.
         </p>
 
         <div class="status">
+
             <span class="status-dot"></span>
+
             AJAX SYSTEMS ONLINE
+
         </div>
 
     </div>
 
 </section>
 
-<!-- AJAX -->
 
-<section class="ajax-section">
+<!-- =====================================================
+     AJAX
+===================================================== -->
 
-    <h2 class="section-title">
-        MEET AJAX
-    </h2>
+<section class="section">
 
-    <div class="ajax-container">
+    <div class="section-heading">
 
-        <div class="ring"></div>
-        <div class="ring ring2"></div>
+        <div class="eyebrow">
+            ROBOT // CORE SYSTEM
+        </div>
+
+        <h2>
+            MEET AJAX
+        </h2>
+
+    </div>
+
+
+    <div class="ajax-panel">
 
         <div class="hud one">
             CORE // ACTIVE
@@ -755,6 +1234,10 @@ footer {
             MODE // HYPERDRIVE
         </div>
 
+        <div class="ring"></div>
+
+        <div class="ring two"></div>
+
         <div class="ajax-core">
             AJAX
         </div>
@@ -763,29 +1246,88 @@ footer {
 
 </section>
 
-<!-- NRL -->
+
+<!-- =====================================================
+     INNOVATION
+===================================================== -->
+
+<section class="innovation">
+
+    <div class="innovation-panel">
+
+        <div class="innovation-content">
+
+            <div class="eyebrow">
+                ROBONAARA // INNOVATION
+            </div>
+
+            <h2>
+                <span>INNOVATION</span>
+                LAB
+            </h2>
+
+            <p>
+                Explore one of our technology projects beyond
+                the competition field — where experimentation,
+                engineering and new ideas come together.
+            </p>
+
+            <a
+                href="https://pyrolysis-pipeline.preview.emergentagent.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="innovation-button"
+            >
+
+                ENTER INNOVATION LAB
+
+                <span class="arrow">→</span>
+
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     NRL
+===================================================== -->
 
 <section class="nrl">
 
-    <div class="nrl-box">
+    <div class="nrl-panel">
 
-        <h3>
+        <div class="eyebrow">
+            COMPETITION // MISSION
+        </div>
+
+        <h2>
             NATIONAL ROBOTICS LEAGUE
-        </h3>
+        </h2>
 
         <p>
-            ROBONAARA is taking AJAX to the National Robotics League,
-            ready to compete, adapt and push our robot to its limits.
+            ROBONAARA is taking AJAX to the National Robotics
+            League — ready to compete, adapt and push our
+            robot to its limits.
         </p>
 
     </div>
 
 </section>
 
+
 <footer>
-    ROBONAARA // ORCHIDS THE INTERNATIONAL SCHOOL, TATHAWADE
+
+    ROBONAARA //
+    ORCHIDS THE INTERNATIONAL SCHOOL, TATHAWADE
+
     <br><br>
+
     NATIONAL ROBOTICS LEAGUE
+
 </footer>
 
 </body>
