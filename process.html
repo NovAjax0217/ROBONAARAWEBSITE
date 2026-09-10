@@ -7,9 +7,16 @@
 
 <title>ROBONAARA | Process</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Audiowide&family=Baloo+2:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 
 <style>
+
+/* =====================================================
+   GLOBAL
+===================================================== */
 
 * {
     margin: 0;
@@ -22,91 +29,68 @@ html {
 }
 
 body {
+
     min-height: 100vh;
 
     color: white;
 
-    font-family: "Baloo 2", sans-serif;
-
-    background:
-        radial-gradient(circle at 8% 12%, rgba(255,105,190,0.55), transparent 25%),
-        radial-gradient(circle at 90% 10%, rgba(80,200,255,0.55), transparent 27%),
-        radial-gradient(circle at 85% 75%, rgba(165,100,255,0.50), transparent 30%),
-        radial-gradient(circle at 12% 85%, rgba(255,180,70,0.45), transparent 27%),
-        linear-gradient(
-            135deg,
-            #24115a 0%,
-            #173b70 35%,
-            #155b78 60%,
-            #44206e 100%
-        );
+    font-family: "Rajdhani", sans-serif;
 
     overflow-x: hidden;
+
+    background:
+        radial-gradient(
+            circle at 10% 10%,
+            rgba(0,238,255,0.16),
+            transparent 28%
+        ),
+
+        radial-gradient(
+            circle at 90% 15%,
+            rgba(174,75,255,0.18),
+            transparent 30%
+        ),
+
+        linear-gradient(
+            135deg,
+            #070b19,
+            #0b1025 45%,
+            #080b18
+        );
 }
 
 body::before {
+
     content: "";
 
     position: fixed;
 
-    width: 500px;
-    height: 500px;
+    inset: 0;
 
-    border-radius: 50%;
+    background-image:
+        linear-gradient(
+            rgba(0,238,255,0.035) 1px,
+            transparent 1px
+        ),
+        linear-gradient(
+            90deg,
+            rgba(0,238,255,0.035) 1px,
+            transparent 1px
+        );
 
-    background: rgba(255,70,170,0.15);
-
-    filter: blur(80px);
-
-    top: -180px;
-    left: -120px;
-
-    animation: float1 10s infinite alternate ease-in-out;
-
-    pointer-events: none;
-}
-
-body::after {
-    content: "";
-
-    position: fixed;
-
-    width: 450px;
-    height: 450px;
-
-    border-radius: 50%;
-
-    background: rgba(0,220,255,0.13);
-
-    filter: blur(90px);
-
-    right: -130px;
-    bottom: -120px;
-
-    animation: float2 12s infinite alternate ease-in-out;
+    background-size: 45px 45px;
 
     pointer-events: none;
+
+    z-index: -1;
 }
 
-@keyframes float1 {
-
-    to {
-        transform: translate(120px,100px);
-    }
-
-}
-
-@keyframes float2 {
-
-    to {
-        transform: translate(-100px,-80px);
-    }
-
-}
-
-/* NAV */
+/* =====================================================
+   NAV
+===================================================== */
 
 nav {
+
     position: fixed;
 
     top: 18px;
@@ -115,44 +99,51 @@ nav {
     z-index: 1000;
 
     display: flex;
-    gap: 8px;
 
-    padding: 8px;
+    gap: 5px;
 
-    border-radius: 18px;
+    padding: 6px;
 
-    background: rgba(15,10,45,0.55);
+    background: rgba(5,8,20,0.72);
 
-    border: 1px solid rgba(255,255,255,0.18);
+    border: 1px solid rgba(0,238,255,0.18);
 
-    backdrop-filter: blur(18px);
+    backdrop-filter: blur(20px);
 
-    box-shadow:
-        0 10px 35px rgba(0,0,0,0.2);
+    clip-path: polygon(
+        8px 0,
+        100% 0,
+        100% calc(100% - 8px),
+        calc(100% - 8px) 100%,
+        0 100%,
+        0 8px
+    );
 }
 
 nav a {
-    color: rgba(255,255,255,0.75);
+
+    color: rgba(255,255,255,0.55);
 
     text-decoration: none;
 
-    padding: 9px 17px;
+    font-family: "Orbitron", sans-serif;
 
-    border-radius: 12px;
+    font-size: 10px;
 
-    font-family: "Space Mono", monospace;
+    font-weight: 700;
 
-    font-size: 12px;
+    letter-spacing: 1.5px;
 
-    font-weight: bold;
+    padding: 12px 17px;
 
-    transition: 0.3s;
+    transition: 0.25s;
 }
 
 nav a:hover {
-    color: white;
 
-    background: rgba(255,255,255,0.10);
+    color: #00eeff;
+
+    background: rgba(0,238,255,0.06);
 }
 
 nav a.active {
@@ -161,18 +152,33 @@ nav a.active {
 
     background:
         linear-gradient(
-            90deg,
-            #ff4fa3,
-            #9b5cff,
-            #29d9ff
+            135deg,
+            rgba(0,238,255,0.20),
+            rgba(174,75,255,0.20)
         );
 
     box-shadow:
-        0 0 12px rgba(255,79,163,0.5),
-        0 0 25px rgba(41,217,255,0.25);
+        inset 0 0 20px rgba(0,238,255,0.08);
 }
 
-/* SOCIAL MEDIA */
+nav a.active::after {
+
+    content: "";
+
+    display: block;
+
+    height: 2px;
+
+    margin-top: 5px;
+
+    background: #00eeff;
+
+    box-shadow: 0 0 8px #00eeff;
+}
+
+/* =====================================================
+   SOCIAL
+===================================================== */
 
 .socials {
 
@@ -185,51 +191,39 @@ nav a.active {
 
     display: flex;
 
-    gap: 10px;
+    gap: 8px;
 }
 
 .social-btn {
 
-    width: 46px;
-    height: 46px;
+    width: 43px;
+    height: 43px;
 
     display: flex;
 
     align-items: center;
     justify-content: center;
 
-    border-radius: 50%;
+    border-radius: 10px;
 
-    background: rgba(20,15,55,0.65);
+    background: rgba(5,8,20,0.72);
 
-    border: 1px solid rgba(255,255,255,0.25);
+    border: 1px solid rgba(255,255,255,0.15);
 
     backdrop-filter: blur(18px);
 
-    text-decoration: none;
-
     transition: 0.3s;
-
-    box-shadow:
-        0 8px 25px rgba(0,0,0,0.2);
 }
-
-/* INSTAGRAM */
 
 .instagram {
 
-    color: #ff4fa3;
-
-    border-color: rgba(255,79,163,0.5);
-
-    box-shadow:
-        0 0 12px rgba(255,79,163,0.25);
+    border-color: rgba(255,55,160,0.5);
 }
 
 .instagram svg {
 
-    width: 23px;
-    height: 23px;
+    width: 21px;
+    height: 21px;
 
     fill: none;
 
@@ -237,65 +231,49 @@ nav a.active {
 
     stroke-width: 2;
 
-    stroke-linecap: round;
-    stroke-linejoin: round;
-
     filter:
-        drop-shadow(0 0 5px rgba(255,79,163,0.8));
+        drop-shadow(0 0 5px #ff4fa3);
 }
 
 .instagram:hover {
 
-    transform: translateY(-4px) scale(1.1);
+    transform: translateY(-4px);
 
-    background: rgba(255,79,163,0.15);
-
-    border-color: #ff4fa3;
+    background: rgba(255,55,160,0.12);
 
     box-shadow:
-        0 0 12px #ff4fa3,
-        0 0 30px rgba(255,79,163,0.55);
+        0 0 20px rgba(255,55,160,0.45);
 }
-
-/* YOUTUBE */
 
 .youtube {
 
-    color: #ff3030;
-
-    border-color: rgba(255,48,48,0.5);
-
-    box-shadow:
-        0 0 12px rgba(255,48,48,0.25);
+    border-color: rgba(255,50,50,0.5);
 }
 
 .youtube svg {
 
-    width: 23px;
-    height: 23px;
+    width: 21px;
+    height: 21px;
 
     fill: #ff3030;
 
-    stroke: none;
-
     filter:
-        drop-shadow(0 0 5px rgba(255,48,48,0.8));
+        drop-shadow(0 0 5px #ff3030);
 }
 
 .youtube:hover {
 
-    transform: translateY(-4px) scale(1.1);
+    transform: translateY(-4px);
 
-    background: rgba(255,48,48,0.15);
-
-    border-color: #ff3030;
+    background: rgba(255,50,50,0.12);
 
     box-shadow:
-        0 0 12px #ff3030,
-        0 0 30px rgba(255,48,48,0.55);
+        0 0 20px rgba(255,50,50,0.45);
 }
 
-/* HEADER */
+/* =====================================================
+   HEADER
+===================================================== */
 
 header {
 
@@ -317,50 +295,51 @@ header {
 
     font-family: "Space Mono", monospace;
 
-    color: #70efff;
+    font-size: 10px;
 
-    font-size: 13px;
+    letter-spacing: 4px;
 
-    letter-spacing: 3px;
+    color: #00eeff;
 
     margin-bottom: 20px;
 
     text-shadow:
-        0 0 10px rgba(112,239,255,0.8);
+        0 0 10px #00eeff;
 }
 
 header h1 {
 
-    font-family: "Audiowide", sans-serif;
+    font-family: "Orbitron", sans-serif;
 
     font-size: clamp(45px,8vw,90px);
 
+    font-weight: 900;
+
+    letter-spacing: 3px;
+
     text-shadow:
-        0 0 15px #ff4fa3,
-        0 0 35px rgba(255,79,163,0.6);
+        0 0 20px #00eeff;
 }
 
 .header-line {
 
-    width: 180px;
+    width: 240px;
 
-    height: 5px;
+    height: 2px;
 
-    margin: 20px auto;
-
-    border-radius: 20px;
+    margin: 22px auto;
 
     background:
         linear-gradient(
             90deg,
-            #ff4fa3,
-            #9b5cff,
-            #29d9ff,
-            #ffd34d
+            transparent,
+            #00eeff,
+            #ae4bff,
+            transparent
         );
 
     box-shadow:
-        0 0 15px rgba(255,79,163,0.7);
+        0 0 12px #00eeff;
 }
 
 header p {
@@ -369,25 +348,25 @@ header p {
 
     font-size: 18px;
 
-    color: rgba(255,255,255,0.78);
+    color: rgba(255,255,255,0.6);
 
     line-height: 1.6;
 }
 
-/* PROCESS */
+/* =====================================================
+   PROCESS
+===================================================== */
 
 .process {
 
-    max-width: 1050px;
+    max-width: 1100px;
 
     margin: auto;
 
-    padding: 40px 7% 120px;
+    padding: 30px 7% 120px;
 
     position: relative;
 }
-
-/* TIMELINE */
 
 .process::before {
 
@@ -400,70 +379,75 @@ header p {
     top: 0;
     bottom: 0;
 
-    width: 3px;
+    width: 1px;
 
     transform: translateX(-50%);
 
     background:
         linear-gradient(
             to bottom,
+            transparent,
+            #00eeff,
+            #ae4bff,
             #ff4fa3,
-            #9b5cff,
-            #29d9ff,
-            #65ffce,
-            #ffd34d,
-            #ff7a45,
-            #ff4fa3
+            #00eeff,
+            transparent
         );
 
     box-shadow:
-        0 0 15px rgba(41,217,255,0.6);
+        0 0 12px rgba(0,238,255,0.5);
 }
 
 .step {
 
-    width: 46%;
+    width: 45%;
 
     padding: 28px;
 
-    margin-bottom: 65px;
-
-    border-radius: 25px;
+    margin-bottom: 75px;
 
     position: relative;
 
-    background: rgba(255,255,255,0.10);
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255,255,255,0.065),
+            rgba(255,255,255,0.025)
+        );
 
-    border: 1px solid rgba(255,255,255,0.22);
+    border: 1px solid rgba(255,255,255,0.13);
 
-    backdrop-filter: blur(20px);
+    clip-path: polygon(
+        18px 0,
+        100% 0,
+        100% calc(100% - 18px),
+        calc(100% - 18px) 100%,
+        0 100%,
+        0 18px
+    );
 
-    box-shadow:
-        0 20px 50px rgba(0,0,0,0.18);
-
-    transition:
-        transform 0.3s,
-        box-shadow 0.3s;
+    transition: 0.3s;
 }
 
 .step:hover {
 
-    transform: translateY(-8px) scale(1.02);
+    transform: translateY(-8px);
+
+    border-color: rgba(0,238,255,0.45);
 
     box-shadow:
-        0 20px 60px rgba(0,0,0,0.28),
-        0 0 25px rgba(255,255,255,0.15);
+        0 0 30px rgba(0,238,255,0.08);
 }
 
 .step:nth-child(odd) {
+
     margin-right: auto;
 }
 
 .step:nth-child(even) {
+
     margin-left: auto;
 }
-
-/* timeline dots */
 
 .step::after {
 
@@ -471,99 +455,92 @@ header p {
 
     position: absolute;
 
-    top: 35px;
+    top: 30px;
 
-    width: 18px;
-    height: 18px;
+    width: 12px;
+    height: 12px;
 
-    border-radius: 50%;
-
-    background: white;
+    background: #00eeff;
 
     box-shadow:
-        0 0 10px white,
-        0 0 25px currentColor;
+        0 0 8px #00eeff,
+        0 0 20px #00eeff;
+
+    transform: rotate(45deg);
 }
 
 .step:nth-child(odd)::after {
-    right: -61px;
+
+    right: -57px;
 }
 
 .step:nth-child(even)::after {
-    left: -61px;
-}
 
-/* colours */
-
-.step:nth-child(1) {
-    border-color: rgba(255,79,163,0.5);
-    color: #ff4fa3;
-}
-
-.step:nth-child(2) {
-    border-color: rgba(155,92,255,0.5);
-    color: #b58cff;
-}
-
-.step:nth-child(3) {
-    border-color: rgba(41,217,255,0.5);
-    color: #29d9ff;
-}
-
-.step:nth-child(4) {
-    border-color: rgba(101,255,206,0.5);
-    color: #65ffce;
-}
-
-.step:nth-child(5) {
-    border-color: rgba(255,211,77,0.5);
-    color: #ffd34d;
-}
-
-.step:nth-child(6) {
-    border-color: rgba(255,122,69,0.5);
-    color: #ff7a45;
-}
-
-.step:nth-child(7) {
-    border-color: rgba(255,79,163,0.5);
-    color: #ff4fa3;
+    left: -57px;
 }
 
 .number {
 
     font-family: "Space Mono", monospace;
 
-    font-size: 12px;
+    font-size: 9px;
 
-    letter-spacing: 2px;
+    letter-spacing: 3px;
 
-    margin-bottom: 10px;
+    color: #00eeff;
 
-    opacity: 0.8;
+    margin-bottom: 12px;
 }
 
 .step h2 {
 
-    font-family: "Audiowide", sans-serif;
+    font-family: "Orbitron", sans-serif;
 
-    font-size: 27px;
+    font-size: 24px;
 
-    margin-bottom: 10px;
+    margin-bottom: 12px;
 
-    color: white;
+    letter-spacing: 1px;
 }
 
 .step p {
 
-    color: rgba(255,255,255,0.75);
+    color: rgba(255,255,255,0.6);
 
     font-size: 16px;
 
     line-height: 1.6;
 }
 
-/* FOOTER */
+/* ACCENTS */
+
+.step:nth-child(2) .number {
+    color: #ae4bff;
+}
+
+.step:nth-child(3) .number {
+    color: #ff4fa3;
+}
+
+.step:nth-child(4) .number {
+    color: #61ffd7;
+}
+
+.step:nth-child(5) .number {
+    color: #ffd34d;
+}
+
+.step:nth-child(6) .number {
+    color: #ff7a45;
+}
+
+.step:nth-child(7) .number {
+    color: #00eeff;
+}
+
+/* =====================================================
+   FOOTER
+===================================================== */
 
 footer {
 
@@ -571,16 +548,20 @@ footer {
 
     text-align: center;
 
-    border-top: 1px solid rgba(255,255,255,0.15);
+    border-top: 1px solid rgba(255,255,255,0.1);
 
     font-family: "Space Mono", monospace;
 
-    font-size: 11px;
+    font-size: 9px;
 
-    color: rgba(255,255,255,0.55);
+    letter-spacing: 1px;
+
+    color: rgba(255,255,255,0.4);
 }
 
-/* MOBILE */
+/* =====================================================
+   MOBILE
+===================================================== */
 
 @media(max-width:700px) {
 
@@ -596,61 +577,52 @@ footer {
 
     nav a {
 
-        padding: 8px 10px;
+        padding: 10px 9px;
 
-        font-size: 10px;
+        font-size: 8px;
     }
 
     .socials {
 
         top: 15px;
-
         left: 15px;
-
-        gap: 7px;
     }
 
     .social-btn {
 
-        width: 40px;
-        height: 40px;
-    }
-
-    .instagram svg,
-    .youtube svg {
-
-        width: 19px;
-        height: 19px;
+        width: 39px;
+        height: 39px;
     }
 
     header {
 
-        padding-top: 160px;
+        padding-top: 170px;
     }
 
     .process::before {
 
-        left: 12px;
+        left: 10px;
 
         transform: none;
     }
 
     .step {
 
-        width: calc(100% - 35px);
+        width: calc(100% - 30px);
 
-        margin-left: 35px !important;
+        margin-left: 30px !important;
 
         margin-right: 0 !important;
     }
 
     .step::after {
 
-        left: -35px !important;
+        left: -36px !important;
+
         right: auto !important;
 
-        width: 14px;
-        height: 14px;
+        width: 10px;
+        height: 10px;
     }
 
 }
@@ -660,38 +632,63 @@ footer {
 
 <body>
 
-<!-- SOCIAL MEDIA -->
+<!-- SOCIAL -->
 
 <div class="socials">
 
-    <a href="https://www.instagram.com/robonaara?utm_source=qr&igsi=MTRzNTNnZW1qNjVn"
-       target="_blank"
-       rel="noopener noreferrer"
-       class="social-btn instagram"
-       aria-label="ROBONAARA Instagram">
+    <a
+        href="https://www.instagram.com/robonaara?utm_source=qr&igsi=MTRzNTNnZW1qNjVn"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="social-btn instagram"
+    >
 
         <svg viewBox="0 0 24 24">
-            <rect x="3" y="3" width="18" height="18" rx="5"></rect>
-            <circle cx="12" cy="12" r="4"></circle>
-            <circle cx="17.5" cy="6.5" r="1"></circle>
+
+            <rect
+                x="3"
+                y="3"
+                width="18"
+                height="18"
+                rx="5"
+            ></rect>
+
+            <circle
+                cx="12"
+                cy="12"
+                r="4"
+            ></circle>
+
+            <circle
+                cx="17.5"
+                cy="6.5"
+                r="1"
+            ></circle>
+
         </svg>
 
     </a>
 
-    <a href="https://www.youtube.com/@RoboNAARA"
-       target="_blank"
-       rel="noopener noreferrer"
-       class="social-btn youtube"
-       aria-label="ROBONAARA YouTube">
+
+    <a
+        href="https://www.youtube.com/@RoboNAARA"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="social-btn youtube"
+    >
 
         <svg viewBox="0 0 24 24">
+
             <path d="M21.6 7.2a2.8 2.8 0 0 0-2-2C17.8 4.7 12 4.7 12 4.7s-5.8 0-7.6.5a2.8 2.8 0 0 0-2 2C2 9 2 12 2 12s0 3 .4 4.8a2.8 2.8 0 0 0 2 2c1.8.5 7.6.5 7.6.5s5.8 0 7.6-.5a2.8 2.8 0 0 0 2-2C22 15 22 12 22 12s0-3-.4-4.8Z"></path>
+
             <polygon points="10,8.5 16,12 10,15.5"></polygon>
+
         </svg>
 
     </a>
 
 </div>
+
 
 <!-- NAV -->
 
@@ -711,7 +708,6 @@ footer {
 
 </nav>
 
-<!-- HEADER -->
 
 <header>
 
@@ -726,14 +722,13 @@ footer {
     <div class="header-line"></div>
 
     <p>
-        From the first crazy idea to the final competition run,
-        every part of AJAX is built through teamwork,
-        testing and a lot of problem solving.
+        From the first concept to competition day,
+        every stage of AJAX is built through experimentation,
+        engineering and teamwork.
     </p>
 
 </header>
 
-<!-- PROCESS -->
 
 <section class="process">
 
@@ -826,7 +821,7 @@ footer {
         <p>
             Nothing goes straight to competition. We test,
             break, fix and test again until AJAX can handle
-            different situations without giving up.
+            different situations reliably.
         </p>
 
     </div>
@@ -845,7 +840,7 @@ footer {
         <p>
             Small improvements make a big difference. We
             analyse performance, improve our systems and
-            remove weaknesses from both the robot and our strategy.
+            remove weaknesses from both the robot and strategy.
         </p>
 
     </div>
@@ -871,9 +866,11 @@ footer {
 
 </section>
 
+
 <footer>
 
-    ROBONAARA // ORCHIDS THE INTERNATIONAL SCHOOL, TATHAWADE
+    ROBONAARA //
+    ORCHIDS THE INTERNATIONAL SCHOOL, TATHAWADE
 
     <br><br>
 
