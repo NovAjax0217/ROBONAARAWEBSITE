@@ -7,9 +7,6 @@
 
 <title>ROBONAARA | Team</title>
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
 <link href="https://fonts.googleapis.com/css2?family=Audiowide&family=Baloo+2:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 
 <style>
@@ -20,16 +17,13 @@
     box-sizing: border-box;
 }
 
-html {
-    scroll-behavior: smooth;
-}
-
 body {
+
     min-height: 100vh;
 
     color: white;
 
-    font-family: 'Baloo 2', sans-serif;
+    font-family: "Baloo 2", sans-serif;
 
     background:
         radial-gradient(circle at 8% 12%, rgba(255,105,190,0.55), transparent 25%),
@@ -44,36 +38,11 @@ body {
             #44206e 100%
         );
 
-    background-attachment: fixed;
-
     overflow-x: hidden;
 }
 
 body::before {
-    content: "";
 
-    position: fixed;
-
-    width: 450px;
-    height: 450px;
-
-    top: 10%;
-    left: -150px;
-
-    border-radius: 50%;
-
-    background: rgba(255,80,190,0.18);
-
-    filter: blur(80px);
-
-    animation: blob 12s infinite alternate ease-in-out;
-
-    pointer-events: none;
-
-    z-index: -1;
-}
-
-body::after {
     content: "";
 
     position: fixed;
@@ -81,37 +50,63 @@ body::after {
     width: 500px;
     height: 500px;
 
-    right: -180px;
-    bottom: -150px;
+    border-radius: 50%;
+
+    background: rgba(255,70,170,0.15);
+
+    filter: blur(80px);
+
+    top: -180px;
+    left: -120px;
+
+    animation: float1 10s infinite alternate ease-in-out;
+
+    pointer-events: none;
+}
+
+body::after {
+
+    content: "";
+
+    position: fixed;
+
+    width: 450px;
+    height: 450px;
 
     border-radius: 50%;
 
-    background: rgba(80,220,255,0.18);
+    background: rgba(0,220,255,0.13);
 
     filter: blur(90px);
 
-    animation: blob2 15s infinite alternate ease-in-out;
+    right: -130px;
+    bottom: -120px;
+
+    animation: float2 12s infinite alternate ease-in-out;
 
     pointer-events: none;
-
-    z-index: -1;
 }
 
-@keyframes blob {
+@keyframes float1 {
+
     to {
-        transform: translate(180px,120px) scale(1.25);
+        transform: translate(120px,100px);
     }
+
 }
 
-@keyframes blob2 {
+@keyframes float2 {
+
     to {
-        transform: translate(-150px,-100px) scale(1.3);
+        transform: translate(-100px,-80px);
     }
+
 }
 
 /* NAV */
 
 nav {
+
     position: fixed;
 
     top: 18px;
@@ -120,61 +115,67 @@ nav {
     z-index: 1000;
 
     display: flex;
+
     gap: 8px;
 
     padding: 8px;
 
-    background: rgba(15,12,45,0.55);
+    border-radius: 18px;
+
+    background: rgba(15,10,45,0.55);
 
     border: 1px solid rgba(255,255,255,0.18);
-
-    border-radius: 18px;
 
     backdrop-filter: blur(18px);
 }
 
 nav a {
-    color: rgba(255,255,255,0.8);
+
+    color: rgba(255,255,255,0.75);
 
     text-decoration: none;
 
-    font-family: 'Space Mono', monospace;
+    padding: 9px 17px;
+
+    border-radius: 12px;
+
+    font-family: "Space Mono", monospace;
 
     font-size: 12px;
 
     font-weight: bold;
 
-    padding: 10px 16px;
-
-    border-radius: 12px;
-
-    transition: 0.3s ease;
+    transition: 0.3s;
 }
 
 nav a:hover {
+
     color: white;
 
-    background: rgba(255,255,255,0.1);
+    background: rgba(255,255,255,0.10);
 }
 
 nav a.active {
+
     color: white;
 
     background:
         linear-gradient(
-            135deg,
+            90deg,
             #ff4fa3,
-            #a86cff,
-            #55eaff
+            #9b5cff,
+            #29d9ff
         );
 
     box-shadow:
-        0 0 15px rgba(168,108,255,0.55);
+        0 0 12px rgba(255,79,163,0.5),
+        0 0 25px rgba(41,217,255,0.25);
 }
 
-/* SOCIALS */
+/* SOCIAL MEDIA */
 
 .socials {
+
     position: fixed;
 
     top: 18px;
@@ -183,14 +184,17 @@ nav a.active {
     z-index: 1000;
 
     display: flex;
+
     gap: 10px;
 }
 
 .social-btn {
+
     width: 46px;
     height: 46px;
 
     display: flex;
+
     align-items: center;
     justify-content: center;
 
@@ -200,351 +204,417 @@ nav a.active {
 
     border: 1px solid rgba(255,255,255,0.25);
 
-    color: white;
+    backdrop-filter: blur(18px);
 
     text-decoration: none;
 
-    backdrop-filter: blur(18px);
-
-    transition: 0.3s ease;
+    transition: 0.3s;
 }
 
-.social-btn svg {
-    width: 22px;
-    height: 22px;
+/* INSTAGRAM */
+
+.instagram {
+
+    color: #ff4fa3;
+
+    border-color: rgba(255,79,163,0.5);
+
+    box-shadow:
+        0 0 12px rgba(255,79,163,0.25);
+}
+
+.instagram svg {
+
+    width: 23px;
+    height: 23px;
 
     fill: none;
 
-    stroke: currentColor;
+    stroke: #ff4fa3;
 
     stroke-width: 2;
 
     stroke-linecap: round;
     stroke-linejoin: round;
-}
 
-.youtube svg {
-    fill: currentColor;
-    stroke: none;
-}
-
-.social-btn:hover {
-    transform: translateY(-4px) scale(1.08);
+    filter:
+        drop-shadow(0 0 5px rgba(255,79,163,0.8));
 }
 
 .instagram:hover {
+
+    transform: translateY(-4px) scale(1.1);
+
+    background: rgba(255,79,163,0.15);
+
     border-color: #ff4fa3;
 
     box-shadow:
-        0 0 12px rgba(255,79,163,0.6),
-        0 0 30px rgba(255,79,163,0.35);
+        0 0 12px #ff4fa3,
+        0 0 30px rgba(255,79,163,0.55);
+}
+
+/* YOUTUBE */
+
+.youtube {
+
+    color: #ff3030;
+
+    border-color: rgba(255,48,48,0.5);
+
+    box-shadow:
+        0 0 12px rgba(255,48,48,0.25);
+}
+
+.youtube svg {
+
+    width: 23px;
+    height: 23px;
+
+    fill: #ff3030;
+
+    stroke: none;
+
+    filter:
+        drop-shadow(0 0 5px rgba(255,48,48,0.8));
 }
 
 .youtube:hover {
-    border-color: #ff3d3d;
+
+    transform: translateY(-4px) scale(1.1);
+
+    background: rgba(255,48,48,0.15);
+
+    border-color: #ff3030;
 
     box-shadow:
-        0 0 12px rgba(255,61,61,0.6),
-        0 0 30px rgba(255,61,61,0.35);
+        0 0 12px #ff3030,
+        0 0 30px rgba(255,48,48,0.55);
 }
 
 /* HEADER */
 
 header {
-    padding: 150px 8% 70px;
 
-    max-width: 1250px;
+    text-align: center;
 
-    margin: auto;
+    padding: 145px 7% 70px;
 }
 
-.label {
-    font-family: 'Space Mono', monospace;
+.system {
 
-    font-size: 12px;
+    font-family: "Space Mono", monospace;
+
+    color: #70efff;
+
+    font-size: 13px;
 
     letter-spacing: 3px;
-
-    color: #55eaff;
-
-    margin-bottom: 15px;
-}
-
-h1 {
-    font-family: 'Audiowide', sans-serif;
-
-    font-size: clamp(42px,8vw,90px);
-
-    line-height: 1.05;
 
     margin-bottom: 20px;
 
     text-shadow:
-        0 0 10px rgba(255,255,255,0.8),
-        0 0 30px rgba(255,80,190,0.5);
+        0 0 10px rgba(112,239,255,0.8);
 }
 
-.intro {
+header h1 {
+
+    font-family: "Audiowide", sans-serif;
+
+    font-size: clamp(45px,8vw,90px);
+
+    text-shadow:
+        0 0 15px #ff4fa3,
+        0 0 35px rgba(255,79,163,0.6);
+}
+
+.header-line {
+
+    width: 180px;
+
+    height: 5px;
+
+    margin: 20px auto;
+
+    border-radius: 20px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #ff4fa3,
+            #9b5cff,
+            #29d9ff,
+            #ffd34d
+        );
+
+    box-shadow:
+        0 0 15px rgba(255,79,163,0.7);
+}
+
+header p {
+
     max-width: 700px;
-
-    font-size: 19px;
-
-    line-height: 1.6;
-
-    color: rgba(255,255,255,0.8);
-}
-
-/* TEAM GRID */
-
-.team-grid {
-    max-width: 1250px;
 
     margin: auto;
 
-    padding: 20px 6% 120px;
+    color: rgba(255,255,255,0.78);
+
+    font-size: 18px;
+
+    line-height: 1.6;
+}
+
+/* TEAM */
+
+.team {
+
+    max-width: 1200px;
+
+    margin: auto;
+
+    padding: 30px 7% 120px;
 
     display: grid;
 
     grid-template-columns:
         repeat(3, 1fr);
 
-    gap: 25px;
+    gap: 28px;
 }
 
-/* MEMBER CARD */
+.card {
 
-.member {
     position: relative;
-
-    min-height: 470px;
 
     overflow: hidden;
 
-    border-radius: 28px;
+    border-radius: 25px;
 
     background: rgba(255,255,255,0.10);
 
-    border: 1px solid rgba(255,255,255,0.2);
+    border: 1px solid rgba(255,255,255,0.22);
 
-    backdrop-filter: blur(18px);
-
-    transition: 0.45s ease;
-}
-
-.member:hover {
-    transform: translateY(-10px);
+    backdrop-filter: blur(20px);
 
     box-shadow:
-        0 25px 60px rgba(0,0,0,0.3);
+        0 20px 50px rgba(0,0,0,0.2);
+
+    transition:
+        transform 0.35s,
+        box-shadow 0.35s;
 }
 
-.member-image {
-    height: 270px;
+.card:hover {
 
-    position: relative;
+    transform: translateY(-12px);
+
+    box-shadow:
+        0 25px 70px rgba(0,0,0,0.3),
+        0 0 30px rgba(255,255,255,0.12);
+}
+
+.card-image {
+
+    height: 300px;
 
     overflow: hidden;
 
     background: rgba(0,0,0,0.2);
 }
 
-.member-image img {
+.card-image img {
+
     width: 100%;
     height: 100%;
 
     object-fit: cover;
 
-    display: block;
-
-    transition: 0.5s ease;
+    transition: 0.5s;
 }
 
-.member:hover .member-image img {
-    transform: scale(1.08);
+.card:hover .card-image img {
+
+    transform: scale(1.06);
 }
 
-.member-image::after {
-    content: "";
+.card-content {
 
-    position: absolute;
-
-    inset: 0;
-
-    background:
-        linear-gradient(
-            to top,
-            rgba(20,15,55,0.9),
-            transparent 60%
-        );
-}
-
-/* MEMBER INFO */
-
-.member-info {
-    padding: 24px;
-}
-
-.member-info h2 {
-    font-family: 'Audiowide', sans-serif;
-
-    font-size: 21px;
-
-    margin-bottom: 5px;
+    padding: 25px;
 }
 
 .role {
-    font-family: 'Space Mono', monospace;
 
-    font-size: 10px;
+    font-family: "Space Mono", monospace;
+
+    font-size: 11px;
 
     letter-spacing: 2px;
 
-    color: #55eaff;
+    margin-bottom: 8px;
+}
+
+.card h2 {
+
+    font-family: "Audiowide", sans-serif;
+
+    font-size: 23px;
 
     margin-bottom: 14px;
+
+    color: white;
 }
 
-.member-info p {
-    font-size: 14px;
+.card p {
 
-    line-height: 1.6;
+    color: rgba(255,255,255,0.74);
 
-    color: rgba(255,255,255,0.75);
+    line-height: 1.55;
+
+    font-size: 15px;
 }
 
-/* ACCENTS */
+/* CARD COLOURS */
 
-.member:nth-child(1) {
-    border-color: #ff4fa3;
+.card:nth-child(1) {
+    border-color: rgba(255,79,163,0.45);
 }
 
-.member:nth-child(2) {
-    border-color: #ff9f43;
-}
-
-.member:nth-child(3) {
-    border-color: #ffe45e;
-}
-
-.member:nth-child(4) {
-    border-color: #5dff9a;
-}
-
-.member:nth-child(5) {
-    border-color: #55eaff;
-}
-
-.member:nth-child(6) {
-    border-color: #a86cff;
-}
-
-.member:nth-child(1) .role {
+.card:nth-child(1) .role {
     color: #ff4fa3;
 }
 
-.member:nth-child(2) .role {
-    color: #ff9f43;
+.card:nth-child(2) {
+    border-color: rgba(41,217,255,0.45);
 }
 
-.member:nth-child(3) .role {
-    color: #ffe45e;
+.card:nth-child(2) .role {
+    color: #29d9ff;
 }
 
-.member:nth-child(4) .role {
-    color: #5dff9a;
+.card:nth-child(3) {
+    border-color: rgba(255,211,77,0.45);
 }
 
-.member:nth-child(5) .role {
-    color: #55eaff;
+.card:nth-child(3) .role {
+    color: #ffd34d;
 }
 
-.member:nth-child(6) .role {
-    color: #a86cff;
+.card:nth-child(4) {
+    border-color: rgba(101,255,206,0.45);
+}
+
+.card:nth-child(4) .role {
+    color: #65ffce;
+}
+
+.card:nth-child(5) {
+    border-color: rgba(255,122,69,0.45);
+}
+
+.card:nth-child(5) .role {
+    color: #ff7a45;
+}
+
+.card:nth-child(6) {
+    border-color: rgba(155,92,255,0.45);
+}
+
+.card:nth-child(6) .role {
+    color: #b58cff;
 }
 
 /* FOOTER */
 
 footer {
-    padding: 30px;
+
+    padding: 40px 7%;
 
     text-align: center;
 
-    font-family: 'Space Mono', monospace;
+    border-top: 1px solid rgba(255,255,255,0.15);
+
+    font-family: "Space Mono", monospace;
 
     font-size: 11px;
 
-    color: rgba(255,255,255,0.5);
+    color: rgba(255,255,255,0.55);
 }
 
 /* MOBILE */
 
 @media(max-width:900px) {
 
-    .team-grid {
+    .team {
         grid-template-columns: repeat(2,1fr);
     }
+
 }
 
 @media(max-width:700px) {
 
     nav {
-        top: 15px;
+
+        top: 70px;
+
         right: 15px;
+        left: 15px;
 
-        padding: 5px;
-
-        gap: 2px;
+        justify-content: center;
     }
 
     nav a {
-        font-size: 9px;
 
-        padding: 8px 9px;
+        padding: 8px 10px;
+
+        font-size: 10px;
     }
 
     .socials {
+
         top: 15px;
+
         left: 15px;
 
         gap: 7px;
     }
 
     .social-btn {
+
         width: 40px;
         height: 40px;
     }
 
-    .social-btn svg {
+    .instagram svg,
+    .youtube svg {
+
         width: 19px;
         height: 19px;
     }
 
     header {
-        padding: 130px 7% 60px;
+
+        padding-top: 160px;
     }
 
-    .intro {
-        font-size: 16px;
-    }
+    .team {
 
-    .team-grid {
         grid-template-columns: 1fr;
 
-        padding-left: 7%;
-        padding-right: 7%;
+        padding-left: 6%;
+        padding-right: 6%;
     }
 
-    .member {
-        min-height: 450px;
+    .card-image {
+
+        height: 330px;
     }
+
 }
 
 </style>
-
 </head>
 
 <body>
-
 
 <!-- SOCIAL MEDIA -->
 
@@ -553,33 +623,47 @@ footer {
     <a href="https://www.instagram.com/robonaara?utm_source=qr&igsi=MTRzNTNnZW1qNjVn"
        target="_blank"
        rel="noopener noreferrer"
-       class="social-btn instagram">
+       class="social-btn instagram"
+       aria-label="ROBONAARA Instagram">
 
         <svg viewBox="0 0 24 24">
-            <rect x="3" y="3" width="18" height="18" rx="5"></rect>
-            <circle cx="12" cy="12" r="4"></circle>
-            <circle cx="17.5" cy="6.5" r="1"></circle>
+
+            <rect x="3" y="3"
+                  width="18"
+                  height="18"
+                  rx="5"></rect>
+
+            <circle cx="12"
+                    cy="12"
+                    r="4"></circle>
+
+            <circle cx="17.5"
+                    cy="6.5"
+                    r="1"></circle>
+
         </svg>
 
     </a>
 
-
     <a href="https://www.youtube.com/@RoboNAARA"
        target="_blank"
        rel="noopener noreferrer"
-       class="social-btn youtube">
+       class="social-btn youtube"
+       aria-label="ROBONAARA YouTube">
 
         <svg viewBox="0 0 24 24">
+
             <path d="M21.6 7.2a2.8 2.8 0 0 0-2-2C17.8 4.7 12 4.7 12 4.7s-5.8 0-7.6.5a2.8 2.8 0 0 0-2 2C2 9 2 12 2 12s0 3 .4 4.8a2.8 2.8 0 0 0 2 2c1.8.5 7.6.5 7.6.5s5.8 0 7.6-.5a2.8 2.8 0 0 0 2-2C22 15 22 12 22 12s0-3-.4-4.8Z"></path>
+
             <polygon points="10,8.5 16,12 10,15.5"></polygon>
+
         </svg>
 
     </a>
 
 </div>
 
-
-<!-- NAVIGATION -->
+<!-- NAV -->
 
 <nav>
 
@@ -597,55 +681,52 @@ footer {
 
 </nav>
 
-
 <!-- HEADER -->
 
 <header>
 
-    <div class="label">
-        // ROBONAARA CREW
+    <div class="system">
+        ROBONAARA // CREW DATABASE
     </div>
 
     <h1>
         MEET THE TEAM
     </h1>
 
-    <p class="intro">
-        Six people. One robot. One mission.
-        Meet the people behind AJAX and the different
-        skills that make ROBONAARA work.
+    <div class="header-line"></div>
+
+    <p>
+        Six people. Six different strengths.
+        One team building one machine.
+        Meet the minds behind AJAX.
     </p>
 
 </header>
 
-
 <!-- TEAM -->
 
-<section class="team-grid">
-
+<section class="team">
 
     <!-- AARADHYA -->
 
-    <div class="member">
+    <div class="card">
 
-        <div class="member-image">
+        <div class="card-image">
 
-            <img
-                src="aaradhya-srivastava.jpg"
-                alt="Aaradhya Srivastava"
-            >
+            <img src="aaradhya-srivastava.jpg"
+                 alt="Aaradhya Srivastava">
 
         </div>
 
-        <div class="member-info">
-
-            <h2>
-                Aaradhya Srivastava
-            </h2>
+        <div class="card-content">
 
             <div class="role">
                 THE ACE
             </div>
+
+            <h2>
+                Aaradhya Srivastava
+            </h2>
 
             <p>
                 Too many ideas, one brain, and somehow a plan always comes out of it. Aaradhya brings creativity and quick thinking to the team, turning random sparks of inspiration into practical ideas that can actually move the team forward.
@@ -658,26 +739,24 @@ footer {
 
     <!-- ARNAV PANDE -->
 
-    <div class="member">
+    <div class="card">
 
-        <div class="member-image">
+        <div class="card-image">
 
-            <img
-                src="arnav-pande.jpg"
-                alt="Arnav Pande"
-            >
+            <img src="arnav-pande.jpg"
+                 alt="Arnav Pande">
 
         </div>
 
-        <div class="member-info">
-
-            <h2>
-                Arnav Pande
-            </h2>
+        <div class="card-content">
 
             <div class="role">
                 THE PILOT
             </div>
+
+            <h2>
+                Arnav Pande
+            </h2>
 
             <p>
                 Hands on the controls, eyes on the field, and absolutely no room for hesitation. Arnav stays focused when the pressure is on, reading the field, making split-second decisions, and keeping AJAX exactly where the team needs it to be.
@@ -690,26 +769,24 @@ footer {
 
     <!-- ARNAV BELPANDE -->
 
-    <div class="member">
+    <div class="card">
 
-        <div class="member-image">
+        <div class="card-image">
 
-            <img
-                src="arnav-belpande.jpg"
-                alt="Arnav Belpande"
-            >
+            <img src="arnav-belpande.jpg"
+                 alt="Arnav Belpande">
 
         </div>
 
-        <div class="member-info">
-
-            <h2>
-                Arnav Belpande
-            </h2>
+        <div class="card-content">
 
             <div class="role">
                 THE FORGE
             </div>
+
+            <h2>
+                Arnav Belpande
+            </h2>
 
             <p>
                 Circuits, designs, and an unhealthy amount of attention to the details. Arnav Belpande is the hands-on problem solver, turning ideas into mechanisms and making sure every connection, component, and tiny detail is ready for the field.
@@ -722,26 +799,24 @@ footer {
 
     <!-- NIVEDITA -->
 
-    <div class="member">
+    <div class="card">
 
-        <div class="member-image">
+        <div class="card-image">
 
-            <img
-                src="nivedita-pillai.jpg"
-                alt="Nivedita Pillai"
-            >
+            <img src="nivedita-pillai.jpg"
+                 alt="Nivedita Pillai">
 
         </div>
 
-        <div class="member-info">
-
-            <h2>
-                Nivedita Pillai
-            </h2>
+        <div class="card-content">
 
             <div class="role">
                 THE OPERATOR
             </div>
+
+            <h2>
+                Nivedita Pillai
+            </h2>
 
             <p>
                 One problem, three solutions, and probably a Plan D just in case. Nivedita keeps the team prepared for whatever the match throws at it, thinking ahead, adapting quickly, and finding a way forward when the original plan stops working.
@@ -754,26 +829,24 @@ footer {
 
     <!-- RUDRANSH -->
 
-    <div class="member">
+    <div class="card">
 
-        <div class="member-image">
+        <div class="card-image">
 
-            <img
-                src="rudransh-dwivedi.jpg"
-                alt="Rudransh Dwivedi"
-            >
+            <img src="rudransh-dwivedi.jpg"
+                 alt="Rudransh Dwivedi">
 
         </div>
 
-        <div class="member-info">
-
-            <h2>
-                Rudransh Dwivedi
-            </h2>
+        <div class="card-content">
 
             <div class="role">
                 THE MENACE
             </div>
+
+            <h2>
+                Rudransh Dwivedi
+            </h2>
 
             <p>
                 Give it a boring idea, watch it come back with a personality. Rudransh brings energy and an unconventional approach to the team, turning ordinary concepts into bold ideas and keeping the creative side of ROBONAARA moving.
@@ -786,26 +859,24 @@ footer {
 
     <!-- JAYWARDHAN -->
 
-    <div class="member">
+    <div class="card">
 
-        <div class="member-image">
+        <div class="card-image">
 
-            <img
-                src="jaywardhan-shinde.jpg"
-                alt="Jaywardhan Shinde"
-            >
+            <img src="jaywardhan-shinde.jpg"
+                 alt="Jaywardhan Shinde">
 
         </div>
 
-        <div class="member-info">
-
-            <h2>
-                Jaywardhan Shinde
-            </h2>
+        <div class="card-content">
 
             <div class="role">
                 THE CODER
             </div>
+
+            <h2>
+                Jaywardhan Shinde
+            </h2>
 
             <p>
                 Turns complicated problems into clean code and makes AJAX do exactly what the team wants. Jaywardhan is the link between the team's strategy and the robot's behavior, building and refining the code that helps AJAX respond reliably on the field.
@@ -815,14 +886,17 @@ footer {
 
     </div>
 
-
 </section>
 
-
 <footer>
-    ROBONAARA © 2026 // ORCHIDS THE INTERNATIONAL SCHOOL, TATHAWADE
-</footer>
 
+    ROBONAARA // ORCHIDS THE INTERNATIONAL SCHOOL, TATHAWADE
+
+    <br><br>
+
+    NATIONAL ROBOTICS LEAGUE
+
+</footer>
 
 </body>
 </html>
