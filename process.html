@@ -7,9 +7,6 @@
 
 <title>ROBONAARA | Process</title>
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
 <link href="https://fonts.googleapis.com/css2?family=Audiowide&family=Baloo+2:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 
 <style>
@@ -29,7 +26,7 @@ body {
 
     color: white;
 
-    font-family: 'Baloo 2', sans-serif;
+    font-family: "Baloo 2", sans-serif;
 
     background:
         radial-gradient(circle at 8% 12%, rgba(255,105,190,0.55), transparent 25%),
@@ -44,8 +41,6 @@ body {
             #44206e 100%
         );
 
-    background-attachment: fixed;
-
     overflow-x: hidden;
 }
 
@@ -54,23 +49,21 @@ body::before {
 
     position: fixed;
 
-    width: 450px;
-    height: 450px;
-
-    top: 10%;
-    left: -150px;
+    width: 500px;
+    height: 500px;
 
     border-radius: 50%;
 
-    background: rgba(255,80,190,0.18);
+    background: rgba(255,70,170,0.15);
 
     filter: blur(80px);
 
-    animation: blob 12s infinite alternate ease-in-out;
+    top: -180px;
+    left: -120px;
+
+    animation: float1 10s infinite alternate ease-in-out;
 
     pointer-events: none;
-
-    z-index: -1;
 }
 
 body::after {
@@ -78,35 +71,37 @@ body::after {
 
     position: fixed;
 
-    width: 500px;
-    height: 500px;
-
-    right: -180px;
-    bottom: -150px;
+    width: 450px;
+    height: 450px;
 
     border-radius: 50%;
 
-    background: rgba(80,220,255,0.18);
+    background: rgba(0,220,255,0.13);
 
     filter: blur(90px);
 
-    animation: blob2 15s infinite alternate ease-in-out;
+    right: -130px;
+    bottom: -120px;
+
+    animation: float2 12s infinite alternate ease-in-out;
 
     pointer-events: none;
-
-    z-index: -1;
 }
 
-@keyframes blob {
+@keyframes float1 {
+
     to {
-        transform: translate(180px,120px) scale(1.25);
+        transform: translate(120px,100px);
     }
+
 }
 
-@keyframes blob2 {
+@keyframes float2 {
+
     to {
-        transform: translate(-150px,-100px) scale(1.3);
+        transform: translate(-100px,-80px);
     }
+
 }
 
 /* NAV */
@@ -124,57 +119,63 @@ nav {
 
     padding: 8px;
 
-    background: rgba(15,12,45,0.55);
+    border-radius: 18px;
+
+    background: rgba(15,10,45,0.55);
 
     border: 1px solid rgba(255,255,255,0.18);
 
-    border-radius: 18px;
-
     backdrop-filter: blur(18px);
+
+    box-shadow:
+        0 10px 35px rgba(0,0,0,0.2);
 }
 
 nav a {
-    color: rgba(255,255,255,0.8);
+    color: rgba(255,255,255,0.75);
 
     text-decoration: none;
 
-    font-family: 'Space Mono', monospace;
+    padding: 9px 17px;
+
+    border-radius: 12px;
+
+    font-family: "Space Mono", monospace;
 
     font-size: 12px;
 
     font-weight: bold;
 
-    padding: 10px 16px;
-
-    border-radius: 12px;
-
-    transition: 0.3s ease;
+    transition: 0.3s;
 }
 
 nav a:hover {
     color: white;
 
-    background: rgba(255,255,255,0.1);
+    background: rgba(255,255,255,0.10);
 }
 
 nav a.active {
+
     color: white;
 
     background:
         linear-gradient(
-            135deg,
+            90deg,
             #ff4fa3,
-            #a86cff,
-            #55eaff
+            #9b5cff,
+            #29d9ff
         );
 
     box-shadow:
-        0 0 15px rgba(168,108,255,0.55);
+        0 0 12px rgba(255,79,163,0.5),
+        0 0 25px rgba(41,217,255,0.25);
 }
 
-/* SOCIALS */
+/* SOCIAL MEDIA */
 
 .socials {
+
     position: fixed;
 
     top: 18px;
@@ -183,14 +184,17 @@ nav a.active {
     z-index: 1000;
 
     display: flex;
+
     gap: 10px;
 }
 
 .social-btn {
+
     width: 46px;
     height: 46px;
 
     display: flex;
+
     align-items: center;
     justify-content: center;
 
@@ -200,113 +204,193 @@ nav a.active {
 
     border: 1px solid rgba(255,255,255,0.25);
 
-    color: white;
+    backdrop-filter: blur(18px);
 
     text-decoration: none;
 
-    backdrop-filter: blur(18px);
+    transition: 0.3s;
 
-    transition: 0.3s ease;
+    box-shadow:
+        0 8px 25px rgba(0,0,0,0.2);
 }
 
-.social-btn svg {
-    width: 22px;
-    height: 22px;
+/* INSTAGRAM */
+
+.instagram {
+
+    color: #ff4fa3;
+
+    border-color: rgba(255,79,163,0.5);
+
+    box-shadow:
+        0 0 12px rgba(255,79,163,0.25);
+}
+
+.instagram svg {
+
+    width: 23px;
+    height: 23px;
 
     fill: none;
 
-    stroke: currentColor;
+    stroke: #ff4fa3;
 
     stroke-width: 2;
 
     stroke-linecap: round;
     stroke-linejoin: round;
-}
 
-.youtube svg {
-    fill: currentColor;
-    stroke: none;
-}
-
-.social-btn:hover {
-    transform: translateY(-4px) scale(1.08);
+    filter:
+        drop-shadow(0 0 5px rgba(255,79,163,0.8));
 }
 
 .instagram:hover {
+
+    transform: translateY(-4px) scale(1.1);
+
+    background: rgba(255,79,163,0.15);
+
     border-color: #ff4fa3;
 
     box-shadow:
-        0 0 12px rgba(255,79,163,0.6),
-        0 0 30px rgba(255,79,163,0.35);
+        0 0 12px #ff4fa3,
+        0 0 30px rgba(255,79,163,0.55);
+}
+
+/* YOUTUBE */
+
+.youtube {
+
+    color: #ff3030;
+
+    border-color: rgba(255,48,48,0.5);
+
+    box-shadow:
+        0 0 12px rgba(255,48,48,0.25);
+}
+
+.youtube svg {
+
+    width: 23px;
+    height: 23px;
+
+    fill: #ff3030;
+
+    stroke: none;
+
+    filter:
+        drop-shadow(0 0 5px rgba(255,48,48,0.8));
 }
 
 .youtube:hover {
-    border-color: #ff3d3d;
+
+    transform: translateY(-4px) scale(1.1);
+
+    background: rgba(255,48,48,0.15);
+
+    border-color: #ff3030;
 
     box-shadow:
-        0 0 12px rgba(255,61,61,0.6),
-        0 0 30px rgba(255,61,61,0.35);
+        0 0 12px #ff3030,
+        0 0 30px rgba(255,48,48,0.55);
 }
 
 /* HEADER */
 
 header {
-    padding: 150px 8% 80px;
 
-    max-width: 1200px;
+    min-height: 55vh;
 
-    margin: auto;
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+
+    padding: 130px 7% 60px;
 }
 
-.label {
-    font-family: 'Space Mono', monospace;
+.system {
 
-    font-size: 12px;
+    font-family: "Space Mono", monospace;
+
+    color: #70efff;
+
+    font-size: 13px;
 
     letter-spacing: 3px;
 
-    color: #55eaff;
-
-    margin-bottom: 15px;
-}
-
-h1 {
-    font-family: 'Audiowide', sans-serif;
-
-    font-size: clamp(42px,8vw,90px);
-
-    line-height: 1.05;
+    margin-bottom: 20px;
 
     text-shadow:
-        0 0 10px rgba(255,255,255,0.8),
-        0 0 30px rgba(255,80,190,0.5);
-
-    margin-bottom: 20px;
+        0 0 10px rgba(112,239,255,0.8);
 }
 
-.intro {
+header h1 {
+
+    font-family: "Audiowide", sans-serif;
+
+    font-size: clamp(45px,8vw,90px);
+
+    text-shadow:
+        0 0 15px #ff4fa3,
+        0 0 35px rgba(255,79,163,0.6);
+}
+
+.header-line {
+
+    width: 180px;
+
+    height: 5px;
+
+    margin: 20px auto;
+
+    border-radius: 20px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #ff4fa3,
+            #9b5cff,
+            #29d9ff,
+            #ffd34d
+        );
+
+    box-shadow:
+        0 0 15px rgba(255,79,163,0.7);
+}
+
+header p {
+
     max-width: 700px;
 
-    font-size: 19px;
+    font-size: 18px;
+
+    color: rgba(255,255,255,0.78);
 
     line-height: 1.6;
-
-    color: rgba(255,255,255,0.8);
 }
 
-/* TIMELINE */
+/* PROCESS */
 
-.timeline {
-    max-width: 1100px;
+.process {
+
+    max-width: 1050px;
 
     margin: auto;
 
-    padding: 20px 8% 120px;
+    padding: 40px 7% 120px;
 
     position: relative;
 }
 
-.timeline::before {
+/* TIMELINE */
+
+.process::before {
+
     content: "";
 
     position: absolute;
@@ -324,35 +408,51 @@ h1 {
         linear-gradient(
             to bottom,
             #ff4fa3,
-            #ff9f43,
-            #ffe45e,
-            #5dff9a,
-            #55eaff,
-            #a86cff
+            #9b5cff,
+            #29d9ff,
+            #65ffce,
+            #ffd34d,
+            #ff7a45,
+            #ff4fa3
         );
 
     box-shadow:
-        0 0 15px rgba(85,234,255,0.5);
+        0 0 15px rgba(41,217,255,0.6);
 }
 
 .step {
+
     width: 46%;
 
-    padding: 30px;
+    padding: 28px;
 
-    margin-bottom: 45px;
+    margin-bottom: 65px;
 
     border-radius: 25px;
 
+    position: relative;
+
     background: rgba(255,255,255,0.10);
 
-    border: 1px solid rgba(255,255,255,0.2);
+    border: 1px solid rgba(255,255,255,0.22);
 
     backdrop-filter: blur(20px);
 
-    position: relative;
+    box-shadow:
+        0 20px 50px rgba(0,0,0,0.18);
 
-    transition: 0.4s ease;
+    transition:
+        transform 0.3s,
+        box-shadow 0.3s;
+}
+
+.step:hover {
+
+    transform: translateY(-8px) scale(1.02);
+
+    box-shadow:
+        0 20px 60px rgba(0,0,0,0.28),
+        0 0 25px rgba(255,255,255,0.15);
 }
 
 .step:nth-child(odd) {
@@ -363,109 +463,121 @@ h1 {
     margin-left: auto;
 }
 
-.step:hover {
-    transform: translateY(-8px) scale(1.02);
+/* timeline dots */
 
-    background: rgba(255,255,255,0.15);
+.step::after {
 
-    box-shadow:
-        0 20px 50px rgba(0,0,0,0.2);
-}
+    content: "";
 
-.step-number {
     position: absolute;
 
-    width: 42px;
-    height: 42px;
+    top: 35px;
 
-    top: 25px;
-
-    display: flex;
-
-    align-items: center;
-    justify-content: center;
+    width: 18px;
+    height: 18px;
 
     border-radius: 50%;
 
-    font-family: 'Space Mono', monospace;
+    background: white;
 
-    font-weight: bold;
-
-    color: white;
-
-    background: rgba(20,15,55,0.9);
-
-    border: 2px solid white;
-
-    box-shadow: 0 0 20px rgba(255,255,255,0.3);
+    box-shadow:
+        0 0 10px white,
+        0 0 25px currentColor;
 }
 
-.step:nth-child(odd) .step-number {
-    right: -63px;
+.step:nth-child(odd)::after {
+    right: -61px;
 }
 
-.step:nth-child(even) .step-number {
-    left: -63px;
+.step:nth-child(even)::after {
+    left: -61px;
 }
 
-.step h2 {
-    font-family: 'Audiowide', sans-serif;
-
-    font-size: 24px;
-
-    margin-bottom: 12px;
-}
-
-.step p {
-    font-size: 16px;
-
-    line-height: 1.7;
-
-    color: rgba(255,255,255,0.78);
-}
-
-/* COLOURS */
+/* colours */
 
 .step:nth-child(1) {
-    border-color: #ff4fa3;
+    border-color: rgba(255,79,163,0.5);
+    color: #ff4fa3;
 }
 
 .step:nth-child(2) {
-    border-color: #ff9f43;
+    border-color: rgba(155,92,255,0.5);
+    color: #b58cff;
 }
 
 .step:nth-child(3) {
-    border-color: #ffe45e;
+    border-color: rgba(41,217,255,0.5);
+    color: #29d9ff;
 }
 
 .step:nth-child(4) {
-    border-color: #5dff9a;
+    border-color: rgba(101,255,206,0.5);
+    color: #65ffce;
 }
 
 .step:nth-child(5) {
-    border-color: #55eaff;
+    border-color: rgba(255,211,77,0.5);
+    color: #ffd34d;
 }
 
 .step:nth-child(6) {
-    border-color: #a86cff;
+    border-color: rgba(255,122,69,0.5);
+    color: #ff7a45;
 }
 
 .step:nth-child(7) {
-    border-color: #ff70d4;
+    border-color: rgba(255,79,163,0.5);
+    color: #ff4fa3;
+}
+
+.number {
+
+    font-family: "Space Mono", monospace;
+
+    font-size: 12px;
+
+    letter-spacing: 2px;
+
+    margin-bottom: 10px;
+
+    opacity: 0.8;
+}
+
+.step h2 {
+
+    font-family: "Audiowide", sans-serif;
+
+    font-size: 27px;
+
+    margin-bottom: 10px;
+
+    color: white;
+}
+
+.step p {
+
+    color: rgba(255,255,255,0.75);
+
+    font-size: 16px;
+
+    line-height: 1.6;
 }
 
 /* FOOTER */
 
 footer {
+
+    padding: 40px 7%;
+
     text-align: center;
 
-    padding: 30px;
+    border-top: 1px solid rgba(255,255,255,0.15);
 
-    font-family: 'Space Mono', monospace;
+    font-family: "Space Mono", monospace;
 
     font-size: 11px;
 
-    color: rgba(255,255,255,0.5);
+    color: rgba(255,255,255,0.55);
 }
 
 /* MOBILE */
@@ -473,78 +585,77 @@ footer {
 @media(max-width:700px) {
 
     nav {
-        top: 15px;
+
+        top: 70px;
+
         right: 15px;
+        left: 15px;
 
-        padding: 5px;
-
-        gap: 2px;
+        justify-content: center;
     }
 
     nav a {
-        font-size: 9px;
 
-        padding: 8px 9px;
+        padding: 8px 10px;
+
+        font-size: 10px;
     }
 
     .socials {
+
         top: 15px;
+
         left: 15px;
 
         gap: 7px;
     }
 
     .social-btn {
+
         width: 40px;
         height: 40px;
     }
 
-    .social-btn svg {
+    .instagram svg,
+    .youtube svg {
+
         width: 19px;
         height: 19px;
     }
 
     header {
-        padding: 130px 7% 60px;
+
+        padding-top: 160px;
     }
 
-    .intro {
-        font-size: 16px;
+    .process::before {
+
+        left: 12px;
+
+        transform: none;
     }
 
-    .timeline {
-        padding: 10px 7% 80px;
+    .step {
+
+        width: calc(100% - 35px);
+
+        margin-left: 35px !important;
+
+        margin-right: 0 !important;
     }
 
-    .timeline::before {
-        left: 20px;
+    .step::after {
+
+        left: -35px !important;
+        right: auto !important;
+
+        width: 14px;
+        height: 14px;
     }
 
-    .step,
-    .step:nth-child(odd),
-    .step:nth-child(even) {
-
-        width: calc(100% - 45px);
-
-        margin-left: 45px;
-        margin-right: 0;
-
-        margin-bottom: 30px;
-    }
-
-    .step-number,
-    .step:nth-child(odd) .step-number,
-    .step:nth-child(even) .step-number {
-
-        left: -66px;
-        right: auto;
-
-        top: 25px;
-    }
 }
 
 </style>
-
 </head>
 
 <body>
@@ -556,7 +667,8 @@ footer {
     <a href="https://www.instagram.com/robonaara?utm_source=qr&igsi=MTRzNTNnZW1qNjVn"
        target="_blank"
        rel="noopener noreferrer"
-       class="social-btn instagram">
+       class="social-btn instagram"
+       aria-label="ROBONAARA Instagram">
 
         <svg viewBox="0 0 24 24">
             <rect x="3" y="3" width="18" height="18" rx="5"></rect>
@@ -569,7 +681,8 @@ footer {
     <a href="https://www.youtube.com/@RoboNAARA"
        target="_blank"
        rel="noopener noreferrer"
-       class="social-btn youtube">
+       class="social-btn youtube"
+       aria-label="ROBONAARA YouTube">
 
         <svg viewBox="0 0 24 24">
             <path d="M21.6 7.2a2.8 2.8 0 0 0-2-2C17.8 4.7 12 4.7 12 4.7s-5.8 0-7.6.5a2.8 2.8 0 0 0-2 2C2 9 2 12 2 12s0 3 .4 4.8a2.8 2.8 0 0 0 2 2c1.8.5 7.6.5 7.6.5s5.8 0 7.6-.5a2.8 2.8 0 0 0 2-2C22 15 22 12 22 12s0-3-.4-4.8Z"></path>
@@ -580,52 +693,64 @@ footer {
 
 </div>
 
-
-<!-- NAVIGATION -->
+<!-- NAV -->
 
 <nav>
-    <a href="index.html">HOME</a>
-    <a href="process.html" class="active">PROCESS</a>
-    <a href="team.html">TEAM</a>
-</nav>
 
+    <a href="index.html">
+        HOME
+    </a>
+
+    <a href="process.html" class="active">
+        PROCESS
+    </a>
+
+    <a href="team.html">
+        TEAM
+    </a>
+
+</nav>
 
 <!-- HEADER -->
 
 <header>
 
-    <div class="label">
-        // HOW WE BUILD AJAX
+    <div class="system">
+        ROBONAARA // DEVELOPMENT PROTOCOL
     </div>
 
     <h1>
         THE PROCESS
     </h1>
 
-    <p class="intro">
-        From the first idea to the final match,
-        ROBONAARA works through every stage together.
-        Engineering, coding, testing and strategy all
-        come together to create AJAX.
+    <div class="header-line"></div>
+
+    <p>
+        From the first crazy idea to the final competition run,
+        every part of AJAX is built through teamwork,
+        testing and a lot of problem solving.
     </p>
 
 </header>
 
+<!-- PROCESS -->
 
-<!-- TIMELINE -->
-
-<section class="timeline">
+<section class="process">
 
     <div class="step">
 
-        <div class="step-number">01</div>
+        <div class="number">
+            01 // IDEATE
+        </div>
 
-        <h2>IDEATE</h2>
+        <h2>
+            IDEATE
+        </h2>
 
         <p>
-            Every build starts with an idea. We discuss the
-            challenge, analyse the requirements and brainstorm
-            different ways AJAX could solve the problem.
+            Every build starts with an idea. We brainstorm,
+            experiment and figure out what AJAX needs to do
+            before turning the concept into something real.
         </p>
 
     </div>
@@ -633,14 +758,18 @@ footer {
 
     <div class="step">
 
-        <div class="step-number">02</div>
+        <div class="number">
+            02 // DESIGN
+        </div>
 
-        <h2>DESIGN</h2>
+        <h2>
+            DESIGN
+        </h2>
 
         <p>
-            We turn our ideas into designs, mechanisms and
-            possible solutions. The team considers strength,
-            movement, efficiency and reliability.
+            We turn ideas into actual designs, planning the
+            robot's structure, mechanisms and systems while
+            making sure everything works together.
         </p>
 
     </div>
@@ -648,14 +777,18 @@ footer {
 
     <div class="step">
 
-        <div class="step-number">03</div>
+        <div class="number">
+            03 // BUILD
+        </div>
 
-        <h2>BUILD</h2>
+        <h2>
+            BUILD
+        </h2>
 
         <p>
-            Components become a real robot. We assemble
-            mechanisms, electronics and structural parts
-            while constantly checking every connection.
+            Components become a robot. We assemble AJAX,
+            connect the hardware and solve the unexpected
+            problems that appear along the way.
         </p>
 
     </div>
@@ -663,14 +796,18 @@ footer {
 
     <div class="step">
 
-        <div class="step-number">04</div>
+        <div class="number">
+            04 // CODE
+        </div>
 
-        <h2>CODE</h2>
+        <h2>
+            CODE
+        </h2>
 
         <p>
-            Programming gives AJAX its intelligence.
-            We write, test and refine the code so the robot
-            responds accurately to our controls and strategy.
+            Code gives AJAX its brain. We program the robot's
+            behaviour, controls and systems so it can respond
+            quickly and reliably on the field.
         </p>
 
     </div>
@@ -678,14 +815,18 @@ footer {
 
     <div class="step">
 
-        <div class="step-number">05</div>
+        <div class="number">
+            05 // TEST
+        </div>
 
-        <h2>TEST</h2>
+        <h2>
+            TEST
+        </h2>
 
         <p>
-            Nothing is ready after the first attempt.
-            We repeatedly test AJAX, identify weaknesses,
-            fix problems and improve performance.
+            Nothing goes straight to competition. We test,
+            break, fix and test again until AJAX can handle
+            different situations without giving up.
         </p>
 
     </div>
@@ -693,14 +834,18 @@ footer {
 
     <div class="step">
 
-        <div class="step-number">06</div>
+        <div class="number">
+            06 // OPTIMISE
+        </div>
 
-        <h2>OPTIMISE</h2>
+        <h2>
+            OPTIMISE
+        </h2>
 
         <p>
-            Small improvements can make a huge difference.
-            We tune the robot, refine mechanisms, improve
-            code and make our strategy more efficient.
+            Small improvements make a big difference. We
+            analyse performance, improve our systems and
+            remove weaknesses from both the robot and our strategy.
         </p>
 
     </div>
@@ -708,23 +853,32 @@ footer {
 
     <div class="step">
 
-        <div class="step-number">07</div>
+        <div class="number">
+            07 // COMPETE
+        </div>
 
-        <h2>COMPETE</h2>
+        <h2>
+            COMPETE
+        </h2>
 
         <p>
-            The final step is the field. With AJAX ready,
-            the entire team works together, communicates,
-            adapts and gives everything during the match.
+            Time to put everything to the test. We take AJAX
+            onto the field, work together under pressure and
+            give ROBONAARA everything we've got.
         </p>
 
     </div>
 
 </section>
 
-
 <footer>
-    ROBONAARA © 2026 // ORCHIDS THE INTERNATIONAL SCHOOL, TATHAWADE
+
+    ROBONAARA // ORCHIDS THE INTERNATIONAL SCHOOL, TATHAWADE
+
+    <br><br>
+
+    NATIONAL ROBOTICS LEAGUE
+
 </footer>
 
 </body>
