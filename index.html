@@ -6,9 +6,6 @@
 
 <title>ROBONAARA | NRL</title>
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
 <link href="https://fonts.googleapis.com/css2?family=Audiowide&family=Baloo+2:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 
 <style>
@@ -26,7 +23,7 @@ html {
 body {
     min-height: 100vh;
     color: white;
-    font-family: 'Baloo 2', sans-serif;
+    font-family: "Baloo 2", sans-serif;
     overflow-x: hidden;
 
     background:
@@ -41,65 +38,51 @@ body {
             #155b78 60%,
             #44206e 100%
         );
-
-    background-attachment: fixed;
 }
 
-/* =========================
-   ANIMATED BACKGROUND
-========================= */
+/* Animated background */
 
 body::before {
     content: "";
     position: fixed;
-    width: 450px;
-    height: 450px;
-    top: 10%;
-    left: -150px;
+    width: 500px;
+    height: 500px;
     border-radius: 50%;
-    background: rgba(255,80,190,0.18);
+    background: rgba(255,70,170,0.15);
     filter: blur(80px);
-    animation: blobMove 12s infinite alternate ease-in-out;
+    top: -180px;
+    left: -120px;
+    animation: float1 10s infinite alternate ease-in-out;
     pointer-events: none;
-    z-index: -1;
 }
 
 body::after {
     content: "";
     position: fixed;
-    width: 500px;
-    height: 500px;
-    right: -180px;
-    bottom: -150px;
+    width: 450px;
+    height: 450px;
     border-radius: 50%;
-    background: rgba(80,220,255,0.18);
+    background: rgba(0,220,255,0.13);
     filter: blur(90px);
-    animation: blobMove2 15s infinite alternate ease-in-out;
+    right: -130px;
+    bottom: -120px;
+    animation: float2 12s infinite alternate ease-in-out;
     pointer-events: none;
-    z-index: -1;
 }
 
-@keyframes blobMove {
-    from {
-        transform: translate(0,0) scale(1);
-    }
+@keyframes float1 {
     to {
-        transform: translate(180px,120px) scale(1.25);
+        transform: translate(120px, 100px);
     }
 }
 
-@keyframes blobMove2 {
-    from {
-        transform: translate(0,0) scale(1);
-    }
+@keyframes float2 {
     to {
-        transform: translate(-150px,-100px) scale(1.3);
+        transform: translate(-100px, -80px);
     }
 }
 
-/* =========================
-   NAVIGATION
-========================= */
+/* NAVIGATION */
 
 nav {
     position: fixed;
@@ -112,51 +95,53 @@ nav {
 
     padding: 8px;
 
-    background: rgba(15,12,45,0.55);
-    border: 1px solid rgba(255,255,255,0.18);
     border-radius: 18px;
+
+    background: rgba(15,10,45,0.55);
+    border: 1px solid rgba(255,255,255,0.18);
 
     backdrop-filter: blur(18px);
     -webkit-backdrop-filter: blur(18px);
+
+    box-shadow: 0 10px 35px rgba(0,0,0,0.2);
 }
 
 nav a {
-    color: rgba(255,255,255,0.8);
+    color: rgba(255,255,255,0.75);
     text-decoration: none;
 
-    font-family: 'Space Mono', monospace;
+    padding: 9px 17px;
+
+    border-radius: 12px;
+
+    font-family: "Space Mono", monospace;
     font-size: 12px;
     font-weight: bold;
 
-    padding: 10px 16px;
-    border-radius: 12px;
-
-    transition: 0.3s ease;
+    transition: 0.3s;
 }
 
 nav a:hover {
     color: white;
-    background: rgba(255,255,255,0.1);
+    background: rgba(255,255,255,0.10);
 }
 
 nav a.active {
     color: white;
 
-    background:
-        linear-gradient(
-            135deg,
-            #ff4fa3,
-            #a86cff,
-            #55eaff
-        );
+    background: linear-gradient(
+        90deg,
+        #ff4fa3,
+        #9b5cff,
+        #29d9ff
+    );
 
     box-shadow:
-        0 0 15px rgba(168,108,255,0.55);
+        0 0 12px rgba(255,79,163,0.5),
+        0 0 25px rgba(41,217,255,0.25);
 }
 
-/* =========================
-   SOCIAL MEDIA
-========================= */
+/* SOCIALS */
 
 .socials {
     position: fixed;
@@ -179,502 +164,448 @@ nav a.active {
     border-radius: 50%;
 
     background: rgba(20,15,55,0.65);
+
     border: 1px solid rgba(255,255,255,0.25);
 
     backdrop-filter: blur(18px);
     -webkit-backdrop-filter: blur(18px);
 
-    color: white;
     text-decoration: none;
 
-    transition: 0.3s ease;
+    transition: 0.3s;
+
+    box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+}
+
+/* INSTAGRAM */
+
+.instagram {
+    color: #ff4fa3;
+    border-color: rgba(255,79,163,0.5);
 
     box-shadow:
-        0 8px 25px rgba(0,0,0,0.2);
+        0 0 12px rgba(255,79,163,0.25);
 }
 
-.social-btn svg {
-    width: 22px;
-    height: 22px;
+.instagram svg {
+    width: 23px;
+    height: 23px;
 
     fill: none;
-    stroke: currentColor;
+    stroke: #ff4fa3;
     stroke-width: 2;
+
     stroke-linecap: round;
     stroke-linejoin: round;
-}
 
-.youtube svg {
-    fill: currentColor;
-    stroke: none;
-}
-
-.social-btn:hover {
-    transform: translateY(-4px) scale(1.08);
+    filter:
+        drop-shadow(0 0 5px rgba(255,79,163,0.8));
 }
 
 .instagram:hover {
+    transform: translateY(-4px) scale(1.1);
+
+    background: rgba(255,79,163,0.15);
+
     border-color: #ff4fa3;
 
     box-shadow:
-        0 0 12px rgba(255,79,163,0.6),
-        0 0 30px rgba(255,79,163,0.35);
+        0 0 12px #ff4fa3,
+        0 0 30px rgba(255,79,163,0.55);
+}
+
+/* YOUTUBE */
+
+.youtube {
+    color: #ff3030;
+    border-color: rgba(255,48,48,0.5);
+
+    box-shadow:
+        0 0 12px rgba(255,48,48,0.25);
+}
+
+.youtube svg {
+    width: 23px;
+    height: 23px;
+
+    fill: #ff3030;
+    stroke: none;
+
+    filter:
+        drop-shadow(0 0 5px rgba(255,48,48,0.8));
 }
 
 .youtube:hover {
-    border-color: #ff3d3d;
+    transform: translateY(-4px) scale(1.1);
+
+    background: rgba(255,48,48,0.15);
+
+    border-color: #ff3030;
 
     box-shadow:
-        0 0 12px rgba(255,61,61,0.6),
-        0 0 30px rgba(255,61,61,0.35);
+        0 0 12px #ff3030,
+        0 0 30px rgba(255,48,48,0.55);
 }
 
-/* =========================
-   HERO
-========================= */
+/* HERO */
 
 .hero {
     min-height: 100vh;
 
     display: flex;
     align-items: center;
+    justify-content: center;
 
-    padding: 120px 8% 80px;
+    padding: 120px 7% 80px;
+
+    position: relative;
 }
 
 .hero-content {
     width: 100%;
-    max-width: 1250px;
-    margin: auto;
+    max-width: 1200px;
+    text-align: center;
 }
 
 .system {
-    font-family: 'Space Mono', monospace;
+    font-family: "Space Mono", monospace;
     font-size: 13px;
     letter-spacing: 3px;
 
-    color: #72f6ff;
+    color: #70efff;
 
-    margin-bottom: 18px;
+    margin-bottom: 22px;
 
-    text-shadow: 0 0 12px rgba(80,230,255,0.8);
+    text-shadow:
+        0 0 10px rgba(112,239,255,0.8);
 }
 
 .main-title {
-    font-family: 'Audiowide', sans-serif;
+    font-family: "Audiowide", sans-serif;
 
-    color: #ffffff;
+    font-size: clamp(55px, 10vw, 130px);
 
-    font-size: clamp(48px, 9vw, 120px);
-    line-height: 1;
+    color: white;
 
-    letter-spacing: 2px;
-
-    margin-bottom: 28px;
-
-    display: block;
-    width: fit-content;
-    max-width: 100%;
-
-    white-space: nowrap;
+    letter-spacing: 5px;
 
     text-shadow:
-        0 0 5px rgba(255,255,255,0.9),
-        0 0 15px rgba(255,80,190,0.8),
-        0 0 35px rgba(80,210,255,0.55);
+        0 0 10px #ff4fa3,
+        0 0 25px #ff4fa3,
+        0 0 45px rgba(255,79,163,0.7),
+        0 0 70px rgba(41,217,255,0.5);
 
-    animation: titleGlow 3s ease-in-out infinite alternate;
+    animation: titleGlow 3s infinite alternate;
 }
 
 @keyframes titleGlow {
     from {
         text-shadow:
-            0 0 5px rgba(255,255,255,0.9),
-            0 0 15px rgba(255,80,190,0.7),
-            0 0 35px rgba(80,210,255,0.45);
+            0 0 10px #ff4fa3,
+            0 0 25px #ff4fa3,
+            0 0 45px rgba(255,79,163,0.7);
     }
 
     to {
         text-shadow:
-            0 0 8px white,
-            0 0 22px rgba(255,80,190,1),
-            0 0 45px rgba(80,210,255,0.75);
+            0 0 15px #29d9ff,
+            0 0 30px #29d9ff,
+            0 0 60px rgba(41,217,255,0.7);
     }
 }
 
 .title-line {
-    width: 250px;
+    width: 220px;
     height: 5px;
 
-    border-radius: 10px;
+    margin: 20px auto;
 
-    margin-top: -12px;
-    margin-bottom: 28px;
+    border-radius: 20px;
 
-    background:
-        linear-gradient(
-            90deg,
-            #ff4fa3,
-            #ff9f43,
-            #ffe45e,
-            #5dff9a,
-            #55eaff,
-            #a86cff
-        );
+    background: linear-gradient(
+        90deg,
+        #ff4fa3,
+        #9b5cff,
+        #29d9ff,
+        #ffd34d
+    );
 
     box-shadow:
-        0 0 12px rgba(255,255,255,0.4);
+        0 0 15px rgba(255,79,163,0.8);
 }
 
 .tagline {
-    font-family: 'Audiowide', sans-serif;
+    font-family: "Audiowide", sans-serif;
 
-    font-size: clamp(20px, 3vw, 34px);
+    font-size: clamp(18px, 3vw, 30px);
 
-    margin-bottom: 20px;
+    margin-top: 25px;
+
+    letter-spacing: 2px;
 }
 
 .description {
     max-width: 700px;
 
-    font-size: 19px;
+    margin: 20px auto;
+
+    color: rgba(255,255,255,0.78);
+
+    font-size: 18px;
     line-height: 1.6;
-
-    color: rgba(255,255,255,0.82);
-
-    margin-bottom: 30px;
 }
-
-/* =========================
-   STATUS
-========================= */
 
 .status {
     display: inline-flex;
     align-items: center;
-    gap: 12px;
+    gap: 10px;
+
+    margin-top: 20px;
 
     padding: 10px 18px;
 
     border-radius: 30px;
 
-    background: rgba(0,0,0,0.25);
-    border: 1px solid rgba(255,255,255,0.2);
+    background: rgba(0,255,180,0.10);
+    border: 1px solid rgba(0,255,180,0.35);
 
-    font-family: 'Space Mono', monospace;
+    font-family: "Space Mono", monospace;
     font-size: 12px;
+
+    color: #65ffce;
 }
 
 .status-dot {
-    width: 10px;
-    height: 10px;
+    width: 9px;
+    height: 9px;
 
     border-radius: 50%;
 
-    background: #5dff9a;
+    background: #65ffce;
 
     box-shadow:
-        0 0 10px #5dff9a;
+        0 0 10px #65ffce;
 
-    animation: pulse 1.5s infinite;
+    animation: blink 1.3s infinite;
 }
 
-@keyframes pulse {
+@keyframes blink {
     50% {
-        opacity: 0.4;
-        transform: scale(0.7);
+        opacity: 0.3;
     }
 }
 
-/* =========================
-   AJAX SECTION
-========================= */
+/* AJAX */
 
 .ajax-section {
-    padding: 100px 8%;
-}
-
-.section-container {
-    max-width: 1200px;
-    margin: auto;
-}
-
-.section-label {
-    font-family: 'Space Mono', monospace;
-    color: #55eaff;
-
-    font-size: 12px;
-    letter-spacing: 3px;
-
-    margin-bottom: 12px;
+    padding: 80px 7%;
 }
 
 .section-title {
-    font-family: 'Audiowide', sans-serif;
-    font-size: clamp(30px,5vw,55px);
+    text-align: center;
 
-    margin-bottom: 45px;
+    font-family: "Audiowide", sans-serif;
+
+    font-size: clamp(32px, 6vw, 65px);
+
+    margin-bottom: 50px;
+
+    text-shadow:
+        0 0 20px rgba(41,217,255,0.6);
 }
 
-.ajax-card {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-
-    gap: 40px;
-
-    padding: 45px;
-
-    background: rgba(255,255,255,0.10);
-
-    border: 1px solid rgba(255,255,255,0.22);
-
-    border-radius: 30px;
-
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-
-    box-shadow:
-        0 25px 70px rgba(0,0,0,0.2);
-}
-
-.robot {
-    min-height: 330px;
+.ajax-container {
+    max-width: 900px;
+    margin: auto;
 
     display: flex;
     align-items: center;
     justify-content: center;
+
+    min-height: 480px;
 
     position: relative;
-
-    border-radius: 25px;
-
-    background:
-        radial-gradient(
-            circle,
-            rgba(80,220,255,0.25),
-            transparent 60%
-        );
-
-    border: 1px solid rgba(85,234,255,0.2);
 }
 
-.robot-core {
-    width: 170px;
-    height: 170px;
-
-    border-radius: 30px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    font-family: 'Audiowide', sans-serif;
-    font-size: 28px;
-
-    background:
-        linear-gradient(
-            135deg,
-            rgba(255,80,190,0.4),
-            rgba(80,220,255,0.35)
-        );
-
-    border: 2px solid rgba(255,255,255,0.45);
-
-    box-shadow:
-        0 0 30px rgba(80,220,255,0.5),
-        inset 0 0 30px rgba(255,255,255,0.1);
-
-    animation: robotFloat 3s infinite ease-in-out;
-}
-
-@keyframes robotFloat {
-    50% {
-        transform: translateY(-12px);
-    }
-}
-
-.robot-ring {
-    position: absolute;
-
+.ajax-core {
     width: 230px;
     height: 230px;
 
-    border: 1px dashed rgba(85,234,255,0.55);
+    border-radius: 50%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-family: "Audiowide", sans-serif;
+    font-size: 40px;
+
+    background:
+        radial-gradient(circle,
+        #ffffff 0%,
+        #70efff 10%,
+        #9b5cff 40%,
+        #ff4fa3 70%,
+        transparent 71%
+        );
+
+    box-shadow:
+        0 0 25px #29d9ff,
+        0 0 60px #9b5cff,
+        0 0 110px rgba(255,79,163,0.7);
+
+    animation: corePulse 3s infinite alternate;
+
+    position: relative;
+    z-index: 2;
+}
+
+@keyframes corePulse {
+    to {
+        transform: scale(1.06);
+    }
+}
+
+.ring {
+    position: absolute;
+
+    width: 330px;
+    height: 330px;
 
     border-radius: 50%;
 
-    animation: rotate 8s linear infinite;
+    border: 2px solid rgba(41,217,255,0.5);
+
+    border-top-color: #ff4fa3;
+    border-bottom-color: #ffd34d;
+
+    animation: spin 7s linear infinite;
 }
 
-@keyframes rotate {
+.ring2 {
+    width: 410px;
+    height: 410px;
+
+    border-color: rgba(255,255,255,0.18);
+
+    border-left-color: #9b5cff;
+    border-right-color: #29d9ff;
+
+    animation: spin 12s linear infinite reverse;
+}
+
+@keyframes spin {
     to {
         transform: rotate(360deg);
     }
 }
 
-.ajax-info h3 {
-    font-family: 'Audiowide', sans-serif;
-    font-size: 32px;
-
-    margin-bottom: 15px;
-}
-
-.ajax-info p {
-    font-size: 17px;
-    line-height: 1.7;
-
-    color: rgba(255,255,255,0.8);
-
-    margin-bottom: 25px;
-}
-
 .hud {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+    position: absolute;
 
-    gap: 12px;
-}
+    font-family: "Space Mono", monospace;
 
-.hud-box {
-    padding: 15px;
+    font-size: 11px;
 
-    border-radius: 15px;
+    color: #8df5ff;
+
+    padding: 10px 15px;
+
+    border: 1px solid rgba(141,245,255,0.3);
 
     background: rgba(0,0,0,0.18);
 
-    border: 1px solid rgba(255,255,255,0.15);
+    backdrop-filter: blur(10px);
 }
 
-.hud-box span {
-    display: block;
-
-    font-family: 'Space Mono', monospace;
-
-    font-size: 10px;
-
-    color: #72f6ff;
-
-    margin-bottom: 6px;
+.hud.one {
+    top: 15%;
+    left: 8%;
 }
 
-.hud-box strong {
-    font-size: 18px;
+.hud.two {
+    bottom: 15%;
+    right: 8%;
 }
 
-/* =========================
-   NRL SECTION
-========================= */
+.hud.three {
+    top: 25%;
+    right: 3%;
+}
 
 .nrl {
-    padding: 80px 8% 120px;
+    padding: 100px 7%;
+    text-align: center;
 }
 
-.nrl-card {
-    max-width: 1200px;
+.nrl-box {
+    max-width: 900px;
+
     margin: auto;
 
-    padding: 45px;
+    padding: 50px;
 
     border-radius: 30px;
 
-    background:
-        linear-gradient(
-            135deg,
-            rgba(255,80,190,0.16),
-            rgba(80,220,255,0.14)
-        );
+    background: rgba(255,255,255,0.08);
 
     border: 1px solid rgba(255,255,255,0.2);
 
     backdrop-filter: blur(20px);
 
-    text-align: center;
-}
-
-.nrl-card h2 {
-    font-family: 'Audiowide', sans-serif;
-
-    font-size: clamp(28px,5vw,50px);
-
-    margin-bottom: 15px;
-}
-
-.nrl-card p {
-    max-width: 750px;
-    margin: auto;
-
-    font-size: 17px;
-    line-height: 1.7;
-
-    color: rgba(255,255,255,0.8);
-}
-
-.nrl-tag {
-    display: inline-block;
-
-    margin-top: 25px;
-
-    padding: 10px 20px;
-
-    border-radius: 30px;
-
-    background:
-        linear-gradient(
-            90deg,
-            #ff4fa3,
-            #a86cff,
-            #55eaff
-        );
-
-    font-family: 'Space Mono', monospace;
-    font-size: 12px;
-
     box-shadow:
-        0 0 25px rgba(168,108,255,0.4);
+        0 20px 70px rgba(0,0,0,0.2);
 }
 
-/* =========================
-   FOOTER
-========================= */
+.nrl-box h3 {
+    font-family: "Audiowide", sans-serif;
+
+    font-size: 38px;
+
+    margin-bottom: 20px;
+}
+
+.nrl-box p {
+    font-size: 18px;
+    color: rgba(255,255,255,0.78);
+}
+
+/* FOOTER */
 
 footer {
-    padding: 30px 8%;
+    padding: 40px 7%;
 
     text-align: center;
 
-    font-family: 'Space Mono', monospace;
+    border-top: 1px solid rgba(255,255,255,0.15);
+
+    font-family: "Space Mono", monospace;
 
     font-size: 11px;
 
-    color: rgba(255,255,255,0.5);
+    color: rgba(255,255,255,0.55);
 }
 
-/* =========================
-   MOBILE
-========================= */
+/* MOBILE */
 
-@media (max-width:700px) {
+@media (max-width: 700px) {
 
     nav {
-        top: 15px;
+        top: 70px;
         right: 15px;
+        left: 15px;
 
-        gap: 2px;
-
-        padding: 5px;
-
-        border-radius: 14px;
+        justify-content: center;
     }
 
     nav a {
-        font-size: 9px;
-        padding: 8px 9px;
+        padding: 8px 10px;
+        font-size: 10px;
     }
 
     .socials {
         top: 15px;
         left: 15px;
-
         gap: 7px;
     }
 
@@ -683,69 +614,38 @@ footer {
         height: 40px;
     }
 
-    .social-btn svg {
+    .instagram svg,
+    .youtube svg {
         width: 19px;
         height: 19px;
     }
 
     .hero {
-        padding: 130px 7% 70px;
+        padding-top: 160px;
     }
 
-    .main-title {
-        font-size: clamp(38px,13vw,72px);
-        line-height: 1.05;
-        letter-spacing: 0;
-
-        white-space: normal;
-        word-break: normal;
-        overflow-wrap: normal;
-        max-width: 100%;
-    }
-
-    .title-line {
+    .ajax-core {
         width: 170px;
+        height: 170px;
+        font-size: 28px;
     }
 
-    .description {
-        font-size: 16px;
+    .ring {
+        width: 250px;
+        height: 250px;
     }
 
-    .ajax-section,
-    .nrl {
-        padding-left: 6%;
-        padding-right: 6%;
-    }
-
-    .ajax-card {
-        grid-template-columns: 1fr;
-
-        padding: 25px;
-
-        gap: 25px;
-    }
-
-    .robot {
-        min-height: 250px;
-    }
-
-    .robot-core {
-        width: 130px;
-        height: 130px;
-        font-size: 22px;
-    }
-
-    .robot-ring {
-        width: 180px;
-        height: 180px;
+    .ring2 {
+        width: 310px;
+        height: 310px;
     }
 
     .hud {
-        grid-template-columns: 1fr;
+        display: none;
     }
 
-    .nrl-card {
-        padding: 30px 22px;
+    .nrl-box {
+        padding: 30px 20px;
     }
 }
 
@@ -787,15 +687,13 @@ footer {
 
 </div>
 
-
-<!-- NAVIGATION -->
+<!-- NAV -->
 
 <nav>
     <a href="index.html" class="active">HOME</a>
     <a href="process.html">PROCESS</a>
     <a href="team.html">TEAM</a>
 </nav>
-
 
 <!-- HERO -->
 
@@ -818,9 +716,9 @@ footer {
         </div>
 
         <p class="description">
-            We are ROBONAARA — a team of young innovators,
-            engineers, coders and problem-solvers building AJAX
-            to take on the National Robotics League.
+            Six minds. One machine. Zero excuses.
+            Welcome to ROBONAARA — where engineering,
+            strategy and creativity come together to build AJAX.
         </p>
 
         <div class="status">
@@ -832,104 +730,62 @@ footer {
 
 </section>
 
-
 <!-- AJAX -->
 
 <section class="ajax-section">
 
-    <div class="section-container">
+    <h2 class="section-title">
+        MEET AJAX
+    </h2>
 
-        <div class="section-label">
-            // ROBOT PROFILE
+    <div class="ajax-container">
+
+        <div class="ring"></div>
+        <div class="ring ring2"></div>
+
+        <div class="hud one">
+            CORE // ACTIVE
         </div>
 
-        <h2 class="section-title">
-            MEET AJAX
-        </h2>
+        <div class="hud two">
+            POWER // 100%
+        </div>
 
-        <div class="ajax-card">
+        <div class="hud three">
+            MODE // HYPERDRIVE
+        </div>
 
-            <div class="robot">
-
-                <div class="robot-ring"></div>
-
-                <div class="robot-core">
-                    AJAX
-                </div>
-
-            </div>
-
-            <div class="ajax-info">
-
-                <h3>AJAX // UNIT 01</h3>
-
-                <p>
-                    Designed, built and controlled by ROBONAARA,
-                    AJAX is our competition robot — combining
-                    engineering, strategy, programming and teamwork
-                    into one machine.
-                </p>
-
-                <div class="hud">
-
-                    <div class="hud-box">
-                        <span>STATUS</span>
-                        <strong>ONLINE</strong>
-                    </div>
-
-                    <div class="hud-box">
-                        <span>MODE</span>
-                        <strong>HYPERDRIVE</strong>
-                    </div>
-
-                    <div class="hud-box">
-                        <span>TEAM</span>
-                        <strong>ROBONAARA</strong>
-                    </div>
-
-                    <div class="hud-box">
-                        <span>MISSION</span>
-                        <strong>WIN</strong>
-                    </div>
-
-                </div>
-
-            </div>
-
+        <div class="ajax-core">
+            AJAX
         </div>
 
     </div>
 
 </section>
-
 
 <!-- NRL -->
 
 <section class="nrl">
 
-    <div class="nrl-card">
+    <div class="nrl-box">
 
-        <h2>
+        <h3>
             NATIONAL ROBOTICS LEAGUE
-        </h2>
+        </h3>
 
         <p>
-            ROBONAARA is taking on the National Robotics League
-            with AJAX. Every design decision, line of code and
-            practice session brings us one step closer to the field.
+            ROBONAARA is taking AJAX to the National Robotics League,
+            ready to compete, adapt and push our robot to its limits.
         </p>
-
-        <div class="nrl-tag">
-            NRL // HYPERDRIVE
-        </div>
 
     </div>
 
 </section>
 
-
 <footer>
-    ROBONAARA © 2026 // ORCHIDS THE INTERNATIONAL SCHOOL, TATHAWADE
+    ROBONAARA // ORCHIDS THE INTERNATIONAL SCHOOL, TATHAWADE
+    <br><br>
+    NATIONAL ROBOTICS LEAGUE
 </footer>
 
 </body>
