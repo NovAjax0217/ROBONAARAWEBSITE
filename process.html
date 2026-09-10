@@ -2,600 +2,721 @@
 <html lang="en">
 <head>
 
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>ROBONAARA | Process</title>
+<title>ROBONAARA | Process</title>
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    <link href="https://fonts.googleapis.com/css2?family=Audiowide&family=Baloo+2:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Audiowide&family=Baloo+2:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 
-    <style>
+<style>
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-        html {
-            scroll-behavior: smooth;
-        }
+html {
+    scroll-behavior: smooth;
+}
 
-        body {
-            min-height: 100vh;
+body {
+    min-height: 100vh;
 
-            font-family: 'Baloo 2', sans-serif;
+    color: white;
 
-            color: #ffffff;
+    font-family: 'Baloo 2', sans-serif;
 
-            overflow-x: hidden;
+    background:
+        radial-gradient(circle at 8% 12%, rgba(255,105,190,0.55), transparent 25%),
+        radial-gradient(circle at 90% 10%, rgba(80,200,255,0.55), transparent 27%),
+        radial-gradient(circle at 85% 75%, rgba(165,100,255,0.50), transparent 30%),
+        radial-gradient(circle at 12% 85%, rgba(255,180,70,0.45), transparent 27%),
+        linear-gradient(
+            135deg,
+            #24115a 0%,
+            #173b70 35%,
+            #155b78 60%,
+            #44206e 100%
+        );
 
-            background:
-                radial-gradient(circle at 8% 12%, rgba(255,105,190,0.55), transparent 25%),
-                radial-gradient(circle at 90% 10%, rgba(80,200,255,0.55), transparent 27%),
-                radial-gradient(circle at 85% 75%, rgba(165,100,255,0.50), transparent 30%),
-                radial-gradient(circle at 12% 85%, rgba(255,180,70,0.45), transparent 27%),
-                radial-gradient(circle at 50% 45%, rgba(80,240,220,0.15), transparent 35%),
-                linear-gradient(
-                    135deg,
-                    #24115a 0%,
-                    #173b70 35%,
-                    #155b78 60%,
-                    #44206e 100%
-                );
-        }
+    background-attachment: fixed;
 
-        body::before {
-            content: "";
+    overflow-x: hidden;
+}
 
-            position: fixed;
+body::before {
+    content: "";
 
-            width: 600px;
-            height: 600px;
+    position: fixed;
 
-            top: -180px;
-            left: -150px;
+    width: 450px;
+    height: 450px;
 
-            border-radius: 50%;
+    top: 10%;
+    left: -150px;
 
-            background: rgba(255,80,190,0.28);
+    border-radius: 50%;
 
-            filter: blur(100px);
+    background: rgba(255,80,190,0.18);
 
-            animation: blobOne 9s ease-in-out infinite alternate;
+    filter: blur(80px);
 
-            z-index: -3;
-        }
+    animation: blob 12s infinite alternate ease-in-out;
 
-        body::after {
-            content: "";
+    pointer-events: none;
 
-            position: fixed;
+    z-index: -1;
+}
 
-            width: 600px;
-            height: 600px;
+body::after {
+    content: "";
 
-            right: -180px;
-            bottom: -150px;
+    position: fixed;
 
-            border-radius: 50%;
+    width: 500px;
+    height: 500px;
 
-            background: rgba(60,220,255,0.28);
+    right: -180px;
+    bottom: -150px;
 
-            filter: blur(110px);
+    border-radius: 50%;
 
-            animation: blobTwo 11s ease-in-out infinite alternate;
+    background: rgba(80,220,255,0.18);
 
-            z-index: -3;
-        }
+    filter: blur(90px);
 
-        @keyframes blobOne {
+    animation: blob2 15s infinite alternate ease-in-out;
 
-            to {
-                transform: translate(190px,160px) scale(1.3);
-            }
+    pointer-events: none;
 
-        }
+    z-index: -1;
+}
 
-        @keyframes blobTwo {
+@keyframes blob {
+    to {
+        transform: translate(180px,120px) scale(1.25);
+    }
+}
 
-            to {
-                transform: translate(-180px,-150px) scale(1.3);
-            }
+@keyframes blob2 {
+    to {
+        transform: translate(-150px,-100px) scale(1.3);
+    }
+}
 
-        }
+/* NAV */
 
-        /* NAV */
+nav {
+    position: fixed;
 
-        nav {
-            position: fixed;
+    top: 18px;
+    right: 5%;
 
-            top: 18px;
-            right: 5%;
+    z-index: 1000;
 
-            z-index: 1000;
+    display: flex;
+    gap: 8px;
 
-            padding: 10px 18px;
+    padding: 8px;
 
-            border-radius: 30px;
+    background: rgba(15,12,45,0.55);
 
-            background: rgba(20,15,55,0.55);
+    border: 1px solid rgba(255,255,255,0.18);
 
-            backdrop-filter: blur(18px);
+    border-radius: 18px;
 
-            border: 1px solid rgba(255,255,255,0.25);
+    backdrop-filter: blur(18px);
+}
 
-            box-shadow: 0 10px 40px rgba(0,0,0,0.20);
-        }
+nav a {
+    color: rgba(255,255,255,0.8);
 
-        .nav-links {
-            display: flex;
+    text-decoration: none;
 
-            gap: 10px;
-        }
+    font-family: 'Space Mono', monospace;
 
-        .nav-links a {
-            text-decoration: none;
+    font-size: 12px;
 
-            color: rgba(255,255,255,0.75);
+    font-weight: bold;
 
-            font-family: 'Audiowide', sans-serif;
+    padding: 10px 16px;
 
-            font-size: 12px;
+    border-radius: 12px;
 
-            padding: 11px 17px;
+    transition: 0.3s ease;
+}
 
-            border-radius: 22px;
+nav a:hover {
+    color: white;
 
-            transition: 0.3s;
-        }
+    background: rgba(255,255,255,0.1);
+}
 
-        .nav-links a:hover {
-            color: white;
+nav a.active {
+    color: white;
 
-            background: rgba(255,255,255,0.12);
+    background:
+        linear-gradient(
+            135deg,
+            #ff4fa3,
+            #a86cff,
+            #55eaff
+        );
 
-            transform: translateY(-3px);
-        }
+    box-shadow:
+        0 0 15px rgba(168,108,255,0.55);
+}
 
-        .nav-links a.active {
-            color: white;
+/* SOCIALS */
 
-            background:
-                linear-gradient(
-                    90deg,
-                    #ff4fa3,
-                    #9c5cff,
-                    #32dfff
-                );
+.socials {
+    position: fixed;
 
-            box-shadow:
-                0 0 18px rgba(255,79,163,0.45),
-                0 0 30px rgba(50,223,255,0.20);
+    top: 18px;
+    left: 5%;
 
-            animation: navBounce 2s ease-in-out infinite;
-        }
+    z-index: 1000;
 
-        @keyframes navBounce {
+    display: flex;
+    gap: 10px;
+}
 
-            0%,100% {
-                transform: translateY(0);
-            }
+.social-btn {
+    width: 46px;
+    height: 46px;
 
-            50% {
-                transform: translateY(-2px);
-            }
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-        }
+    border-radius: 50%;
 
-        /* HEADER */
+    background: rgba(20,15,55,0.65);
 
-        header {
-            padding: 170px 8% 80px;
-        }
+    border: 1px solid rgba(255,255,255,0.25);
 
-        .label {
-            font-family: 'Space Mono', monospace;
+    color: white;
 
-            color: #ffe45e;
+    text-decoration: none;
 
-            font-size: 11px;
+    backdrop-filter: blur(18px);
 
-            letter-spacing: 3px;
+    transition: 0.3s ease;
+}
 
-            margin-bottom: 18px;
+.social-btn svg {
+    width: 22px;
+    height: 22px;
 
-            text-shadow: 0 0 12px rgba(255,228,94,0.4);
-        }
+    fill: none;
 
-        h1 {
-            font-family: 'Audiowide', sans-serif;
+    stroke: currentColor;
 
-            font-size: clamp(45px,8vw,100px);
+    stroke-width: 2;
 
-            line-height: 1;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
 
-            background:
-                linear-gradient(
-                    90deg,
-                    #ff5baa,
-                    #ff9f43,
-                    #ffe45e,
-                    #55eaff,
-                    #a86cff
-                );
+.youtube svg {
+    fill: currentColor;
+    stroke: none;
+}
 
-            background-size: 300% auto;
+.social-btn:hover {
+    transform: translateY(-4px) scale(1.08);
+}
 
-            -webkit-background-clip: text;
+.instagram:hover {
+    border-color: #ff4fa3;
 
-            color: transparent;
+    box-shadow:
+        0 0 12px rgba(255,79,163,0.6),
+        0 0 30px rgba(255,79,163,0.35);
+}
 
-            animation: rainbow 6s linear infinite;
-        }
+.youtube:hover {
+    border-color: #ff3d3d;
 
-        @keyframes rainbow {
+    box-shadow:
+        0 0 12px rgba(255,61,61,0.6),
+        0 0 30px rgba(255,61,61,0.35);
+}
 
-            to {
-                background-position: 300% center;
-            }
+/* HEADER */
 
-        }
+header {
+    padding: 150px 8% 80px;
 
-        .intro {
-            max-width: 750px;
+    max-width: 1200px;
 
-            margin-top: 25px;
+    margin: auto;
+}
 
-            color: rgba(255,255,255,0.82);
+.label {
+    font-family: 'Space Mono', monospace;
 
-            font-size: 20px;
+    font-size: 12px;
 
-            line-height: 1.65;
-        }
+    letter-spacing: 3px;
 
-        /* PROCESS */
+    color: #55eaff;
 
-        .process {
-            padding: 20px 8% 120px;
+    margin-bottom: 15px;
+}
 
-            max-width: 1400px;
+h1 {
+    font-family: 'Audiowide', sans-serif;
 
-            margin: auto;
-        }
+    font-size: clamp(42px,8vw,90px);
 
-        .process-grid {
-            display: grid;
+    line-height: 1.05;
 
-            grid-template-columns: repeat(2,1fr);
+    text-shadow:
+        0 0 10px rgba(255,255,255,0.8),
+        0 0 30px rgba(255,80,190,0.5);
 
-            gap: 25px;
-        }
+    margin-bottom: 20px;
+}
 
-        .step {
-            position: relative;
+.intro {
+    max-width: 700px;
 
-            min-height: 250px;
+    font-size: 19px;
 
-            padding: 35px;
+    line-height: 1.6;
 
-            overflow: hidden;
+    color: rgba(255,255,255,0.8);
+}
 
-            border-radius: 28px;
+/* TIMELINE */
 
-            background:
-                linear-gradient(
-                    135deg,
-                    rgba(255,255,255,0.12),
-                    rgba(255,255,255,0.055)
-                );
+.timeline {
+    max-width: 1100px;
 
-            border: 1px solid rgba(255,255,255,0.22);
+    margin: auto;
 
-            backdrop-filter: blur(14px);
+    padding: 20px 8% 120px;
 
-            transition: 0.45s ease;
-        }
+    position: relative;
+}
 
-        .step:nth-child(1) {
-            --accent: #ff5baa;
-        }
+.timeline::before {
+    content: "";
 
-        .step:nth-child(2) {
-            --accent: #ff9f43;
-        }
+    position: absolute;
 
-        .step:nth-child(3) {
-            --accent: #ffe45e;
-        }
+    left: 50%;
 
-        .step:nth-child(4) {
-            --accent: #5dff9a;
-        }
+    top: 0;
+    bottom: 0;
 
-        .step:nth-child(5) {
-            --accent: #55eaff;
-        }
+    width: 3px;
 
-        .step:nth-child(6) {
-            --accent: #758cff;
-        }
+    transform: translateX(-50%);
 
-        .step:nth-child(7) {
-            --accent: #c16cff;
-        }
+    background:
+        linear-gradient(
+            to bottom,
+            #ff4fa3,
+            #ff9f43,
+            #ffe45e,
+            #5dff9a,
+            #55eaff,
+            #a86cff
+        );
 
-        .step:hover {
-            transform: translateY(-10px) rotate(-0.5deg);
+    box-shadow:
+        0 0 15px rgba(85,234,255,0.5);
+}
 
-            border-color: var(--accent);
+.step {
+    width: 46%;
 
-            box-shadow:
-                0 20px 60px rgba(0,0,0,0.20),
-                0 0 30px var(--accent);
-        }
+    padding: 30px;
 
-        .step::after {
-            content: "";
+    margin-bottom: 45px;
 
-            position: absolute;
+    border-radius: 25px;
 
-            width: 200px;
-            height: 200px;
+    background: rgba(255,255,255,0.10);
 
-            right: -90px;
-            bottom: -110px;
+    border: 1px solid rgba(255,255,255,0.2);
 
-            border-radius: 50%;
+    backdrop-filter: blur(20px);
 
-            background: var(--accent);
+    position: relative;
 
-            filter: blur(45px);
+    transition: 0.4s ease;
+}
 
-            opacity: 0.20;
+.step:nth-child(odd) {
+    margin-right: auto;
+}
 
-            transition: 0.5s;
-        }
+.step:nth-child(even) {
+    margin-left: auto;
+}
 
-        .step:hover::after {
-            opacity: 0.4;
+.step:hover {
+    transform: translateY(-8px) scale(1.02);
 
-            transform: scale(1.5);
-        }
+    background: rgba(255,255,255,0.15);
 
-        .number {
-            font-family: 'Audiowide', sans-serif;
+    box-shadow:
+        0 20px 50px rgba(0,0,0,0.2);
+}
 
-            font-size: 48px;
+.step-number {
+    position: absolute;
 
-            color: var(--accent);
+    width: 42px;
+    height: 42px;
 
-            opacity: 0.85;
+    top: 25px;
 
-            margin-bottom: 10px;
+    display: flex;
 
-            text-shadow: 0 0 20px var(--accent);
-        }
+    align-items: center;
+    justify-content: center;
 
-        .step h2 {
-            font-family: 'Audiowide', sans-serif;
+    border-radius: 50%;
 
-            font-size: 20px;
+    font-family: 'Space Mono', monospace;
 
-            color: #ffffff;
+    font-weight: bold;
 
-            margin-bottom: 13px;
-        }
+    color: white;
 
-        .step p {
-            color: rgba(255,255,255,0.76);
+    background: rgba(20,15,55,0.9);
 
-            font-size: 17px;
+    border: 2px solid white;
 
-            line-height: 1.6;
-        }
+    box-shadow: 0 0 20px rgba(255,255,255,0.3);
+}
 
-        /* FOOTER */
+.step:nth-child(odd) .step-number {
+    right: -63px;
+}
 
-        footer {
-            padding: 35px 8%;
+.step:nth-child(even) .step-number {
+    left: -63px;
+}
 
-            border-top: 1px solid rgba(255,255,255,0.18);
+.step h2 {
+    font-family: 'Audiowide', sans-serif;
 
-            display: flex;
+    font-size: 24px;
 
-            justify-content: space-between;
+    margin-bottom: 12px;
+}
 
-            color: rgba(255,255,255,0.60);
+.step p {
+    font-size: 16px;
 
-            font-family: 'Space Mono', monospace;
+    line-height: 1.7;
 
-            font-size: 10px;
+    color: rgba(255,255,255,0.78);
+}
 
-            letter-spacing: 1px;
-        }
+/* COLOURS */
 
-        @media(max-width:800px) {
+.step:nth-child(1) {
+    border-color: #ff4fa3;
+}
 
-            nav {
-                right: 50%;
+.step:nth-child(2) {
+    border-color: #ff9f43;
+}
 
-                transform: translateX(50%);
-            }
+.step:nth-child(3) {
+    border-color: #ffe45e;
+}
 
-            .nav-links {
-                gap: 2px;
-            }
+.step:nth-child(4) {
+    border-color: #5dff9a;
+}
 
-            .nav-links a {
-                font-size: 9px;
+.step:nth-child(5) {
+    border-color: #55eaff;
+}
 
-                padding: 10px 11px;
-            }
+.step:nth-child(6) {
+    border-color: #a86cff;
+}
 
-            .process-grid {
-                grid-template-columns: 1fr;
-            }
+.step:nth-child(7) {
+    border-color: #ff70d4;
+}
 
-            footer {
-                flex-direction: column;
+/* FOOTER */
 
-                gap: 12px;
+footer {
+    text-align: center;
 
-                text-align: center;
-            }
+    padding: 30px;
 
-        }
+    font-family: 'Space Mono', monospace;
 
-    </style>
+    font-size: 11px;
+
+    color: rgba(255,255,255,0.5);
+}
+
+/* MOBILE */
+
+@media(max-width:700px) {
+
+    nav {
+        top: 15px;
+        right: 15px;
+
+        padding: 5px;
+
+        gap: 2px;
+    }
+
+    nav a {
+        font-size: 9px;
+
+        padding: 8px 9px;
+    }
+
+    .socials {
+        top: 15px;
+        left: 15px;
+
+        gap: 7px;
+    }
+
+    .social-btn {
+        width: 40px;
+        height: 40px;
+    }
+
+    .social-btn svg {
+        width: 19px;
+        height: 19px;
+    }
+
+    header {
+        padding: 130px 7% 60px;
+    }
+
+    .intro {
+        font-size: 16px;
+    }
+
+    .timeline {
+        padding: 10px 7% 80px;
+    }
+
+    .timeline::before {
+        left: 20px;
+    }
+
+    .step,
+    .step:nth-child(odd),
+    .step:nth-child(even) {
+
+        width: calc(100% - 45px);
+
+        margin-left: 45px;
+        margin-right: 0;
+
+        margin-bottom: 30px;
+    }
+
+    .step-number,
+    .step:nth-child(odd) .step-number,
+    .step:nth-child(even) .step-number {
+
+        left: -66px;
+        right: auto;
+
+        top: 25px;
+    }
+}
+
+</style>
+
 </head>
 
 <body>
 
+<!-- SOCIAL MEDIA -->
+
+<div class="socials">
+
+    <a href="https://www.instagram.com/robonaara?utm_source=qr&igsi=MTRzNTNnZW1qNjVn"
+       target="_blank"
+       rel="noopener noreferrer"
+       class="social-btn instagram">
+
+        <svg viewBox="0 0 24 24">
+            <rect x="3" y="3" width="18" height="18" rx="5"></rect>
+            <circle cx="12" cy="12" r="4"></circle>
+            <circle cx="17.5" cy="6.5" r="1"></circle>
+        </svg>
+
+    </a>
+
+    <a href="https://www.youtube.com/@RoboNAARA"
+       target="_blank"
+       rel="noopener noreferrer"
+       class="social-btn youtube">
+
+        <svg viewBox="0 0 24 24">
+            <path d="M21.6 7.2a2.8 2.8 0 0 0-2-2C17.8 4.7 12 4.7 12 4.7s-5.8 0-7.6.5a2.8 2.8 0 0 0-2 2C2 9 2 12 2 12s0 3 .4 4.8a2.8 2.8 0 0 0 2 2c1.8.5 7.6.5 7.6.5s5.8 0 7.6-.5a2.8 2.8 0 0 0 2-2C22 15 22 12 22 12s0-3-.4-4.8Z"></path>
+            <polygon points="10,8.5 16,12 10,15.5"></polygon>
+        </svg>
+
+    </a>
+
+</div>
+
+
+<!-- NAVIGATION -->
+
 <nav>
-
-    <div class="nav-links">
-
-        <a href="index.html">
-            HOME
-        </a>
-
-        <a href="process.html" class="active">
-            PROCESS
-        </a>
-
-        <a href="team.html">
-            TEAM
-        </a>
-
-    </div>
-
+    <a href="index.html">HOME</a>
+    <a href="process.html" class="active">PROCESS</a>
+    <a href="team.html">TEAM</a>
 </nav>
 
+
+<!-- HEADER -->
 
 <header>
 
     <div class="label">
-        // ROBONAARA ENGINEERING PROTOCOL
+        // HOW WE BUILD AJAX
     </div>
 
     <h1>
-        HOW WE BUILD
+        THE PROCESS
     </h1>
 
     <p class="intro">
-        Building a competition robot isn't just about putting parts together.
-        Every stage of the process matters — from the first idea to the final match.
+        From the first idea to the final match,
+        ROBONAARA works through every stage together.
+        Engineering, coding, testing and strategy all
+        come together to create AJAX.
     </p>
 
 </header>
 
 
-<section class="process">
+<!-- TIMELINE -->
 
-    <div class="process-grid">
+<section class="timeline">
 
+    <div class="step">
 
-        <div class="step">
+        <div class="step-number">01</div>
 
-            <div class="number">01</div>
+        <h2>IDEATE</h2>
 
-            <h2>RESEARCH</h2>
+        <p>
+            Every build starts with an idea. We discuss the
+            challenge, analyse the requirements and brainstorm
+            different ways AJAX could solve the problem.
+        </p>
 
-            <p>
-                We study the challenge, understand the rules, identify possible strategies,
-                and figure out what the robot needs to accomplish.
-            </p>
-
-        </div>
-
-
-        <div class="step">
-
-            <div class="number">02</div>
-
-            <h2>DESIGN</h2>
-
-            <p>
-                Ideas become designs. We plan the robot's mechanisms, structure,
-                electronics, and overall architecture.
-            </p>
-
-        </div>
+    </div>
 
 
-        <div class="step">
+    <div class="step">
 
-            <div class="number">03</div>
+        <div class="step-number">02</div>
 
-            <h2>BUILD</h2>
+        <h2>DESIGN</h2>
 
-            <p>
-                The design becomes physical. We assemble the mechanisms,
-                connect electronics, and turn individual components into AJAX.
-            </p>
+        <p>
+            We turn our ideas into designs, mechanisms and
+            possible solutions. The team considers strength,
+            movement, efficiency and reliability.
+        </p>
 
-        </div>
-
-
-        <div class="step">
-
-            <div class="number">04</div>
-
-            <h2>CODE</h2>
-
-            <p>
-                Software brings the robot to life. We develop and refine the code
-                that controls AJAX and helps it respond reliably.
-            </p>
-
-        </div>
+    </div>
 
 
-        <div class="step">
+    <div class="step">
 
-            <div class="number">05</div>
+        <div class="step-number">03</div>
 
-            <h2>TEST</h2>
+        <h2>BUILD</h2>
 
-            <p>
-                We test individual systems and the complete robot,
-                finding weaknesses and improving reliability.
-            </p>
+        <p>
+            Components become a real robot. We assemble
+            mechanisms, electronics and structural parts
+            while constantly checking every connection.
+        </p>
 
-        </div>
-
-
-        <div class="step">
-
-            <div class="number">06</div>
-
-            <h2>ITERATE</h2>
-
-            <p>
-                Something doesn't work? We change it.
-                Testing leads to improvements, and improvements make AJAX better.
-            </p>
-
-        </div>
+    </div>
 
 
-        <div class="step">
+    <div class="step">
 
-            <div class="number">07</div>
+        <div class="step-number">04</div>
 
-            <h2>COMPETE</h2>
+        <h2>CODE</h2>
 
-            <p>
-                After all the designing, building, coding, and testing,
-                it's time to put everything together and take ROBONAARA to the field.
-            </p>
+        <p>
+            Programming gives AJAX its intelligence.
+            We write, test and refine the code so the robot
+            responds accurately to our controls and strategy.
+        </p>
 
-        </div>
+    </div>
 
+
+    <div class="step">
+
+        <div class="step-number">05</div>
+
+        <h2>TEST</h2>
+
+        <p>
+            Nothing is ready after the first attempt.
+            We repeatedly test AJAX, identify weaknesses,
+            fix problems and improve performance.
+        </p>
+
+    </div>
+
+
+    <div class="step">
+
+        <div class="step-number">06</div>
+
+        <h2>OPTIMISE</h2>
+
+        <p>
+            Small improvements can make a huge difference.
+            We tune the robot, refine mechanisms, improve
+            code and make our strategy more efficient.
+        </p>
+
+    </div>
+
+
+    <div class="step">
+
+        <div class="step-number">07</div>
+
+        <h2>COMPETE</h2>
+
+        <p>
+            The final step is the field. With AJAX ready,
+            the entire team works together, communicates,
+            adapts and gives everything during the match.
+        </p>
 
     </div>
 
@@ -603,15 +724,7 @@
 
 
 <footer>
-
-    <span>
-        ROBONAARA // PROCESS
-    </span>
-
-    <span>
-        AJAX // READY
-    </span>
-
+    ROBONAARA © 2026 // ORCHIDS THE INTERNATIONAL SCHOOL, TATHAWADE
 </footer>
 
 </body>
