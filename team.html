@@ -7,9 +7,16 @@
 
 <title>ROBONAARA | Team</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Audiowide&family=Baloo+2:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 
 <style>
+
+/* =====================================================
+   GLOBAL
+===================================================== */
 
 * {
     margin: 0;
@@ -23,22 +30,35 @@ body {
 
     color: white;
 
-    font-family: "Baloo 2", sans-serif;
-
-    background:
-        radial-gradient(circle at 8% 12%, rgba(255,105,190,0.55), transparent 25%),
-        radial-gradient(circle at 90% 10%, rgba(80,200,255,0.55), transparent 27%),
-        radial-gradient(circle at 85% 75%, rgba(165,100,255,0.50), transparent 30%),
-        radial-gradient(circle at 12% 85%, rgba(255,180,70,0.45), transparent 27%),
-        linear-gradient(
-            135deg,
-            #24115a 0%,
-            #173b70 35%,
-            #155b78 60%,
-            #44206e 100%
-        );
+    font-family: "Rajdhani", sans-serif;
 
     overflow-x: hidden;
+
+    background:
+        radial-gradient(
+            circle at 10% 10%,
+            rgba(0,238,255,0.16),
+            transparent 28%
+        ),
+
+        radial-gradient(
+            circle at 90% 15%,
+            rgba(174,75,255,0.18),
+            transparent 30%
+        ),
+
+        radial-gradient(
+            circle at 75% 80%,
+            rgba(255,45,160,0.11),
+            transparent 30%
+        ),
+
+        linear-gradient(
+            135deg,
+            #070b19,
+            #0b1025 45%,
+            #080b18
+        );
 }
 
 body::before {
@@ -47,63 +67,29 @@ body::before {
 
     position: fixed;
 
-    width: 500px;
-    height: 500px;
+    inset: 0;
 
-    border-radius: 50%;
+    background-image:
+        linear-gradient(
+            rgba(0,238,255,0.035) 1px,
+            transparent 1px
+        ),
+        linear-gradient(
+            90deg,
+            rgba(0,238,255,0.035) 1px,
+            transparent 1px
+        );
 
-    background: rgba(255,70,170,0.15);
-
-    filter: blur(80px);
-
-    top: -180px;
-    left: -120px;
-
-    animation: float1 10s infinite alternate ease-in-out;
-
-    pointer-events: none;
-}
-
-body::after {
-
-    content: "";
-
-    position: fixed;
-
-    width: 450px;
-    height: 450px;
-
-    border-radius: 50%;
-
-    background: rgba(0,220,255,0.13);
-
-    filter: blur(90px);
-
-    right: -130px;
-    bottom: -120px;
-
-    animation: float2 12s infinite alternate ease-in-out;
+    background-size: 45px 45px;
 
     pointer-events: none;
+
+    z-index: -1;
 }
 
-@keyframes float1 {
-
-    to {
-        transform: translate(120px,100px);
-    }
-
-}
-
-@keyframes float2 {
-
-    to {
-        transform: translate(-100px,-80px);
-    }
-
-}
-
-/* NAV */
+/* =====================================================
+   NAV
+===================================================== */
 
 nav {
 
@@ -116,43 +102,50 @@ nav {
 
     display: flex;
 
-    gap: 8px;
+    gap: 5px;
 
-    padding: 8px;
+    padding: 6px;
 
-    border-radius: 18px;
+    background: rgba(5,8,20,0.72);
 
-    background: rgba(15,10,45,0.55);
+    border: 1px solid rgba(0,238,255,0.18);
 
-    border: 1px solid rgba(255,255,255,0.18);
+    backdrop-filter: blur(20px);
 
-    backdrop-filter: blur(18px);
+    clip-path: polygon(
+        8px 0,
+        100% 0,
+        100% calc(100% - 8px),
+        calc(100% - 8px) 100%,
+        0 100%,
+        0 8px
+    );
 }
 
 nav a {
 
-    color: rgba(255,255,255,0.75);
+    color: rgba(255,255,255,0.55);
 
     text-decoration: none;
 
-    padding: 9px 17px;
+    font-family: "Orbitron", sans-serif;
 
-    border-radius: 12px;
+    font-size: 10px;
 
-    font-family: "Space Mono", monospace;
+    font-weight: 700;
 
-    font-size: 12px;
+    letter-spacing: 1.5px;
 
-    font-weight: bold;
+    padding: 12px 17px;
 
-    transition: 0.3s;
+    transition: 0.25s;
 }
 
 nav a:hover {
 
-    color: white;
+    color: #00eeff;
 
-    background: rgba(255,255,255,0.10);
+    background: rgba(0,238,255,0.06);
 }
 
 nav a.active {
@@ -161,18 +154,31 @@ nav a.active {
 
     background:
         linear-gradient(
-            90deg,
-            #ff4fa3,
-            #9b5cff,
-            #29d9ff
+            135deg,
+            rgba(0,238,255,0.20),
+            rgba(174,75,255,0.20)
         );
-
-    box-shadow:
-        0 0 12px rgba(255,79,163,0.5),
-        0 0 25px rgba(41,217,255,0.25);
 }
 
-/* SOCIAL MEDIA */
+nav a.active::after {
+
+    content: "";
+
+    display: block;
+
+    height: 2px;
+
+    margin-top: 5px;
+
+    background: #00eeff;
+
+    box-shadow:
+        0 0 8px #00eeff;
+}
+
+/* =====================================================
+   SOCIALS
+===================================================== */
 
 .socials {
 
@@ -185,48 +191,39 @@ nav a.active {
 
     display: flex;
 
-    gap: 10px;
+    gap: 8px;
 }
 
 .social-btn {
 
-    width: 46px;
-    height: 46px;
+    width: 43px;
+    height: 43px;
 
     display: flex;
 
     align-items: center;
     justify-content: center;
 
-    border-radius: 50%;
+    border-radius: 10px;
 
-    background: rgba(20,15,55,0.65);
+    background: rgba(5,8,20,0.72);
 
-    border: 1px solid rgba(255,255,255,0.25);
+    border: 1px solid rgba(255,255,255,0.15);
 
     backdrop-filter: blur(18px);
-
-    text-decoration: none;
 
     transition: 0.3s;
 }
 
-/* INSTAGRAM */
-
 .instagram {
 
-    color: #ff4fa3;
-
-    border-color: rgba(255,79,163,0.5);
-
-    box-shadow:
-        0 0 12px rgba(255,79,163,0.25);
+    border-color: rgba(255,55,160,0.5);
 }
 
 .instagram svg {
 
-    width: 23px;
-    height: 23px;
+    width: 21px;
+    height: 21px;
 
     fill: none;
 
@@ -234,65 +231,49 @@ nav a.active {
 
     stroke-width: 2;
 
-    stroke-linecap: round;
-    stroke-linejoin: round;
-
     filter:
-        drop-shadow(0 0 5px rgba(255,79,163,0.8));
+        drop-shadow(0 0 5px #ff4fa3);
 }
 
 .instagram:hover {
 
-    transform: translateY(-4px) scale(1.1);
+    transform: translateY(-4px);
 
-    background: rgba(255,79,163,0.15);
-
-    border-color: #ff4fa3;
+    background: rgba(255,55,160,0.12);
 
     box-shadow:
-        0 0 12px #ff4fa3,
-        0 0 30px rgba(255,79,163,0.55);
+        0 0 20px rgba(255,55,160,0.45);
 }
-
-/* YOUTUBE */
 
 .youtube {
 
-    color: #ff3030;
-
-    border-color: rgba(255,48,48,0.5);
-
-    box-shadow:
-        0 0 12px rgba(255,48,48,0.25);
+    border-color: rgba(255,50,50,0.5);
 }
 
 .youtube svg {
 
-    width: 23px;
-    height: 23px;
+    width: 21px;
+    height: 21px;
 
     fill: #ff3030;
 
-    stroke: none;
-
     filter:
-        drop-shadow(0 0 5px rgba(255,48,48,0.8));
+        drop-shadow(0 0 5px #ff3030);
 }
 
 .youtube:hover {
 
-    transform: translateY(-4px) scale(1.1);
+    transform: translateY(-4px);
 
-    background: rgba(255,48,48,0.15);
-
-    border-color: #ff3030;
+    background: rgba(255,50,50,0.12);
 
     box-shadow:
-        0 0 12px #ff3030,
-        0 0 30px rgba(255,48,48,0.55);
+        0 0 20px rgba(255,50,50,0.45);
 }
 
-/* HEADER */
+/* =====================================================
+   HEADER
+===================================================== */
 
 header {
 
@@ -305,50 +286,52 @@ header {
 
     font-family: "Space Mono", monospace;
 
-    color: #70efff;
+    font-size: 10px;
 
-    font-size: 13px;
+    letter-spacing: 4px;
 
-    letter-spacing: 3px;
+    color: #00eeff;
 
     margin-bottom: 20px;
 
     text-shadow:
-        0 0 10px rgba(112,239,255,0.8);
+        0 0 10px #00eeff;
 }
 
 header h1 {
 
-    font-family: "Audiowide", sans-serif;
+    font-family: "Orbitron", sans-serif;
 
-    font-size: clamp(45px,8vw,90px);
+    font-size: clamp(42px,8vw,90px);
+
+    font-weight: 900;
+
+    letter-spacing: 3px;
 
     text-shadow:
-        0 0 15px #ff4fa3,
-        0 0 35px rgba(255,79,163,0.6);
+        0 0 20px #ae4bff;
 }
 
 .header-line {
 
-    width: 180px;
+    width: 240px;
 
-    height: 5px;
+    height: 2px;
 
-    margin: 20px auto;
-
-    border-radius: 20px;
+    margin: 22px auto;
 
     background:
         linear-gradient(
             90deg,
+            transparent,
+            #00eeff,
+            #ae4bff,
             #ff4fa3,
-            #9b5cff,
-            #29d9ff,
-            #ffd34d
+            transparent
         );
 
     box-shadow:
-        0 0 15px rgba(255,79,163,0.7);
+        0 0 12px #ae4bff;
 }
 
 header p {
@@ -357,14 +340,16 @@ header p {
 
     margin: auto;
 
-    color: rgba(255,255,255,0.78);
-
     font-size: 18px;
+
+    color: rgba(255,255,255,0.6);
 
     line-height: 1.6;
 }
 
-/* TEAM */
+/* =====================================================
+   TEAM
+===================================================== */
 
 .team {
 
@@ -372,14 +357,14 @@ header p {
 
     margin: auto;
 
-    padding: 30px 7% 120px;
+    padding: 25px 7% 120px;
 
     display: grid;
 
     grid-template-columns:
         repeat(3, 1fr);
 
-    gap: 28px;
+    gap: 25px;
 }
 
 .card {
@@ -388,38 +373,44 @@ header p {
 
     overflow: hidden;
 
-    border-radius: 25px;
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,0.065),
+            rgba(255,255,255,0.025)
+        );
 
-    background: rgba(255,255,255,0.10);
+    border: 1px solid rgba(255,255,255,0.13);
 
-    border: 1px solid rgba(255,255,255,0.22);
+    clip-path: polygon(
+        20px 0,
+        100% 0,
+        100% calc(100% - 20px),
+        calc(100% - 20px) 100%,
+        0 100%,
+        0 20px
+    );
 
-    backdrop-filter: blur(20px);
-
-    box-shadow:
-        0 20px 50px rgba(0,0,0,0.2);
-
-    transition:
-        transform 0.35s,
-        box-shadow 0.35s;
+    transition: 0.35s;
 }
 
 .card:hover {
 
-    transform: translateY(-12px);
+    transform: translateY(-10px);
+
+    border-color: rgba(0,238,255,0.4);
 
     box-shadow:
-        0 25px 70px rgba(0,0,0,0.3),
-        0 0 30px rgba(255,255,255,0.12);
+        0 0 35px rgba(0,238,255,0.08);
 }
 
 .card-image {
 
-    height: 300px;
+    height: 290px;
 
     overflow: hidden;
 
-    background: rgba(0,0,0,0.2);
+    background: #090d1b;
 }
 
 .card-image img {
@@ -430,53 +421,59 @@ header p {
     object-fit: cover;
 
     transition: 0.5s;
+
+    filter: saturate(0.9);
 }
 
 .card:hover .card-image img {
 
     transform: scale(1.06);
+
+    filter: saturate(1.15);
 }
 
 .card-content {
 
-    padding: 25px;
+    padding: 24px;
 }
 
 .role {
 
     font-family: "Space Mono", monospace;
 
-    font-size: 11px;
+    font-size: 9px;
 
     letter-spacing: 2px;
 
-    margin-bottom: 8px;
+    margin-bottom: 10px;
+
+    color: #00eeff;
 }
 
 .card h2 {
 
-    font-family: "Audiowide", sans-serif;
+    font-family: "Orbitron", sans-serif;
 
-    font-size: 23px;
+    font-size: 21px;
+
+    line-height: 1.3;
 
     margin-bottom: 14px;
-
-    color: white;
 }
 
 .card p {
 
-    color: rgba(255,255,255,0.74);
-
-    line-height: 1.55;
+    color: rgba(255,255,255,0.58);
 
     font-size: 15px;
+
+    line-height: 1.6;
 }
 
-/* CARD COLOURS */
+/* ACCENTS */
 
 .card:nth-child(1) {
-    border-color: rgba(255,79,163,0.45);
+    border-top: 2px solid #ff4fa3;
 }
 
 .card:nth-child(1) .role {
@@ -484,15 +481,15 @@ header p {
 }
 
 .card:nth-child(2) {
-    border-color: rgba(41,217,255,0.45);
+    border-top: 2px solid #00eeff;
 }
 
 .card:nth-child(2) .role {
-    color: #29d9ff;
+    color: #00eeff;
 }
 
 .card:nth-child(3) {
-    border-color: rgba(255,211,77,0.45);
+    border-top: 2px solid #ffd34d;
 }
 
 .card:nth-child(3) .role {
@@ -500,15 +497,15 @@ header p {
 }
 
 .card:nth-child(4) {
-    border-color: rgba(101,255,206,0.45);
+    border-top: 2px solid #61ffd7;
 }
 
 .card:nth-child(4) .role {
-    color: #65ffce;
+    color: #61ffd7;
 }
 
 .card:nth-child(5) {
-    border-color: rgba(255,122,69,0.45);
+    border-top: 2px solid #ff7a45;
 }
 
 .card:nth-child(5) .role {
@@ -516,14 +513,16 @@ header p {
 }
 
 .card:nth-child(6) {
-    border-color: rgba(155,92,255,0.45);
+    border-top: 2px solid #ae4bff;
 }
 
 .card:nth-child(6) .role {
-    color: #b58cff;
+    color: #ae4bff;
 }
 
-/* FOOTER */
+/* =====================================================
+   FOOTER
+===================================================== */
 
 footer {
 
@@ -531,21 +530,27 @@ footer {
 
     text-align: center;
 
-    border-top: 1px solid rgba(255,255,255,0.15);
+    border-top: 1px solid rgba(255,255,255,0.1);
 
     font-family: "Space Mono", monospace;
 
-    font-size: 11px;
+    font-size: 9px;
 
-    color: rgba(255,255,255,0.55);
+    letter-spacing: 1px;
+
+    color: rgba(255,255,255,0.4);
 }
 
-/* MOBILE */
+/* =====================================================
+   MOBILE
+===================================================== */
 
 @media(max-width:900px) {
 
     .team {
-        grid-template-columns: repeat(2,1fr);
+
+        grid-template-columns:
+            repeat(2,1fr);
     }
 
 }
@@ -564,36 +569,26 @@ footer {
 
     nav a {
 
-        padding: 8px 10px;
+        padding: 10px 9px;
 
-        font-size: 10px;
+        font-size: 8px;
     }
 
     .socials {
 
         top: 15px;
-
         left: 15px;
-
-        gap: 7px;
     }
 
     .social-btn {
 
-        width: 40px;
-        height: 40px;
-    }
-
-    .instagram svg,
-    .youtube svg {
-
-        width: 19px;
-        height: 19px;
+        width: 39px;
+        height: 39px;
     }
 
     header {
 
-        padding-top: 160px;
+        padding-top: 170px;
     }
 
     .team {
@@ -616,40 +611,50 @@ footer {
 
 <body>
 
-<!-- SOCIAL MEDIA -->
+<!-- SOCIAL -->
 
 <div class="socials">
 
-    <a href="https://www.instagram.com/robonaara?utm_source=qr&igsi=MTRzNTNnZW1qNjVn"
-       target="_blank"
-       rel="noopener noreferrer"
-       class="social-btn instagram"
-       aria-label="ROBONAARA Instagram">
+    <a
+        href="https://www.instagram.com/robonaara?utm_source=qr&igsi=MTRzNTNnZW1qNjVn"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="social-btn instagram"
+    >
 
         <svg viewBox="0 0 24 24">
 
-            <rect x="3" y="3"
-                  width="18"
-                  height="18"
-                  rx="5"></rect>
+            <rect
+                x="3"
+                y="3"
+                width="18"
+                height="18"
+                rx="5"
+            ></rect>
 
-            <circle cx="12"
-                    cy="12"
-                    r="4"></circle>
+            <circle
+                cx="12"
+                cy="12"
+                r="4"
+            ></circle>
 
-            <circle cx="17.5"
-                    cy="6.5"
-                    r="1"></circle>
+            <circle
+                cx="17.5"
+                cy="6.5"
+                r="1"
+            ></circle>
 
         </svg>
 
     </a>
 
-    <a href="https://www.youtube.com/@RoboNAARA"
-       target="_blank"
-       rel="noopener noreferrer"
-       class="social-btn youtube"
-       aria-label="ROBONAARA YouTube">
+
+    <a
+        href="https://www.youtube.com/@RoboNAARA"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="social-btn youtube"
+    >
 
         <svg viewBox="0 0 24 24">
 
@@ -662,6 +667,7 @@ footer {
     </a>
 
 </div>
+
 
 <!-- NAV -->
 
@@ -680,6 +686,7 @@ footer {
     </a>
 
 </nav>
+
 
 <!-- HEADER -->
 
@@ -703,18 +710,20 @@ footer {
 
 </header>
 
+
 <!-- TEAM -->
 
 <section class="team">
 
-    <!-- AARADHYA -->
 
     <div class="card">
 
         <div class="card-image">
 
-            <img src="aaradhya-srivastava.jpg"
-                 alt="Aaradhya Srivastava">
+            <img
+                src="aaradhya-srivastava.jpg"
+                alt="Aaradhya Srivastava"
+            >
 
         </div>
 
@@ -737,14 +746,14 @@ footer {
     </div>
 
 
-    <!-- ARNAV PANDE -->
-
     <div class="card">
 
         <div class="card-image">
 
-            <img src="arnav-pande.jpg"
-                 alt="Arnav Pande">
+            <img
+                src="arnav-pande.jpg"
+                alt="Arnav Pande"
+            >
 
         </div>
 
@@ -767,14 +776,14 @@ footer {
     </div>
 
 
-    <!-- ARNAV BELPANDE -->
-
     <div class="card">
 
         <div class="card-image">
 
-            <img src="arnav-belpande.jpg"
-                 alt="Arnav Belpande">
+            <img
+                src="arnav-belpande.jpg"
+                alt="Arnav Belpande"
+            >
 
         </div>
 
@@ -797,14 +806,14 @@ footer {
     </div>
 
 
-    <!-- NIVEDITA -->
-
     <div class="card">
 
         <div class="card-image">
 
-            <img src="nivedita-pillai.jpg"
-                 alt="Nivedita Pillai">
+            <img
+                src="nivedita-pillai.jpg"
+                alt="Nivedita Pillai"
+            >
 
         </div>
 
@@ -827,14 +836,14 @@ footer {
     </div>
 
 
-    <!-- RUDRANSH -->
-
     <div class="card">
 
         <div class="card-image">
 
-            <img src="rudransh-dwivedi.jpg"
-                 alt="Rudransh Dwivedi">
+            <img
+                src="rudransh-dwivedi.jpg"
+                alt="Rudransh Dwivedi"
+            >
 
         </div>
 
@@ -857,14 +866,14 @@ footer {
     </div>
 
 
-    <!-- JAYWARDHAN -->
-
     <div class="card">
 
         <div class="card-image">
 
-            <img src="jaywardhan-shinde.jpg"
-                 alt="Jaywardhan Shinde">
+            <img
+                src="jaywardhan-shinde.jpg"
+                alt="Jaywardhan Shinde"
+            >
 
         </div>
 
@@ -888,9 +897,11 @@ footer {
 
 </section>
 
+
 <footer>
 
-    ROBONAARA // ORCHIDS THE INTERNATIONAL SCHOOL, TATHAWADE
+    ROBONAARA //
+    ORCHIDS THE INTERNATIONAL SCHOOL, TATHAWADE
 
     <br><br>
 
